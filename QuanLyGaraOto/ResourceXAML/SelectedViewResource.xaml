@@ -6,7 +6,9 @@
     <DataTemplate DataType="{x:Type switchview:SwitchViewCarCheckIn}">
         <view:CarCheckInUC></view:CarCheckInUC>
     </DataTemplate>
-    
-    
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewSalesReport}">
+        <view:SalesReportUC></view:SalesReportUC>
+    </DataTemplate>
     
 </ResourceDictionary>

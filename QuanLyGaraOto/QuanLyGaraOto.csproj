@@ -82,9 +82,14 @@
     <Compile Include="ViewModel\CarCheckInViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewCarCheckIn.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
     <Compile Include="ViewUserControl\ViewUC\CarCheckInUC.xaml.cs">
       <DependentUpon>CarCheckInUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserControl\ViewUC\SalesReportUC.xaml.cs">
+      <DependentUpon>SalesReportUC.xaml</DependentUpon>
     </Compile>
     <Page Include="ForgetPasswordWindow.xaml">
       <SubType>Designer</SubType>
@@ -119,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewUserControl\ViewUC\CarCheckInUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\SalesReportUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
