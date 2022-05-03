@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:switchview="clr-namespace:QuanLyGaraOto.ViewUserControl.SwitchViewClass"
+                    xmlns:view="clr-namespace:QuanLyGaraOto.ViewUserControl.ViewUC">
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewCarCheckIn}">
+        <view:CarCheckInUC></view:CarCheckInUC>
+    </DataTemplate>
+    
+    
+    
+</ResourceDictionary>
