@@ -21,13 +21,61 @@
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <materialDesign:Card Grid.Row="0" Margin="5">
-                    <TextBlock FontSize="20" Text="Đây là báo cáo doanh số"></TextBlock>
+                    <WrapPanel>
+                        <ComboBox materialDesign:HintAssist.Hint="Tháng"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              ItemsSource="{Binding Month}"
+                              Width="100"
+                              Margin="5"/>
+                        <TextBox materialDesign:HintAssist.Hint="Năm"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Width="80"
+                                 Margin="20 0 0 0"/>
+
+                        <Button x:Name="btnMakeReport"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                                Width="180"
+                                Margin="50 0 0 0"
+                                Content="Xuất báo cáo doanh số"
+                                Command="{Binding MakeReport}">
+                        </Button>
+
+                        <Button x:Name="btnExcelOutput"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                                Width="180"
+                                Margin="50 0 0 0"
+                                Content="Xuất excel"
+                                Command="{Binding ExcelOutput}">
+                        </Button>
+                    </WrapPanel>
                 </materialDesign:Card>
+
+                <Grid Grid.Row="1">
+                    <DataGrid x:Name="dtgSalesReport"
+                            CanUserAddRows="False"
+                            AutoGenerateColumns="False"
+                            HeadersVisibility="All"
+                            IsReadOnly="True"
+                            BorderThickness="3"
+                            BorderBrush="black">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="STT" Binding="{Binding}"/>
+                            <DataGridTextColumn Header="Hiệu xe" Binding="{Binding}"/>
+                            <DataGridTextColumn Header="Số lượt sửa" Binding="{Binding}"/>
+                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <WrapPanel Grid.Row="2">
+                    <TextBlock x:Name="tbTotalMoney" Text="Tổng doanh thu: " FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="tbMoney" Text="{Binding TotalMoney}"></TextBlock>
+                </WrapPanel>
             </Grid>
         </Grid>
     </Grid>
