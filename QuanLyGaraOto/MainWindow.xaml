@@ -125,7 +125,7 @@
                                                             Storyboard.TargetName="GridNavigate"
                                                             Storyboard.TargetProperty="Width"
                                                             BeginTime="0:0:0"
-                                                            From="230" To="65"
+                                                            From="240" To="65"
                                                             Duration="0:0:0.2">
                                                             </DoubleAnimation>
                                                         </Storyboard>
@@ -138,7 +138,7 @@
                                                             Storyboard.TargetName="GridNavigate"
                                                             Storyboard.TargetProperty="Width"
                                                             BeginTime="0:0:0"
-                                                            From="65" To="230"
+                                                            From="65" To="240"
                                                             Duration="0:0:0.3">
                                                             </DoubleAnimation>
                                                         </Storyboard>
@@ -165,42 +165,49 @@
                                         </i:Interaction.Triggers>
 
                                         <ListViewItem Height="60" Tag="CarCheckIn">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu tiếp nhận xe sửa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Car" Height="25" Width="25" Margin="10"/>
-                                                <TextBlock Text="Phiếu tiếp nhận xe sửa" VerticalAlignment="Center" Margin="20 10"/>
+                                                <TextBlock Text="Lập phiếu tiếp nhận xe sửa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
                                         <ListViewItem Height="60" Tag="RepairReceipt">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu sửa chữa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Wrench" Height="25" Width="25" Margin="10"/>
-                                                <TextBlock Text="Phiếu sữa chữa" VerticalAlignment="Center" Margin="20 10"/>
+                                                <TextBlock Text="Lập phiếu sửa chữa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
                                         <ListViewItem Height="60" Tag="Bill">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu thu tiền" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Receipt" Height="25" Width="25" Margin="10"/>
-                                                <TextBlock Text="Phiếu thu tiền" VerticalAlignment="Center" Margin="20 10"/>
+                                                <TextBlock Text="Lập phiếu thu tiền" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
                                         <ListViewItem Height="60" Tag="Search">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Tra cứu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
                                         <ListViewItem Height="60" Tag="SalesReport">
-                                            <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tháng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Cash" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tháng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="AddItem">
-                                            <StackPanel Orientation="Horizontal">
+                                        <ListViewItem Height="60" Tag="AccessoriesReport">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tồn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Báo cáo tồn" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
+                                        <ListViewItem Height="60" Tag="AddAcessories">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Nhập vật tư phụ tùng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Nhập vật tư phụ tùng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>

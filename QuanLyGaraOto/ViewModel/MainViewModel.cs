@@ -65,8 +65,9 @@ namespace QuanLyGaraOto.ViewModel
                         {
                             break;
                         }
-                    case "AddAccessoriesReport":
+                    case "AddAcessories":
                         {
+                            SelectedViewModel = new SwitchViewAddAccessories();
                             break;
                         }
                     default:

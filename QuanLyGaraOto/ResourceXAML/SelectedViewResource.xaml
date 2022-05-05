@@ -10,5 +10,9 @@
     <DataTemplate DataType="{x:Type switchview:SwitchViewSalesReport}">
         <view:SalesReportUC></view:SalesReportUC>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewAddAccessories}">
+        <view:AddAccessoriesUC></view:AddAccessoriesUC>
+    </DataTemplate>
+
 </ResourceDictionary>
