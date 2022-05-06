@@ -15,8 +15,12 @@
         <view:AddAccessoriesUC></view:AddAccessoriesUC>
     </DataTemplate>
 
-    <!--<DataTemplate DataType="{x:Type switchview:SwitchViewAccessoriesReport}">
+    <DataTemplate DataType="{x:Type switchview:SwitchViewSearch}">
+        <view:SearchUC></view:SearchUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewAccessoriesReport}">
         <view:AccessoriesReportUC></view:AccessoriesReportUC>
-    </DataTemplate>-->
+    </DataTemplate>
 
 </ResourceDictionary>

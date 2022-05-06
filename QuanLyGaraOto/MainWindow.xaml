@@ -23,7 +23,6 @@
         Background="Transparent"
         AllowsTransparency="true"
         x:Name="mainWindow">
-
     <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="LightBlue">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>

@@ -54,6 +54,7 @@ namespace QuanLyGaraOto.ViewModel
                         }
                     case "Search":
                         {
+                            SelectedViewModel = new SwitchViewSearch();
                             break;
                         }
                     case "SalesReport":
@@ -63,6 +64,7 @@ namespace QuanLyGaraOto.ViewModel
                         }
                     case "AccessoriesReport":
                         {
+                            SelectedViewModel = new SwitchViewAccessoriesReport();
                             break;
                         }
                     case "AddAcessories":
