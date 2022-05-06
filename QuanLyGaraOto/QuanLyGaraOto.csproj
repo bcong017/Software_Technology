@@ -78,15 +78,20 @@
     <Compile Include="ProjectUserControl\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\CarCheckInViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAccessoriesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAddAccessories.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewCarCheckIn.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
+    <Compile Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml.cs">
+      <DependentUpon>AccessoriesReportUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewUserControl\ViewUC\AddAccessoriesUC.xaml.cs">
       <DependentUpon>AddAccessoriesUC.xaml</DependentUpon>
     </Compile>
@@ -125,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceXAML\SelectedViewResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

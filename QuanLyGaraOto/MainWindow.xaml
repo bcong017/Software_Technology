@@ -22,9 +22,7 @@
         Height="810" Width="1447"
         Background="Transparent"
         AllowsTransparency="true"
-        x:Name="mainWindow"
-        
-        DataContext="{StaticResource MainVM}">
+        x:Name="mainWindow">
 
     <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="LightBlue">
         <Grid Background="Transparent">
