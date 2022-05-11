@@ -13,7 +13,7 @@
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto"
 
-             Background="Pink"
+             d:Background="white"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="ucSearch">
@@ -35,7 +35,6 @@
                Grid.ColumnSpan="2" >
         </Label>
         <ComboBox x:Name="cbxOption"  materialDesign:HintAssist.Hint="Biển số"
-                  
                   FontSize="40"
                   Grid.Row="1"
                   HorizontalAlignment="Left"
@@ -52,10 +51,40 @@
                 Background="Aqua"
                 Content="Tìm kiếm"
                 FontSize="35" 
-                Height="55"
-                />
-        <DataGrid x:Name="dgResult" Grid.Row="3"
-                  Grid.ColumnSpan="2"
-                  Grid.Column="0"/>
+                Height="55"/>
+        <Grid Grid.ColumnSpan="2"
+              Grid.Column="0"
+              Grid.Row="3">
+            <DataGrid x:Name="dgResult" 
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="All"
+                  IsReadOnly="True">
+                <DataGrid.Resources>
+                    <Style x:Key="dtgHeader" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style x:Key="dtgRow" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <Setter Property="Height" Value="46"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
+                    <DataGridTextColumn Header="Biển số" d:Binding="{Binding}"/>
+                    <DataGridTextColumn Header="Tên chủ xe" d:Binding="{Binding}"/>
+                    <DataGridTextColumn Header="(quên rồi)" d:Binding="{Binding}"/>
+                    <DataGridTextColumn Header="(quên rồi)" d:Binding="{Binding}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
     </Grid>
 </UserControl>
