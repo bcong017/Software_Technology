@@ -72,6 +72,12 @@ namespace QuanLyGaraOto.ViewModel
                             SelectedViewModel = new SwitchViewAddAccessories();
                             break;
                         }
+                    case "Update":
+                        {
+                            SelectedViewModel = new SwitchViewUpdateParameter();
+                            break;
+                        }
+
                     default:
                         break;
                 }    

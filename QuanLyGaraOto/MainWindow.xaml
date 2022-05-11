@@ -210,6 +210,13 @@
                                             </StackPanel>
                                         </ListViewItem>
 
+                                        <ListViewItem Height="60" Tag="Update" d:Visibility="Hidden">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Cập nhật quy định" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
                                     </ListView>
 
                                 </Grid>

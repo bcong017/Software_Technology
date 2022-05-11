@@ -87,11 +87,13 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAccessoriesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAddAccessories.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewCarCheckIn.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSearch.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewUpdateParameter.cs" />
     <Compile Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml.cs">
       <DependentUpon>AccessoriesReportUC.xaml</DependentUpon>
     </Compile>
@@ -106,6 +108,9 @@
     </Compile>
     <Compile Include="ViewUserControl\ViewUC\SearchUC.xaml.cs">
       <DependentUpon>SearchUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserControl\ViewUC\UpdateParameterUC.xaml.cs">
+      <DependentUpon>UpdateParameterUC.xaml</DependentUpon>
     </Compile>
     <Page Include="ForgetPasswordWindow.xaml">
       <SubType>Designer</SubType>
@@ -156,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewUserControl\ViewUC\SearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\UpdateParameterUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

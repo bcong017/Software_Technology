@@ -23,4 +23,8 @@
         <view:AccessoriesReportUC></view:AccessoriesReportUC>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type switchview:SwitchViewUpdateParameter}">
+        <view:UpdateParameterUC></view:UpdateParameterUC>
+    </DataTemplate>
+
 </ResourceDictionary>
