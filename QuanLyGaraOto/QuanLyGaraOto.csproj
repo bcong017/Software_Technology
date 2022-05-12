@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="ForgetPasswordWindow.xaml.cs">
       <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
     </Compile>
