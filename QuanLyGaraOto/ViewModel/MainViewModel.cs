@@ -12,8 +12,11 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private BaseViewModel _selectedViewModel = new SwitchViewSalesReport();
+        public bool IsLoggedIn { get; set; }
 
+
+
+        private BaseViewModel _selectedViewModel = new SwitchViewSalesReport();
         public BaseViewModel SelectedViewModel 
         { 
             get { return _selectedViewModel; } 
@@ -25,9 +28,29 @@ namespace QuanLyGaraOto.ViewModel
         }
         
         public ICommand SelectViewCommand { get; set; }
+        public ICommand LoadedWindowCommand { get; set; }
 
         public MainViewModel()
         {
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                if (p == null)
+                    return;
+
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+
+                var loginVM = loginWindow.DataContext as LoginWindowViewModel;
+
+                if (loginVM == null)
+                    return;
+
+                if (loginVM.isLoggedIn)
+                {
+                    p.Show();
+                }    
+            });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
         }
 

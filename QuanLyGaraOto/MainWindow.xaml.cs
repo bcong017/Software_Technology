@@ -25,10 +25,6 @@ namespace QuanLyGaraOto
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
-            //LoginWindow loginWindow = new LoginWindow();
-            //loginWindow.ShowDialog();
-            ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
-            forgetPasswordWindow.Show();
         }
 
         //private void Btn_Click(object sender, RoutedEventArgs e)

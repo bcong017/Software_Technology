@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyGaraOto.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace QuanLyGaraOto
         public LoginWindow()
         {
             InitializeComponent();
-           
+            this.DataContext = new LoginWindowViewModel();
         }
 
         private void passwordForget_Click(object sender, RoutedEventArgs e)

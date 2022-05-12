@@ -23,6 +23,13 @@
         Background="Transparent"
         AllowsTransparency="true"
         x:Name="mainWindow">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
+                                   CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="LightBlue">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>

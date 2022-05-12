@@ -40,10 +40,7 @@ namespace QuanLyGaraOto.ViewModel
 
         void CloseWindow(UserControl p)
         {
-            FrameworkElement parent = GetParent(p);
-            Window window = parent as Window;
-            if (window != null)
-                window.Close();
+            Application.Current.Shutdown(); 
         }
 
         void MaximizeWindow(UserControl p)
