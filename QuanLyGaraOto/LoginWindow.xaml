@@ -112,12 +112,12 @@
                     </Grid>
 
                     <Button
-                    x:Name="passwordForget"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    Click="passwordForget_Click"
-                    ToolTip="MaterialDesignFlatButton"
-                    Foreground="Blue"
-                    Content="Quên mật khẩu?"/>
+                            x:Name="passwordForget"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Foreground="Blue"
+                            Content="Quên mật khẩu?"
+                            Command="{Binding OpenForgetPassWindowCommand}"/>
                 </StackPanel>
             </Grid>
             

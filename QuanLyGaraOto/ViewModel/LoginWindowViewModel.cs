@@ -52,6 +52,7 @@ namespace QuanLyGaraOto.ViewModel
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
         public ICommand ExitCommand { get; set; }
+        public ICommand OpenForgetPassWindowCommand { get; set; }
         public LoginWindowViewModel()
         {
             EnableLoginBtn = false;
@@ -60,6 +61,10 @@ namespace QuanLyGaraOto.ViewModel
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
             ExitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { Application.Current.Shutdown(); });
+            OpenForgetPassWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
+                ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
+                forgetPasswordWindow.ShowDialog();
+            });
         }
 
         void Login(Window p)

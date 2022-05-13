@@ -26,9 +26,6 @@ namespace QuanLyGaraOto
             this.DataContext = new LoginWindowViewModel();
         }
 
-        private void passwordForget_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("ok");
-        }
+        
     }
 }
