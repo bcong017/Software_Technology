@@ -99,6 +99,9 @@
     <Compile Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml.cs">
       <DependentUpon>AccessoriesReportUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewUserControl\ViewUC\PartsCostReports.xaml.cs">
+      <DependentUpon>PartsCostReports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewUserControl\ViewUC\AddAccessoriesUC.xaml.cs">
       <DependentUpon>AddAccessoriesUC.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,10 @@
     <Page Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\PartsCostReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewUserControl\ViewUC\AddAccessoriesUC.xaml">
       <SubType>Designer</SubType>
