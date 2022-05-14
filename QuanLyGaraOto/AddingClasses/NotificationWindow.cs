@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace QuanLyGaraOto.AddingClasses
 {
-    public class NotificationWindow
+    public static class NotificationWindow
     {
-        public void Notify(string information)
+        public static void Notify(string information)
         {
-            //NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu đã nhập không khớp");
-            //notifyWindow.ShowDialog();
+            NotifyWindow notifyWindow = new NotifyWindow(information);
+            notifyWindow.ShowDialog();
         }
     }
 }

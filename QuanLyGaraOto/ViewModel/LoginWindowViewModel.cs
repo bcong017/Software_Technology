@@ -76,7 +76,7 @@ namespace QuanLyGaraOto.ViewModel
 
             // truy vấn dữ liệu sql ở đây, chưa có nên chưa làm lmao :v
             // chỗ này để tạm vô là login đc thôi nhá còn bao giờ truy vấn đc rồi thì cho điều kiện vào đây
-            // sử dụng NotifyWindow để thông báo nếu đăng nhập chưa ok
+            // sử dụng hàm "Notification.Notify" để thông báo nếu đăng nhập chưa ok
             isLoggedIn = true;
             p.Close();
 

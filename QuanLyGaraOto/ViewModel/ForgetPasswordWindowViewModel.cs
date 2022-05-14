@@ -75,7 +75,7 @@ namespace QuanLyGaraOto.ViewModel
         {
             string password;
             // vô sql kiểm tra xem có tên tài khoản nào giống thế không
-            // nếu không có thì dùng NotifyWindow để thông báo ra nhá
+            // nếu không có thì dùng hàm "NotificationWindow.Notify" để thông báo ra nhá
             // ở đây chỉ là giả sử có tài khoản như thế (mốt có sql thì chỉnh cái này lại)
             if (CheckValidUsername(out password) && ValidateEmail.EmailIsValid(Gmail))
             {
@@ -106,7 +106,7 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     await smtp.SendMailAsync(message);
                 }
-                
+                NotificationWindow.Notify("Gửi mật khẩu thành công");
             }
             else
             {

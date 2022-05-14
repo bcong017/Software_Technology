@@ -21,60 +21,41 @@
         Background="Transparent"
         AllowsTransparency="true"
         
-        mc:Ignorable="d"
-        Title="NotifyWindow" Height="450" Width="800">
+        x:Name="notifyWindow"
+        Title="NotifyWindow" Height="200" Width="450">
     <Grid>
         <Border Background="White" 
                 BorderThickness="2" 
+                BorderBrush="Aqua"
                 CornerRadius="10"/>
-        <Grid Grid.ColumnSpan="2">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-                <RowDefinition Height="60"/>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <materialDesign:PackIcon x:Name="Icon"
-                                         Grid.Row="0"
-                                         Kind="{Binding ElementName=notifyWindow, Path=Title}" 
-                                         HorizontalAlignment="Center"
-                                         DockPanel.Dock="Top"
-                                         Width="50"
-                                         Height="50"
-                                         ToolTip="{x:Null}"
-                                         Margin="0 20 0 0"/>
             <TextBlock x:Name="txtMessage"
-                           Grid.Row="1"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextWrapping="Wrap"
-                           FontSize="16"/>
-            <StackPanel Grid.Row="2" 
-                            Orientation="Horizontal" 
-                            Margin="0 0 0 10"
-                            HorizontalAlignment="Center">
-                <Button x:Name="btnCancel"
-                            HorizontalAlignment="Center"
-                            Visibility="{Binding Cancel}"
-                            Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Content="Cancel"
-                            Width="100"
-                            Margin="5 0"
-                            Background="White"
-                            ToolTip="{x:Null}" 
-                            BorderThickness="2" Click="btnCancel_Click"/>
-                <Button x:Name="btnOK"
-                            Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Content="OK"
-                            Width="100"
-                            Margin="5 0"
-                            Background="White"
-                            BorderThickness="2"
-                            HorizontalAlignment="Center" 
-                            ToolTip="{x:Null}"
-                            Click="btnOK_Click"/>
-            </StackPanel>
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"        
+                       FontSize="16"
+                       Text="{Binding Notification, Mode=OneTime}"/>
+
+            <Button x:Name="btnOK" Grid.Row="1"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Content="OK"
+                    FontSize="20"
+                    VerticalContentAlignment="Center"
+                    Width="150"
+                    Background="White"
+                    BorderThickness="2"
+                    HorizontalAlignment="Center" 
+                    ToolTip="{x:Null}"
+                    Margin="0 0 0 10"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=notifyWindow}"/>
 
         </Grid>
 
     </Grid>
+    
 </Window>

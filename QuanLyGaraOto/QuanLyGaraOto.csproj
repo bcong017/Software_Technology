@@ -94,6 +94,7 @@
     <Compile Include="ViewModel\ForgetPasswordWindowViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
