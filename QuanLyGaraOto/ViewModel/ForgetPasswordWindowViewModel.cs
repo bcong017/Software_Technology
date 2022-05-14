@@ -1,6 +1,10 @@
-﻿using System;
+﻿using QuanLyGaraOto.AddingClasses;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,7 +49,7 @@ namespace QuanLyGaraOto.ViewModel
 
 
         public ICommand CloseCommand { get; set; }
-
+        public ICommand SendMailCommand { get; set; }
         
         public ForgetPasswordWindowViewModel()
         {
@@ -55,6 +59,8 @@ namespace QuanLyGaraOto.ViewModel
                 //    return;
                 p.Close();
             });
+
+            SendMailCommand = new RelayCommand<object>((p) => { return true; }, ((p) => { SendMail(); }));
         }
 
         void EnableSendMailBtnChecker()
@@ -64,5 +70,57 @@ namespace QuanLyGaraOto.ViewModel
             else
                 EnableSendMailBtn = false;
         }
+
+        async void SendMail()
+        {
+            string password;
+            // vô sql kiểm tra xem có tên tài khoản nào giống thế không
+            // nếu không có thì dùng NotifyWindow để thông báo ra nhá
+            // ở đây chỉ là giả sử có tài khoản như thế (mốt có sql thì chỉnh cái này lại)
+            if (CheckValidUsername(out password) && ValidateEmail.EmailIsValid(Gmail))
+            {
+                string fromEmail = ConfigurationManager.AppSettings.Get("EmailAddress");
+                string fromPassword = ConfigurationManager.AppSettings.Get("GeneratedPassword");
+
+
+                var fromAddress = new MailAddress(fromEmail, "Quản lý Gara Oto");
+                var toAddress = new MailAddress(Gmail);
+                
+                string subject = "Email tự động";
+                string body = "Password của bạn là: " + password;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    await smtp.SendMailAsync(message);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Gửi mật khẩu thất bại!");
+            }    
+
+        }
+
+        bool CheckValidUsername(out string password)
+        {
+            // hàm check tài khoản nè và lấy cái password đó ra luôn
+            password = "";
+            return true;
+        }
+
     }
 }

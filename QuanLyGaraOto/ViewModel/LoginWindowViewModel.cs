@@ -89,7 +89,5 @@ namespace QuanLyGaraOto.ViewModel
             else
                 EnableLoginBtn = false;
         }
-
-
     }
 }
