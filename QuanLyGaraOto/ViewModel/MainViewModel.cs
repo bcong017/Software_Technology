@@ -69,6 +69,7 @@ namespace QuanLyGaraOto.ViewModel
                         }
                     case "RepairReceipt":
                         {
+                            SelectedViewModel = new SwitchViewRepairReceipt();
                             break;
                         }
                     case "Bill":

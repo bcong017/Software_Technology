@@ -95,12 +95,14 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\RepairReceiptViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAccessoriesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAddAccessories.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewCarCheckIn.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewRepairReceipt.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSearch.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewUpdateParameter.cs" />
@@ -112,6 +114,9 @@
     </Compile>
     <Compile Include="ViewUserControl\ViewUC\CarCheckInUC.xaml.cs">
       <DependentUpon>CarCheckInUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserControl\ViewUC\RepairReceiptUC.xaml.cs">
+      <DependentUpon>RepairReceiptUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewUserControl\ViewUC\SalesReportUC.xaml.cs">
       <DependentUpon>SalesReportUC.xaml</DependentUpon>
@@ -167,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewUserControl\ViewUC\CarCheckInUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\RepairReceiptUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

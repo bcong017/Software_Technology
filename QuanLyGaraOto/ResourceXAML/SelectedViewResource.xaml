@@ -27,4 +27,8 @@
         <view:UpdateParameterUC></view:UpdateParameterUC>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type switchview:SwitchViewRepairReceipt}">
+        <view:RepairReceiptUC></view:RepairReceiptUC>
+    </DataTemplate>
+
 </ResourceDictionary>
