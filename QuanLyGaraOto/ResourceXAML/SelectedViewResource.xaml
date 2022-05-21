@@ -31,4 +31,8 @@
         <view:RepairReceiptUC></view:RepairReceiptUC>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type switchview:SwitchViewBill}">
+        <view:BillUC></view:BillUC>
+    </DataTemplate>
+
 </ResourceDictionary>

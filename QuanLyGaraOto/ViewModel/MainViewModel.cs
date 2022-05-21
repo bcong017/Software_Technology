@@ -74,6 +74,7 @@ namespace QuanLyGaraOto.ViewModel
                         }
                     case "Bill":
                         {
+                            SelectedViewModel = new SwitchViewBill();
                             break;
                         }
                     case "Search":
