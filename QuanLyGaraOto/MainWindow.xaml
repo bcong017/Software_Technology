@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyGaraOto"
-        
+
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:uc="clr-namespace:QuanLyGaraOto.ProjectUserControl" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -181,7 +181,14 @@
                                                 <TextBlock Text="Lập phiếu sửa chữa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
-
+                                        
+                                        <ListViewItem Height="60" Tag="Search">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Tra cứu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        
                                         <ListViewItem Height="60" Tag="Bill">
                                             <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu thu tiền" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Receipt" Height="25" Width="25" Margin="10"/>
@@ -189,12 +196,7 @@
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Search">
-                                            <StackPanel Orientation="Horizontal" ToolTip="Tra cứu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
-                                                <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
-                                            </StackPanel>
-                                        </ListViewItem>
+                                        
 
                                         <ListViewItem Height="60" Tag="SalesReport">
                                             <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tháng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -34,11 +34,11 @@
                             ToolTip="Thu nhỏ">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
-                    <Button Command="{Binding MaximizeWindowCommand}"
+                    <!--<Button Command="{Binding MaximizeWindowCommand}"
                             CommandParameter="{Binding ElementName=ucControlBar}"
                             ToolTip="Phóng to">
                         <materialDesign:PackIcon Kind="WindowMaximize" />
-                    </Button>
+                    </Button>-->
                     <Button Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding ElementName=ucControlBar}"
                             ToolTip="Đóng"
