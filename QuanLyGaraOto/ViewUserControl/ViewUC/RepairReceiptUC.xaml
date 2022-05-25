@@ -92,7 +92,9 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
                         <DataGridTextColumn Header="Nội dung" d:Binding="{Binding}"/>
-                        <DataGridTextColumn Header="Số lần" d:Binding="{Binding}"/>
+                        <DataGridTextColumn Header="VTPT" d:Binding="{Binding}"/>
+                        <DataGridTextColumn Header="Số lượng" d:Binding="{Binding}"/>
+                        <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
                         <DataGridTextColumn Header="Tiền công" d:Binding="{Binding}"/>
                         <DataGridTextColumn Header="Thành tiền" d:Binding="{Binding}"/>
                     </DataGrid.Columns>
@@ -102,16 +104,6 @@
                         <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                             <TextBlock Text="Nội dung: " FontSize="20" TextAlignment="Center"/>
                             <TextBox Margin="5,0,0,0" Width="200" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                            <TextBlock Text="Số lần: " FontSize="20" TextAlignment="Center"/>
-                            <TextBox Margin="5,0,0,0" Width="50" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                            <TextBlock Text="Tiền công: " FontSize="20" TextAlignment="Center"/>
-                            <TextBox Margin="5,0,0,0" Width="150" />
                         </StackPanel>
                     </WrapPanel>
                     <WrapPanel>
@@ -138,47 +130,106 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <DataGrid CanUserAddRows="False"
+                <TabControl Background="LightGray"
+                            BorderBrush="Black" BorderThickness="1">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Grid Name="Panel">
+                                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Panel" Property="Background" Value="LightSkyBlue" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Panel" Property="Background" Value="White" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
+                    <TabItem Header="Vật tư phụ tùng">
+                        <DataGrid CanUserAddRows="False"
                           AutoGenerateColumns="False"
                           HeadersVisibility="All"
                           IsReadOnly="True"  
                           BorderBrush="Black" BorderThickness="1"
                           Grid.Row="0">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Left" />
-                            <Setter Property="FontWeight" Value="SemiBold"/>
-                            <Setter Property="FontSize" Value="16"/>
-                        </Style>
-                        <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                            <Setter Property="HorizontalAlignment" Value="Left" />
-                            <Setter Property="FontSize" Value="13"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                        </Style>
-                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                            <Setter Property="Height" Value="46"/>
-                            <Setter Property="VerticalAlignment" Value="Center"/>
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Mã" d:Binding="{Binding}"/>
-                        <DataGridTextColumn Header="Vật tư phụ tùng" d:Binding="{Binding}"/>
-                        <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </Style>
+                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="FontSize" Value="13"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                                    <Setter Property="Height" Value="46"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Vật tư phụ tùng" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem Header="Tiền công">
+                        <DataGrid CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="All"
+                          IsReadOnly="True"  
+                          BorderBrush="Black" BorderThickness="1"
+                          Grid.Row="0">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </Style>
+                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="FontSize" Value="13"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                                    <Setter Property="Height" Value="46"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã tiền công" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Tiền công" d:Binding="{Binding}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
                 <StackPanel Grid.Row="1" Margin="0 10 0 0">
                     <WrapPanel>
-                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                            <TextBlock Text="Vật tư phụ tùng: " FontSize="20" TextAlignment="Center"/>
-                            <TextBox Margin="5,0,0,0" Width="250" />
-                        </StackPanel>
 
+                        <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                            <TextBlock Text="Số lượng: " FontSize="20" TextAlignment="Center"/>
+                            <TextBox Margin="5,0,0,0" Width="50" />
+                        </StackPanel>
                     </WrapPanel>
                     <WrapPanel>
                         <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" 
                                 HorizontalAlignment="Center"
                                 Height="50" 
-                                Content="Thêm vật tư" 
+                                Content="Thêm" 
                                 Margin="5,5,5,5"
                                 d:Command="{Binding}"/>
                         <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" 
