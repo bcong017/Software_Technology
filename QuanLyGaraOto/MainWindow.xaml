@@ -67,7 +67,7 @@
                             </materialDesign:PopupBox.ToggleContent>
 
                             <StackPanel>
-                                <Button d:Command="{Binding OpenAccountSetting}">
+                                <Button Command="{Binding OpenAccountSetting}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Account" Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Tài khoản</TextBlock>
@@ -82,8 +82,8 @@
                                 </Button>
 
                                 <Button x:Name="btnLogin"
-                                        d:Command="{Binding LogoutCommand}" 
-                                        d:CommandParameter="{Binding ElementName=mainwindow}">
+                                        Command="{Binding LogoutCommand}" 
+                                        CommandParameter="{Binding ElementName=mainWindow}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Logout" Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Đăng xuất</TextBlock>
@@ -196,10 +196,8 @@
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        
-
                                         <ListViewItem Height="60" Tag="SalesReport">
-                                            <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tháng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Báo cáo doanh số" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Cash" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tháng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
@@ -207,7 +205,7 @@
 
                                         <ListViewItem Height="60" Tag="AccessoriesReport">
                                             <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tồn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
+                                                <materialDesign:PackIcon Kind="Calculator" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tồn" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
@@ -219,12 +217,21 @@
                                             </StackPanel>
                                         </ListViewItem>
 
+                                        <ListViewItem Height="60" Tag="Show">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Xem danh sách vật tư và tiền công" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Xem danh sách vật tư và tiền công" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+
                                         <ListViewItem Height="60" Tag="Update" d:Visibility="Hidden">
                                             <StackPanel Orientation="Horizontal" ToolTip="Cập nhật quy định" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
+
+                                        
 
                                     </ListView>
 

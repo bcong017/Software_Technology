@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountInformation.xaml.cs">
+      <DependentUpon>AccountInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="AddingClasses\NotificationWindow.cs" />
     <Compile Include="AddingClasses\ValidateEmail.cs" />
@@ -87,6 +90,7 @@
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
+    <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="ViewModel\RepairReceiptViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\ShowWageAndMaterialViewModel.cs" />
     <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAccessoriesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAddAccessories.cs" />
@@ -107,6 +112,7 @@
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewRepairReceipt.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSearch.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewShowWageAndMaterial.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewUpdateParameter.cs" />
     <Compile Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml.cs">
       <DependentUpon>AccessoriesReportUC.xaml</DependentUpon>
@@ -129,9 +135,16 @@
     <Compile Include="ViewUserControl\ViewUC\SearchUC.xaml.cs">
       <DependentUpon>SearchUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewUserControl\ViewUC\ShowWageAndMaterialUC.xaml.cs">
+      <DependentUpon>ShowWageAndMaterialUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewUserControl\ViewUC\UpdateParameterUC.xaml.cs">
       <DependentUpon>UpdateParameterUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="AccountInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ForgetPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewUserControl\ViewUC\SearchUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\ShowWageAndMaterialUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

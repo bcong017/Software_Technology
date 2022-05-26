@@ -35,4 +35,8 @@
         <view:BillUC></view:BillUC>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowWageAndMaterial}">
+        <view:ShowWageAndMaterialUC></view:ShowWageAndMaterialUC>
+    </DataTemplate>
+
 </ResourceDictionary>

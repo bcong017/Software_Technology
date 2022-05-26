@@ -29,29 +29,21 @@ namespace QuanLyGaraOto.ViewModel
         
         public ICommand SelectViewCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
+        public ICommand OpenAccountSetting { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                if (p == null)
-                    return;
-
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-
-                var loginVM = loginWindow.DataContext as LoginWindowViewModel;
-
-                if (loginVM == null)
-                    return;
-
-                if (loginVM.isLoggedIn)
-                {
-                    p.Show();
-                }    
-            });
+            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoginAccount(p); });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
+
+            OpenAccountSetting = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                AccountInformation accountInformation = new AccountInformation();
+                accountInformation.ShowDialog();
+            });
+
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoginAccount(p); });
         }
 
         void SelectView(ListViewItem listViewItem)
@@ -102,12 +94,36 @@ namespace QuanLyGaraOto.ViewModel
                             SelectedViewModel = new SwitchViewUpdateParameter();
                             break;
                         }
-
+                    case "Show":
+                        {
+                            SelectedViewModel = new SwitchViewShowWageAndMaterial();
+                            break;
+                        }
                     default:
                         break;
                 }    
                 
             }    
+        }
+        
+        void LoginAccount(Window p)
+        {
+            if (p != null)
+            {
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+
+                var loginVM = loginWindow.DataContext as LoginWindowViewModel;
+
+                if (loginVM == null)
+                    return;
+
+                if (loginVM.isLoggedIn)
+                {
+                    p.Show();
+                }
+            }
         }
     }
 }
