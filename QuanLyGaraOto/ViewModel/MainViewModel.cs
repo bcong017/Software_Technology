@@ -29,7 +29,7 @@ namespace QuanLyGaraOto.ViewModel
         
         public ICommand SelectViewCommand { get; set; }
         public ICommand LoadedWindowCommand { get; set; }
-        public ICommand OpenAccountSetting { get; set; }
+        public ICommand OpenAccountInfoCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
 
         public MainViewModel()
@@ -37,7 +37,7 @@ namespace QuanLyGaraOto.ViewModel
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoginAccount(p); });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
 
-            OpenAccountSetting = new RelayCommand<object>((p) => { return true; }, (p) =>
+            OpenAccountInfoCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 AccountInformation accountInformation = new AccountInformation();
                 accountInformation.ShowDialog();

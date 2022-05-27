@@ -129,14 +129,12 @@
                                        Margin="0,0,10,0">
                             </TextBlock>
 
-                            <TextBox x:Name="txbPassword" Text="Binding password mà người này đang dùng"
-                                     Grid.Column="1" 
-                                     VerticalAlignment="Center" 
-                                     HorizontalAlignment="Left" 
-                                     Width="350" FontSize="20" 
-                                     materialDesign:HintAssist.Hint="Email" 
-                                     Foreground="Black" TextAlignment="Left"
-                                     IsEnabled="{Binding EnableState}"/>
+                            <Button Grid.Column="1"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Background="SkyBlue"
+                                    Content="Thay đổi mật khẩu tại đây"
+                                    FontWeight="Bold"
+                                    Command="{Binding OpenChangePasswordWindowCommand}"/>
 
                         </Grid>
                     </StackPanel>

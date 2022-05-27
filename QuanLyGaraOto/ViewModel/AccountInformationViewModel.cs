@@ -24,6 +24,7 @@ namespace QuanLyGaraOto.ViewModel
         }
         public ICommand CloseCommand { get; set; }
         public ICommand AllowToChangeCommand { get; set;}
+        public ICommand OpenChangePasswordWindowCommand { get; set; }
         public AccountInformationViewModel()
         {
             EnableState = false;
@@ -42,6 +43,11 @@ namespace QuanLyGaraOto.ViewModel
                 }
             });
 
+            OpenChangePasswordWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => 
+            { 
+                ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow(); 
+                changePasswordWindow.ShowDialog();
+            });
         }
     }
 }

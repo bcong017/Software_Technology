@@ -76,6 +76,9 @@
     <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="AddingClasses\NotificationWindow.cs" />
     <Compile Include="AddingClasses\ValidateEmail.cs" />
+    <Compile Include="ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPasswordWindow.xaml.cs">
       <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\CarCheckInViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\ForgetPasswordWindowViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
@@ -142,6 +146,10 @@
       <DependentUpon>UpdateParameterUC.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

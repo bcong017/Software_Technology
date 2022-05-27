@@ -67,10 +67,10 @@
                             </materialDesign:PopupBox.ToggleContent>
 
                             <StackPanel>
-                                <Button Command="{Binding OpenAccountSetting}">
+                                <Button Command="{Binding OpenAccountInfoCommand}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Account" Width="25" Height="auto"></materialDesign:PackIcon>
-                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Tài khoản</TextBlock>
+                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Thông tin tài khoản</TextBlock>
                                     </StackPanel>
                                 </Button>
 
