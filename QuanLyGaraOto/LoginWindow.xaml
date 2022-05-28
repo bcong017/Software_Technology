@@ -26,8 +26,8 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         x:Name="loginWindow">
-    
-    
+
+
     <Border CornerRadius="10" BorderThickness="1" BorderBrush="#4dabf7">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
@@ -35,7 +35,7 @@
                 <GradientStop Color="#c2e2ff" Offset="0"/>
             </LinearGradientBrush>
         </Border.Background>
-        
+
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
@@ -94,7 +94,8 @@
                             BorderThickness="2"
                             BorderBrush="White"
                             HorizontalAlignment="Left"
-                            Content="Đăng nhập"/>
+                            Content="Đăng nhập" VerticalAlignment="Top"
+                            />
 
                         <Button
                             Command="{Binding ExitCommand}"
@@ -120,7 +121,7 @@
                             Command="{Binding OpenForgetPassWindowCommand}"/>
                 </StackPanel>
             </Grid>
-            
+
         </Grid>
     </Border>
 </Window>
