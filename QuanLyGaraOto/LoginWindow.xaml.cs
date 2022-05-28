@@ -1,6 +1,7 @@
 ﻿using QuanLyGaraOto.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,13 @@ namespace QuanLyGaraOto
         {
             InitializeComponent();
             this.DataContext = new LoginWindowViewModel();
+            this.Closing += LoginWindow_Closing;
+            
         }
 
-        
+        private void LoginWindow_Closing(object sender, CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

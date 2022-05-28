@@ -37,7 +37,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
             </Grid>
             <Border Grid.Row="1" CornerRadius="0 0 10 10">
 
@@ -67,14 +67,14 @@
                             </materialDesign:PopupBox.ToggleContent>
 
                             <StackPanel>
-                                <Button Command="{Binding OpenAccountInfoCommand}">
+                                <Button Command="{Binding OpenAccountInfoCommand}" Cursor="Hand">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Account" Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Thông tin tài khoản</TextBlock>
                                     </StackPanel>
                                 </Button>
 
-                                <Button d:Command="{Binding ShowAboutCommand}">
+                                <Button d:Command="{Binding ShowAboutCommand}" Cursor="Hand">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Information" Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Về chương trình</TextBlock>
@@ -83,7 +83,8 @@
 
                                 <Button x:Name="btnLogin"
                                         Command="{Binding LogoutCommand}" 
-                                        CommandParameter="{Binding ElementName=mainWindow}">
+                                        CommandParameter="{Binding ElementName=mainWindow}"
+                                        Cursor="Hand">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Logout" Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Đăng xuất</TextBlock>
@@ -118,7 +119,8 @@
                                         <ToggleButton x:Name="ToogleBtn" Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
                                                       Height="25" Width="25"
                                                       Margin="18 0 0 0"
-                                                      HorizontalAlignment="Center">
+                                                      HorizontalAlignment="Center"
+                                                      Cursor="Hand">
                                             <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
                                             <ToggleButton.Triggers>
                                                 <EventTrigger RoutedEvent="ToggleButton.Unchecked">
@@ -168,63 +170,63 @@
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
 
-                                        <ListViewItem Height="60" Tag="CarCheckIn">
+                                        <ListViewItem Height="60" Tag="CarCheckIn"  Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu tiếp nhận xe sửa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Car" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu tiếp nhận xe sửa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="RepairReceipt">
+                                        <ListViewItem Height="60" Tag="RepairReceipt"  Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu sửa chữa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Wrench" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu sửa chữa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
-                                        
-                                        <ListViewItem Height="60" Tag="Search">
+
+                                        <ListViewItem Height="60" Tag="Search" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Tra cứu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
-                                        
-                                        <ListViewItem Height="60" Tag="Bill">
+
+                                        <ListViewItem Height="60" Tag="Bill" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Lập phiếu thu tiền" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Receipt" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu thu tiền" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="SalesReport">
+                                        <ListViewItem Height="60" Tag="SalesReport" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Báo cáo doanh số" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Cash" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tháng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="AccessoriesReport">
+                                        <ListViewItem Height="60" Tag="AccessoriesReport" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Báo cáo tồn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Calculator" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tồn" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="AddAcessories">
+                                        <ListViewItem Height="60" Tag="AddAcessories" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Nhập vật tư phụ tùng" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Plus" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Nhập vật tư phụ tùng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Show">
+                                        <ListViewItem Height="60" Tag="Show" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Xem danh sách vật tư và tiền công" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Xem danh sách vật tư và tiền công" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Update" d:Visibility="Hidden">
+                                        <ListViewItem Height="60" Tag="Update" d:Visibility="Hidden" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Cập nhật quy định" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>

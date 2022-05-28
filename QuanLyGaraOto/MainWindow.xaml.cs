@@ -27,28 +27,9 @@ namespace QuanLyGaraOto
             this.DataContext = new MainViewModel();
         }
 
-        //private void Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (BtnOpenMenu.Visibility == Visibility.Visible)
-        //    {
-        //        BtnOpenMenu.Visibility = Visibility.Collapsed;
-        //        BtnCloseMenu.Visibility = Visibility.Visible;
-        //    }
+        private void ControlBarUC_Loaded(object sender, RoutedEventArgs e)
+        {
 
-        //    else if (BtnOpenMenu.Visibility == Visibility.Collapsed)
-        //    {
-        //        BtnOpenMenu.Visibility = Visibility.Visible;
-        //        BtnCloseMenu.Visibility = Visibility.Collapsed;
-        //    }
-        //}
-
-        //private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (BtnCloseMenu.Visibility == Visibility.Visible)
-        //    {
-        //        var newEventArgs = new RoutedEventArgs(Button.ClickEvent);
-        //        BtnCloseMenu.RaiseEvent(newEventArgs);
-        //    }
-        //}
+        }
     }
 }

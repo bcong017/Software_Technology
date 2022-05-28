@@ -35,7 +35,7 @@
                 <GradientStop Color="#c2e2ff" Offset="0"/>
             </LinearGradientBrush>
         </Border.Background>
-
+        
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
