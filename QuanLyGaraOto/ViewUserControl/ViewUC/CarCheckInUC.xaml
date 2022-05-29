@@ -11,6 +11,150 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="20" Foreground="Red" Text="Đây là biểu mẫu tiếp nhận xe"></TextBlock>
+        <StackPanel
+        Orientation="Vertical">
+            <Grid Grid.Row="0">
+                <Border
+                Background="{DynamicResource MaterialDesignBackground}">
+                    <GroupBox Header="Tiếp nhận xe sửa" Style="{StaticResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <TextBox Width="170" materialDesign:HintAssist.Hint="Họ tên chủ xe"
+                                         Foreground="Black"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="0">
+                                <TextBox
+                                Width="170"
+                                Foreground="Black"
+                                materialDesign:HintAssist.Hint="Biển số"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                VerticalAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="1" Height="50">
+                                <TextBox Width="170" Foreground="Black"
+                                         materialDesign:HintAssist.Hint="Hiệu xe"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center" />
+
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="1">
+                                <TextBox Width="170" Foreground="Black"
+                                         materialDesign:HintAssist.Hint="Địa chỉ"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center"/>
+
+                            </Grid>
+                            <Grid Grid.Column="0" Grid.Row="2">
+                                <DatePicker Width="170" Name="LocaleDatePicker"
+                                            VerticalAlignment="Stretch" Foreground="Black"
+                                            materialDesign:HintAssist.Hint="Ngày tiếp nhận" />
+                            </Grid>
+                            <Grid Grid.Column="1"
+                                  Grid.Row="2">
+                                <TextBox Width="170" Foreground="Black"
+                                         materialDesign:HintAssist.Hint="Số điện thoại"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                </Border>
+            </Grid>
+
+            <Grid
+            Width="450">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                    Content="Thêm"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                    Content="Sửa"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Width="100"
+                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                    Content="Xóa"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Border
+                Background="{DynamicResource MaterialDesignBackground}">
+                    <GroupBox
+                    Header="Danh sách xe sửa"
+                    Style="{StaticResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True">
+
+                        <DataGrid x:Name="dtgBill"
+                                  CanUserAddRows="False"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="All"
+                                  IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </Style>
+                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="FontSize" Value="13"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                                    <Setter Property="Height" Value="46"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Tên chủ xe" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Biển số" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Hiệu xe" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Địa chỉ" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Ngày tiếp nhận" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Điện thoại" d:Binding="{Binding}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Border>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
