@@ -42,7 +42,7 @@
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}" 
                                 Width="180"
                                 Margin="50 0 0 0"
-                                Content="Xuất báo cáo doanh số"
+                                Content="Xuất báo cáo tồn"
                                 Command="{Binding MakeReport}">
                         </Button>
 

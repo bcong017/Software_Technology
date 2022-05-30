@@ -31,11 +31,11 @@
                 </materialDesign:Card>
             </Grid>
             
-            <StackPanel Margin="0 40 0 0">
+            <StackPanel Margin="0 80 0 0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Số hiệu xe: " Width="120" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBox d:Text="{Binding CarBrandNumber}" Width="200" Margin="50 0 100 0"></TextBox>
-                    <Button Content="Cập nhật" Background="lime"></Button>
+                    <TextBlock Text="Số tiền thu không vượt quá số khách hàng đang nợ: " Width="200" VerticalAlignment="Bottom" TextWrapping="Wrap"></TextBlock>
+                    <CheckBox Style="{StaticResource MaterialDesignAccentCheckBox}" Margin="2 0 0 0"></CheckBox>
+                    <Button Content="Cập nhật" Background="lime" Margin="250 0 0 0"></Button>
                 </StackPanel>
                 <Grid Margin="60"></Grid>
                 <StackPanel Orientation="Horizontal">
