@@ -219,9 +219,9 @@
                                         </ListViewItem>
 
                                         <ListViewItem Height="60" Tag="Show" Cursor="Hand">
-                                            <StackPanel Orientation="Horizontal" ToolTip="Xem danh sách vật tư và tiền công" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <StackPanel Orientation="Horizontal" ToolTip="Xem danh sách hiện có" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Store" Height="25" Width="25" Margin="10"/>
-                                                <TextBlock Text="Xem danh sách vật tư và tiền công" VerticalAlignment="Center" Margin="20 10"/>
+                                                <TextBlock Text="Xem danh sách hiện có" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
