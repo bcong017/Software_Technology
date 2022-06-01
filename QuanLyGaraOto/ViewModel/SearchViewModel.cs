@@ -11,8 +11,7 @@ namespace QuanLyGaraOto.ViewModel
         public List<string> Option { get; set; }
         public SearchViewModel()
         {
-            this.
-            Option = new List<string>() { "Biển số", "Hiệu xe", "Chủ xe", "Tiền nợ"};
+            this.Option = new List<string>() { "Biển số", "Hiệu xe", "Chủ xe", "Tiền nợ"};
         }
     }
 }

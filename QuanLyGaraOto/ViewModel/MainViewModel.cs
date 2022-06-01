@@ -1,4 +1,5 @@
 ﻿using QuanLyGaraOto.ViewUserControl.SwitchViewClass;
+using QuanLyGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,17 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        public bool IsLoggedIn { get; set; }
-
-
-
+        public static TAIKHOAN User;
+        private Visibility updateParamVisibility;
+        public Visibility UpdateParamVisibility
+        {
+            get { return updateParamVisibility; }
+            set 
+            { 
+                updateParamVisibility = value; 
+                OnPropertyChanged();
+            }
+        }
         private BaseViewModel _selectedViewModel = new SwitchViewSalesReport();
         public BaseViewModel SelectedViewModel 
         { 
@@ -34,7 +42,16 @@ namespace QuanLyGaraOto.ViewModel
 
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoginAccount(p); });
+            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => { 
+                if (User.QuyenHan == 0)
+                {
+                    UpdateParamVisibility = Visibility.Hidden;
+                }    
+                else
+                {
+                    UpdateParamVisibility = Visibility.Visible;
+                }    
+            });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
 
             OpenAccountInfoCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
@@ -43,7 +60,9 @@ namespace QuanLyGaraOto.ViewModel
                 accountInformation.ShowDialog();
             });
 
-            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { LoginAccount(p); });
+            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { 
+
+            });
         }
 
         void SelectView(ListViewItem listViewItem)
@@ -106,24 +125,24 @@ namespace QuanLyGaraOto.ViewModel
             }    
         }
         
-        void LoginAccount(Window p)
-        {
-            if (p != null)
-            {
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
+        //void LoginAccount(Window p)
+        //{
+        //    if (p != null)
+        //    {
+        //        p.Hide();
+        //        LoginWindow loginWindow = new LoginWindow();
+        //        loginWindow.ShowDialog();
 
-                var loginVM = loginWindow.DataContext as LoginWindowViewModel;
+        //        var loginVM = loginWindow.DataContext as LoginWindowViewModel;
 
-                if (loginVM == null)
-                    return;
+        //        if (loginVM == null)
+        //            return;
 
-                if (loginVM.isLoggedIn)
-                {
-                    p.Show();
-                }
-            }
-        }
+        //        if (loginVM.isLoggedIn)
+        //        {
+        //            p.Show();
+        //        }
+        //    }
+        //}
     }
 }

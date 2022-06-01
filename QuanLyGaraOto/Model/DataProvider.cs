@@ -24,13 +24,14 @@ namespace QuanLyGaraOto.Model
         }
 
         // biến database ở đây
+        public GARAGE_MANAGEMENTEntities DB { get; set; }
 
         #region Constructor
         private DataProvider()
         {
             // khởi tạo biến db ở đây
+            DB = new GARAGE_MANAGEMENTEntities();
         }
         #endregion
-
     }
 }

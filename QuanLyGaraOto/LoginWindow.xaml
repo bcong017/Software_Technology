@@ -84,7 +84,6 @@
                         <Button
                             Command="{Binding LoginCommand}"
                             CommandParameter="{Binding ElementName=loginWindow}"
-                            IsEnabled="{Binding EnableLoginBtn, UpdateSourceTrigger=PropertyChanged}"
                             x:Name="btnLogin"
                             Width="150"
                             Height="45"

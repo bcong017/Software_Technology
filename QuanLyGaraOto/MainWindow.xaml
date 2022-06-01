@@ -26,8 +26,7 @@
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"
-                                   CommandParameter="{Binding ElementName=mainWindow}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="LightBlue">
@@ -226,7 +225,7 @@
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Update" d:Visibility="Hidden" Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="Update" Visibility="{Binding UpdateParamVisibility}" Cursor="Hand">
                                             <StackPanel Orientation="Horizontal" ToolTip="Cập nhật quy định" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>

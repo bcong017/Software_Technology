@@ -1,4 +1,5 @@
 ﻿using QuanLyGaraOto.AddingClasses;
+using QuanLyGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,18 @@ namespace QuanLyGaraOto.ViewModel
     public class LoginWindowViewModel : BaseViewModel
     {
         public bool isLoggedIn = false;
+        public bool isAdmin;
         public bool enableLoginBtn;
         private string userName;
         private string password;
 
+        
         public string UserName
         {
             get { return userName; }
             set 
             { 
                 userName = value;
-                OnPropertyChanged(nameof(UserName));
                 EnableLoginButtonChecker();
             }
         }
@@ -34,18 +36,8 @@ namespace QuanLyGaraOto.ViewModel
             set 
             { 
                 password = value; 
-                OnPropertyChanged(nameof(Password));
+                
                 EnableLoginButtonChecker();
-            } 
-        }
-
-        public bool EnableLoginBtn 
-        { 
-            get { return enableLoginBtn; }
-            set 
-            { 
-                enableLoginBtn = value;
-                OnPropertyChanged(nameof(EnableLoginBtn)); 
             } 
         }
 
@@ -55,10 +47,9 @@ namespace QuanLyGaraOto.ViewModel
         public ICommand OpenForgetPassWindowCommand { get; set; }
         public LoginWindowViewModel()
         {
-            EnableLoginBtn = false;
             UserName = "";
             Password = "";
-            LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
+            LoginCommand = new RelayCommand<Window>((p) => { return EnableLoginButtonChecker(); }, (p) => { Login(p); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
             ExitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { Application.Current.Shutdown(); });
             OpenForgetPassWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
@@ -77,17 +68,28 @@ namespace QuanLyGaraOto.ViewModel
             // truy vấn dữ liệu sql ở đây, chưa có nên chưa làm lmao :v
             // chỗ này để tạm vô là login đc thôi nhá còn bao giờ truy vấn đc rồi thì cho điều kiện vào đây
             // sử dụng hàm "Notification.Notify" để thông báo nếu đăng nhập chưa ok
-            isLoggedIn = true;
-            p.Close();
+            var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == UserName && x.MatKhau == passEncode).FirstOrDefault();
+            if (user != null)
+            {
+                MainViewModel.User = user;
+                MainWindow mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
+                Application.Current.MainWindow.Show();
+                p.Close();
+            }
+            else
+            {
+                NotificationWindow.Notify("Tài khoản hoặc mật khẩu không đúng!");
+            }    
 
         }
 
-        void EnableLoginButtonChecker()
+        bool EnableLoginButtonChecker()
         {
             if (string.IsNullOrEmpty(userName) == false && string.IsNullOrEmpty(password) == false)
-                EnableLoginBtn = true;
+                return true;
             else
-                EnableLoginBtn = false;
+                return false;
         }
     }
 }
