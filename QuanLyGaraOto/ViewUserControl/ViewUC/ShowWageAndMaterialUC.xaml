@@ -23,11 +23,11 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
                 <Border
@@ -69,7 +69,7 @@
                     </GroupBox>
                 </Border>
             </Grid>
-
+            
             <Grid Grid.Column="1">
                 <Border
                 Background="{DynamicResource MaterialDesignBackground}">
@@ -109,18 +109,73 @@
                     </GroupBox>
                 </Border>
             </Grid>
-        </Grid>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <Button BorderBrush="LightBlue" BorderThickness="3"  Background="White" Content="Xuất excel bảng vật tư phụ tùng"
+            <Grid Grid.Column="2">
+                <Border
+                Background="{DynamicResource MaterialDesignBackground}">
+                    <GroupBox
+                    Header="Danh sách các hiệu xe"
+                    Style="{StaticResource MaterialDesignGroupBox}"
+                    Margin="16"
+                    UseLayoutRounding="True">
+
+                        <DataGrid x:Name="dtgCarBrand"
+                                  CanUserAddRows="False"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="All"
+                                  IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                </Style>
+                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                    <Setter Property="FontSize" Value="13"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                                    <Setter Property="Height" Value="46"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="Hiệu xe" d:Binding="{Binding}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Border>
+            </Grid>
+ 
+        <Button BorderBrush="LightBlue" 
+                    BorderThickness="3"  
+                    Background="White" 
+                    Content="Thêm thông tin"
                     Width="250"
                     Height="100"
-                    HorizontalAlignment="Center"/>
-            <Grid Width="500"/>
-            <Button BorderBrush="LightBlue" BorderThickness="3" Background="White" Content="Xuất excel bảng tiền công"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+        <Button BorderBrush="LightBlue" 
+                    BorderThickness="3" 
+                    Background="White" 
+                    Content="Xóa"
                     Width="250"
                     Height="100"
-                    HorizontalAlignment="Center"/>
-        </StackPanel>
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+        <Button BorderBrush="LightBlue" 
+                    BorderThickness="3" 
+                    Background="White" 
+                    Content="Sửa"
+                    Width="250"
+                    Height="100"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Grid.Column="2"/>
+
     </Grid>
 </UserControl>

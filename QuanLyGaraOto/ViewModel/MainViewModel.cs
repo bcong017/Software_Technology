@@ -60,9 +60,17 @@ namespace QuanLyGaraOto.ViewModel
                 accountInformation.ShowDialog();
             });
 
-            LogoutCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { 
-
-            });
+            LogoutCommand = new RelayCommand<Window>
+            (
+                (p) => { return true; }, 
+                (p) => 
+                { 
+                    LoginWindow loginWindow = new LoginWindow();
+                    Application.Current.MainWindow = loginWindow;
+                    Application.Current.MainWindow.Show();
+                    p.Close();
+                }
+            );
         }
 
         void SelectView(ListViewItem listViewItem)

@@ -46,7 +46,7 @@
                  Background="Aqua"
                  FontSize="40"
                  Height="60"
-                 Margin="0,4,0,0"
+                 Margin="2,4,0,0"
                  VerticalContentAlignment="Bottom"  Grid.Row="1"/>
         <Button x:Name="btnSearch" Grid.Row="2"
                 Background="Aqua"
