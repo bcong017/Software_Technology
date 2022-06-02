@@ -82,6 +82,7 @@
     <Compile Include="AccountInformation.xaml.cs">
       <DependentUpon>AccountInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddingClasses\EmailSender.cs" />
     <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="AddingClasses\NotificationWindow.cs" />
     <Compile Include="AddingClasses\ValidateEmail.cs" />
@@ -164,6 +165,9 @@
     <Compile Include="ProjectUserControl\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecoverPasswordWindow.xaml.cs">
+      <DependentUpon>RecoverPasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
     <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\RecoverPasswordViewModel.cs" />
     <Compile Include="ViewModel\RepairReceiptViewModel.cs" />
     <Compile Include="ViewModel\SalesReportViewModel.cs" />
     <Compile Include="ViewModel\SearchViewModel.cs" />
@@ -250,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectUserControl\ControlBarUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecoverPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

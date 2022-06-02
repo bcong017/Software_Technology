@@ -1,7 +1,6 @@
 ﻿using QuanLyGaraOto.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,24 +16,14 @@ using System.Windows.Shapes;
 namespace QuanLyGaraOto
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for RecoverPasswordWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class RecoverPasswordWindow : Window
     {
-        private bool LoginWasClicked = false;
-        public LoginWindow()
+        public RecoverPasswordWindow()
         {
             InitializeComponent();
-            this.DataContext = new LoginWindowViewModel();
-            
-            btnLogin.Click += BtnLogin_Click;
+            this.DataContext = new RecoverPasswordViewModel();
         }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWasClicked = true;
-        }
-
-       
     }
 }

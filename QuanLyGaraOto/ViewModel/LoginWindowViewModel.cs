@@ -52,9 +52,8 @@ namespace QuanLyGaraOto.ViewModel
             LoginCommand = new RelayCommand<Window>((p) => { return EnableLoginButtonChecker(); }, (p) => { Login(p); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
             ExitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { Application.Current.Shutdown(); });
-            OpenForgetPassWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
-                ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
-                forgetPasswordWindow.ShowDialog();
+            OpenForgetPassWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+                OpenWindow(p);
             });
         }
 
@@ -82,6 +81,14 @@ namespace QuanLyGaraOto.ViewModel
                 NotificationWindow.Notify("Tài khoản hoặc mật khẩu không đúng!");
             }    
 
+        }
+
+        void OpenWindow(Window p)
+        {
+            ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
+            Application.Current.MainWindow = forgetPasswordWindow;
+            Application.Current.MainWindow.Show();
+            p.Close();
         }
 
         bool EnableLoginButtonChecker()

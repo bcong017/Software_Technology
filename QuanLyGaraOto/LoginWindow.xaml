@@ -117,7 +117,8 @@
                             ToolTip="MaterialDesignFlatButton"
                             Foreground="Blue"
                             Content="Quên mật khẩu?"
-                            Command="{Binding OpenForgetPassWindowCommand}"/>
+                            Command="{Binding OpenForgetPassWindowCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"/>
                 </StackPanel>
             </Grid>
 

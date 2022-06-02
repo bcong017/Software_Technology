@@ -13,5 +13,6 @@ namespace QuanLyGaraOto
     /// </summary>
     public partial class App : Application
     {
+        ShutdownMode shutdownMode = ShutdownMode.OnExplicitShutdown;
     }
 }
