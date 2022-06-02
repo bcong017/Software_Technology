@@ -1,4 +1,4 @@
-CREATE DATABASE GARAGE_MANAGEMENT
+﻿CREATE DATABASE GARAGE_MANAGEMENT
 USE GARAGE_MANAGEMENT
 
 CREATE TABLE XE (
@@ -163,3 +163,54 @@ INSERT INTO VAITRO VALUES (1, 'admin')
 INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('staff', '978aae9bb6bee8fb75de3e4830a1be46', 0)
 INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('admin', 'db69fc039dcbd2962cb4d28f5891aae1', 1)
 
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Lamborghini')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('VinFast')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Mazda')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Toyota')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Mercedes-benz')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Lexus')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Ford')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Hyundai')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Porsche')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Honda')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Bentley')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('BMW')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Audi')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Bugatti')
+INSERT INTO HIEUXE (TenHieuXe) VALUES ('Ferrari')
+
+INSERT INTO VATTU (TenVatTu, DonGiaHienTai, SoLuongTon) VALUES 
+	(N'Dây curoa máy', '300000', '10'),
+	(N'Dây curoa cam', '3000000', '10'),
+	(N'Lọc gió điều hòa', '2500000', '10'),
+	(N'Lọc gió động cơ', '2000000', '10'),
+	(N'Lọc nhiên liệu', '4000000', '10'),
+	(N'Lọc nhớt động cơ', '3300000', '10'),
+	(N'Đĩa ly hợp', '3500000', '10'),
+	(N'Má phanh', '1500000', '10'),
+	(N'Chổi gạt nước', '2500000', '10'),
+	(N'Bugi', '500000', '10'),
+	(N'Bộ khởi động', '3000000', '10'),
+	(N'Máy nén', '6000000', '10'),
+	(N'Bơm nhiên liệu', '4000000', '10'),
+	(N'Đèn pha', '2000000', '10'),
+	(N'Đèn xi nhan', '500000', '10'),
+	(N'Đèn hậu', '3000000', '10'),
+	(N'Đèn sương mù', '6000000', '10'),
+	(N'Bơm nhiên liệu', '4000000', '10');
+
+INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
+	(N'Rửa xe', '300000'),
+	(N'Phủ Ceramic', '3000000'),
+	(N'Phủ thuỷ tinh', '2500000'),
+	(N'Vệ sinh xe cao cấp', '2000000'),
+	(N'Phủ gầm chống ồn chống gỉ', '4000000'),
+	(N'Đánh bóng, hiệu chỉnh mặt sơn', '3300000'),
+	(N'Sơn công nghệ cao', '3500000'),
+	(N'Gò phục hồi thân vỏ', '1500000'),
+	(N'Bảo dưỡng định kỳ', '2500000'),
+	(N'Kiểm tra tình trạng xe', '500000'),
+	(N'Sửa chữa Động cơ – Hộp số', '3000000'),
+	(N'Sửa chữa gầm bệ', '6000000'),
+	(N'Sửa chữa hệ thống điện', '4000000'),
+	(N'Dán phim cách nhiệt', '2000000');

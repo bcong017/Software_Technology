@@ -42,7 +42,8 @@
                                   CanUserAddRows="False"
                                   AutoGenerateColumns="False"
                                   HeadersVisibility="All"
-                                  IsReadOnly="True">
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding VatTuList}">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                                     <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -60,10 +61,10 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Vật tư" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Số lượng tồn" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="STT" Binding="{Binding MaVatTu}"/>
+                                <DataGridTextColumn Header="Vật tư" Binding="{Binding TenVatTu}"/>
+                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGiaHienTai}"/>
+                                <DataGridTextColumn Header="Số lượng tồn" Binding="{Binding SoLuongTon}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -83,7 +84,8 @@
                                   CanUserAddRows="False"
                                   AutoGenerateColumns="False"
                                   HeadersVisibility="All"
-                                  IsReadOnly="True">
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding TienCongList}">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                                     <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -101,9 +103,9 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Tên tiền công" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Giá tiền" d:Binding="{Binding}"/>
+                                <DataGridTextColumn Header="STT" Binding="{Binding MaTienCong}"/>
+                                <DataGridTextColumn Header="Tên tiền công" Binding="{Binding TenTienCong}"/>
+                                <DataGridTextColumn Header="Giá tiền" Binding="{Binding GiaTienCong}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -118,34 +120,18 @@
                     Style="{StaticResource MaterialDesignGroupBox}"
                     Margin="16"
                     UseLayoutRounding="True">
-
-                        <DataGrid x:Name="dtgCarBrand"
-                                  CanUserAddRows="False"
-                                  AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True">
-                            <DataGrid.Resources>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                </Style>
-                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                    <Setter Property="Height" Value="46"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.Resources>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Hiệu xe" d:Binding="{Binding}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </GroupBox>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding HieuXeList}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding MaHieuXe}" Header="Mã hiệu xe"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding TenHieuXe}" Header="Tên hiệu xe"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                        
+                </GroupBox>
                 </Border>
             </Grid>
  

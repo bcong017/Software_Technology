@@ -79,9 +79,12 @@ namespace QuanLyGaraOto.ViewModel
                     var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == EmailSender.Instance.UserName).FirstOrDefault();
                     if (user != null)
                     {
-                        user.MatKhau = Encryptor.CreateMD5(Encryptor.CreateMD5(Encryptor.Base64Encode(Password)));
+                        user.MatKhau = Encryptor.CreateMD5(Encryptor.Base64Encode(Password));
                         DataProvider.Instance.DB.SaveChanges();
                         NotificationWindow.Notify("Cập nhật mật khẩu thành công!");
+                        LoginWindow loginWindow = new LoginWindow();
+                        Application.Current.MainWindow = loginWindow;
+                        Application.Current.MainWindow.Show();
                         p.Close();
                     }
                 }

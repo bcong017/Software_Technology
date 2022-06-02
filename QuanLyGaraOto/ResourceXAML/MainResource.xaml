@@ -24,4 +24,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     
+    <Style x:Key="dtg" TargetType="{x:Type DataGrid}">
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource dtgHeader}"/>
+        <Setter Property="RowStyle" Value="{StaticResource dtgRow}"/>
+    </Style>
 </ResourceDictionary>
