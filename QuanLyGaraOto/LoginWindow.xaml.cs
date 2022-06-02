@@ -21,20 +21,10 @@ namespace QuanLyGaraOto
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private bool LoginWasClicked = false;
         public LoginWindow()
         {
             InitializeComponent();
             this.DataContext = new LoginWindowViewModel();
-            
-            btnLogin.Click += BtnLogin_Click;
         }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWasClicked = true;
-        }
-
-       
     }
 }

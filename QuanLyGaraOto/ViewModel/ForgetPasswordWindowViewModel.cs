@@ -40,9 +40,12 @@ namespace QuanLyGaraOto.ViewModel
         
         public ForgetPasswordWindowViewModel()
         {
-            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { 
+            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
                 //if (p == null)
                 //    return;
+                LoginWindow loginWindow = new LoginWindow();
+                Application.Current.MainWindow = loginWindow;
+                Application.Current.MainWindow.Show();
                 p.Close();
             });
 

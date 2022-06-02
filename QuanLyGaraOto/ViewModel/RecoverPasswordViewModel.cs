@@ -14,26 +14,26 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class RecoverPasswordViewModel : BaseViewModel
     {
-        private int verifiedNumber;
+        private string verifiedNumberString;
         private string password;
         private string configuration;
-
-        public int VerifiedNumber
+        private int verifiedNumber;
+        public string VerifiedNumberString
         { 
-            get { return verifiedNumber; } 
-            set { verifiedNumber = value; } 
+            get { return verifiedNumberString; } 
+            set { verifiedNumberString = value; OnPropertyChanged(); } 
         }
 
         public string Password 
         { 
             get { return password; } 
-            set { password = value; }
+            set { password = value; OnPropertyChanged(); }
         }
 
         public string Configuration
         {
             get { return configuration; }
-            set { configuration = value; }
+            set { configuration = value; OnPropertyChanged(); }
         }
 
         public ICommand PasswordChanged { get; set; }
@@ -65,14 +65,16 @@ namespace QuanLyGaraOto.ViewModel
             });
             RecoverPasswordCommand = new RelayCommand<Window>((p) =>
             {
-                if (string.IsNullOrEmpty(Password) && string.IsNullOrEmpty(Configuration) && VerifiedNumber == 0)
+                if (string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Configuration) || string.IsNullOrEmpty(VerifiedNumberString))
                     return false;
-                if (Password != Configuration)
+                else if (Password != Configuration)
                     return false;
-                return true;
+                else if (Int32.TryParse(VerifiedNumberString, out verifiedNumber) == false)
+                    return false;
+                else return true;
             }, (p) =>
             {
-                if (VerifiedNumber == EmailSender.Instance.VerifiedNumber)
+                if (verifiedNumber == EmailSender.Instance.VerifiedNumber)
                 {
                     var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == EmailSender.Instance.UserName).FirstOrDefault();
                     if (user != null)
