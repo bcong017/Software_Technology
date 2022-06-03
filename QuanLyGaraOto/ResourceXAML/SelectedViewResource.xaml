@@ -39,4 +39,15 @@
         <view:ShowWageAndMaterialUC></view:ShowWageAndMaterialUC>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowAccessoriesList}">
+        <view:ShowAccessoriesListUC></view:ShowAccessoriesListUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowWagesList}">
+        <view:ShowWagesListUC></view:ShowWagesListUC>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type switchview:SwitchViewShowCarBrandsList}">
+        <view:ShowCarBrandsListUC></view:ShowCarBrandsListUC>
+    </DataTemplate>
 </ResourceDictionary>

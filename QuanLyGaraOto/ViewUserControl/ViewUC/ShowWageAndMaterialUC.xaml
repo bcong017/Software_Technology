@@ -19,115 +19,52 @@
              d:DesignHeight="733" d:DesignWidth="1383"
              x:Name="ucShowWageMaterial">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
-                <Border
-                Background="{DynamicResource MaterialDesignBackground}">
-                    <GroupBox
-                    Header="Danh sách các vật tư"
-                    Style="{StaticResource MaterialDesignGroupBox}"
-                    Margin="16"
-                    UseLayoutRounding="True">
-
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding VatTuList}" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaVatTu}"/>
-                                    <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding TenVatTu}"/>
-                                    <GridViewColumn Header="Giá hiện tại" DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"/>
-                                    <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </ScrollViewer>
-                </GroupBox>
-                </Border>
-            </Grid>
-            
-            <Grid Grid.Column="1">
-                <Border
-                Background="{DynamicResource MaterialDesignBackground}">
-                    <GroupBox
-                    Header="Danh sách tiền công"
-                    Style="{StaticResource MaterialDesignGroupBox}"
-                    Margin="16"
-                    UseLayoutRounding="True">
-
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding TienCongList}" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaTienCong}"/>
-                                    <GridViewColumn Header="Tên tiền công" DisplayMemberBinding="{Binding TenTienCong}"/>
-                                    <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding GiaTienCong, StringFormat='0,0'}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </ScrollViewer>
-                </GroupBox>
-                </Border>
-            </Grid>
-
-            <Grid Grid.Column="2">
-                <Border
-                Background="{DynamicResource MaterialDesignBackground}">
-                    <GroupBox
-                    Header="Danh sách các hiệu xe"
-                    Style="{StaticResource MaterialDesignGroupBox}"
-                    Margin="16"
-                    UseLayoutRounding="True">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding HieuXeList}" >
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn DisplayMemberBinding="{Binding MaHieuXe}" Header="Mã hiệu xe"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding TenHieuXe}" Header="Tên hiệu xe"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </ScrollViewer>
-                        
-                </GroupBox>
-                </Border>
-            </Grid>
- 
-        <Button BorderBrush="LightBlue" 
-                    BorderThickness="3"  
-                    Background="White" 
-                    Content="Thêm thông tin"
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="250"
-                    Height="100"
-                    HorizontalAlignment="Center"
-                    Grid.Row="1"
-                    Grid.Column="0"/>
-        <Button BorderBrush="LightBlue" 
-                    BorderThickness="3" 
-                    Background="White" 
-                    Content="Xóa"
+                    Height="150"
+                    Background="#35a0fe"
+                    Command="{Binding ShowListCommand}"
+                    CommandParameter="{Binding ElementName=showAccessoriesBtn}"
+                    Name="showAccessoriesBtn">
+                <TextBlock Text="Danh sách vật tư, phụ tùng"
+                           FontSize="25"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+            <Grid Height="100"/>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="250"
-                    Height="100"
-                    HorizontalAlignment="Center"
-                    Grid.Row="1"
-                    Grid.Column="1"/>
-        <Button BorderBrush="LightBlue" 
-                    BorderThickness="3" 
-                    Background="White" 
-                    Content="Sửa"
+                    Height="150"
+                    Background="#35a0fe"
+                    Command="{Binding ShowListCommand}"
+                    CommandParameter="{Binding ElementName=showWagesBtn}"
+                    Name="showWagesBtn">
+                <TextBlock Text="Danh sách tiền công"
+                           FontSize="25"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+            <Grid Height="100"/>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="250"
-                    Height="100"
-                    HorizontalAlignment="Center"
-                    Grid.Row="1"
-                    Grid.Column="2"/>
+                    Height="150"
+                    Background="#35a0fe"
+                    Command="{Binding ShowListCommand}"
+                    CommandParameter="{Binding ElementName=showCarBrandBtn}"
+                    Name="showCarBrandBtn">
+                <TextBlock Text="Danh sách hiệu xe"
+                           FontSize="25"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+        </StackPanel>
 
+        <UserControl Content="{Binding ShowListViewModel}" Grid.Column="1" Margin="10 0 0 0"></UserControl>
     </Grid>
 </UserControl>

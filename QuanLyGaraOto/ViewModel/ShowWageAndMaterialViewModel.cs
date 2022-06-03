@@ -4,40 +4,46 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 using QuanLyGaraOto.Model;
+using QuanLyGaraOto.ViewUserControl.SwitchViewClass;
 
 namespace QuanLyGaraOto.ViewModel
 {
     public class ShowWageAndMaterialViewModel : BaseViewModel
     {
-        private ObservableCollection<VATTU> vattuList;
-        public ObservableCollection<VATTU> VatTuList
+        private BaseViewModel showListViewModel;
+        public BaseViewModel ShowListViewModel
         {
-            get { return vattuList; }
-            set { vattuList = value; OnPropertyChanged(); }
+            get { return showListViewModel; }
+            set { showListViewModel = value; OnPropertyChanged(); }
         }
-
-        private ObservableCollection<TIENCONG> tiencongList;
-        public ObservableCollection<TIENCONG> TienCongList
-        {
-            get { return tiencongList; }
-            set { tiencongList = value; OnPropertyChanged(); }
-        }
-
-        private ObservableCollection<HIEUXE> hieuxeList;
-        public ObservableCollection<HIEUXE> HieuXeList
-        {
-            get { return hieuxeList; }
-            set { hieuxeList = value; OnPropertyChanged(); }
-        }
-
+        public ICommand ShowListCommand { get; set; }
         public ShowWageAndMaterialViewModel()
         {
-            VatTuList = new ObservableCollection<VATTU>(DataProvider.Instance.DB.VATTUs.ToList());
-            TienCongList = new ObservableCollection<TIENCONG>(DataProvider.Instance.DB.TIENCONGs.ToList());
-            HieuXeList = new ObservableCollection<HIEUXE>(DataProvider.Instance.DB.HIEUXEs.ToList());
-
-
+            ShowListViewModel = new SwitchViewShowAccessoriesList();
+            ShowListCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                switch (p.Name)
+                {
+                    case "showAccessoriesBtn":
+                        {
+                            ShowListViewModel = new SwitchViewShowAccessoriesList();
+                            break;
+                        }
+                    case "showWagesBtn":
+                        {
+                            ShowListViewModel = new SwitchViewShowWagesList();
+                            break;
+                        }
+                    case "showCarBrandBtn":
+                        {
+                            ShowListViewModel = new SwitchViewShowCarBrandsList();
+                            break;
+                        }
+                }
+            });
         }
     }
 }

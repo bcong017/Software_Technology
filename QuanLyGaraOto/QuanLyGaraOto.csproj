@@ -193,7 +193,10 @@
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewRepairReceipt.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSalesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewSearch.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewShowAccessoriesList.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewShowCarBrandsList.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewShowWageAndMaterial.cs" />
+    <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewShowWagesList.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewUpdateParameter.cs" />
     <Compile Include="ViewUserControl\ViewUC\AccessoriesReportUC.xaml.cs">
       <DependentUpon>AccessoriesReportUC.xaml</DependentUpon>
@@ -216,8 +219,17 @@
     <Compile Include="ViewUserControl\ViewUC\SearchUC.xaml.cs">
       <DependentUpon>SearchUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewUserControl\ViewUC\ShowAccessoriesListUC.xaml.cs">
+      <DependentUpon>ShowAccessoriesListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserControl\ViewUC\ShowCarBrandsListUC.xaml.cs">
+      <DependentUpon>ShowCarBrandsListUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewUserControl\ViewUC\ShowWageAndMaterialUC.xaml.cs">
       <DependentUpon>ShowWageAndMaterialUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserControl\ViewUC\ShowWagesListUC.xaml.cs">
+      <DependentUpon>ShowWagesListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewUserControl\ViewUC\UpdateParameterUC.xaml.cs">
       <DependentUpon>UpdateParameterUC.xaml</DependentUpon>
@@ -298,7 +310,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewUserControl\ViewUC\ShowAccessoriesListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\ShowCarBrandsListUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewUserControl\ViewUC\ShowWageAndMaterialUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewUserControl\ViewUC\ShowWagesListUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
