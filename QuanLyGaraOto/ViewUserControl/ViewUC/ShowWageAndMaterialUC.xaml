@@ -38,36 +38,19 @@
                     Margin="16"
                     UseLayoutRounding="True">
 
-                        <DataGrid x:Name="dtgMaterial"
-                                  CanUserAddRows="False"
-                                  AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True"
-                                  ItemsSource="{Binding VatTuList}">
-                            <DataGrid.Resources>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                </Style>
-                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                    <Setter Property="Height" Value="46"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.Resources>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" Binding="{Binding MaVatTu}"/>
-                                <DataGridTextColumn Header="Vật tư" Binding="{Binding TenVatTu}"/>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding DonGiaHienTai}"/>
-                                <DataGridTextColumn Header="Số lượng tồn" Binding="{Binding SoLuongTon}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </GroupBox>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding VatTuList}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaVatTu}"/>
+                                    <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding TenVatTu}"/>
+                                    <GridViewColumn Header="Giá hiện tại" DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"/>
+                                    <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding SoLuongTon}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </GroupBox>
                 </Border>
             </Grid>
             
@@ -80,35 +63,18 @@
                     Margin="16"
                     UseLayoutRounding="True">
 
-                        <DataGrid x:Name="dtgWage"
-                                  CanUserAddRows="False"
-                                  AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True"
-                                  ItemsSource="{Binding TienCongList}">
-                            <DataGrid.Resources>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                </Style>
-                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                    <Setter Property="Height" Value="46"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.Resources>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" Binding="{Binding MaTienCong}"/>
-                                <DataGridTextColumn Header="Tên tiền công" Binding="{Binding TenTienCong}"/>
-                                <DataGridTextColumn Header="Giá tiền" Binding="{Binding GiaTienCong}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </GroupBox>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding TienCongList}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaTienCong}"/>
+                                    <GridViewColumn Header="Tên tiền công" DisplayMemberBinding="{Binding TenTienCong}"/>
+                                    <GridViewColumn Header="Giá" DisplayMemberBinding="{Binding GiaTienCong, StringFormat='0,0'}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </GroupBox>
                 </Border>
             </Grid>
 
@@ -121,7 +87,7 @@
                     Margin="16"
                     UseLayoutRounding="True">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding HieuXeList}">
+                        <ListView ItemsSource="{Binding HieuXeList}" >
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn DisplayMemberBinding="{Binding MaHieuXe}" Header="Mã hiệu xe"/>
