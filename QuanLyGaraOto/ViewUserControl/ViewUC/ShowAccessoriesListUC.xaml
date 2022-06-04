@@ -23,7 +23,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <materialDesign:Card Grid.Row="0" Margin="5">
             <WrapPanel Margin="0 0 0 10">
                 <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />

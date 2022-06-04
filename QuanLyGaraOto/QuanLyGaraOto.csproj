@@ -168,6 +168,9 @@
     <Compile Include="RecoverPasswordWindow.xaml.cs">
       <DependentUpon>RecoverPasswordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowInputRecordWindow.xaml.cs">
+      <DependentUpon>ShowInputRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
     <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceXAML\SelectedViewResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowInputRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
