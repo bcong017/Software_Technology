@@ -26,9 +26,9 @@
         
         <materialDesign:Card Grid.Row="0" Margin="5">
             <WrapPanel Margin="0 0 0 10">
-                <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá hiện tại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng tồn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá hiện tại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng tồn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             </WrapPanel>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="1" Margin="5">
@@ -36,14 +36,15 @@
                 <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
                 <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
                 <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
+                <Button Command="{Binding DeSelectedItemCommand}" Content="Bỏ chọn" Margin="5" Width="100"></Button>
             </WrapPanel>
         </materialDesign:Card>
 
         <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ListView ItemsSource="{Binding VatTuList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                <ListView ItemsSource="{Binding VatTuList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                     <ListView.View>
-                        <GridView>
+                        <GridView >
                             <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaVatTu}"></GridViewColumn>
                             <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
                             <GridViewColumn Header="Đơn giá hiện tại" DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"></GridViewColumn>

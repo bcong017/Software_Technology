@@ -27,9 +27,5 @@ namespace QuanLyGaraOto
             this.DataContext = new MainViewModel();
         }
 
-        private void ControlBarUC_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

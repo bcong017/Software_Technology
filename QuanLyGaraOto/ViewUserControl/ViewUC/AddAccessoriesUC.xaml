@@ -20,117 +20,78 @@
              x:Name="ucAddAccessories">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"></RowDefinition>
-                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="0 15 0 0">
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox materialDesign:HintAssist.Hint="Search" IsEditable="False" materialDesign:HintAssist.HintOpacity=".26"
-                          Width="250" Margin="10 0 0 0" VerticalAlignment="Bottom"
-                          ItemsSource="{Binding AccessoriesList}"/>
-                    <TextBox x:Name="tbAddNewAcessories" materialDesign:HintAssist.Hint="Tên vật tư phụ tùng mới" 
-                         Margin="60 0 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding AddNewAccessories}">
-                    </TextBox>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="1" Margin="0 30 0 0" Height="50">
-                <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="tbAmount"
-                         materialDesign:HintAssist.Hint="Số lượng" Width="150" Margin="10 0 0 0"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox x:Name="tbPrice"
-                         materialDesign:HintAssist.Hint="Giá" Width="150" Margin="60 0 0 0"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                </StackPanel>
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá hiện tại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng tồn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </WrapPanel>
+            </materialDesign:Card>
 
-            </Grid>
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding PriceInput, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding PriceOutputRecommended, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá bán đề nghị" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </WrapPanel>
+            </materialDesign:Card>
+            <WrapPanel HorizontalAlignment="Center" Grid.Row="2">
+                <Button Command="{Binding AddCommand}" Content="Thêm lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding EditCommand}" Content="Sửa lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding DeleteCommand}" Content="Xóa lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding DeSelectedItemCommand}" Content="Bỏ chọn" Margin="5" Width="130"></Button>
+            </WrapPanel>
 
-            <Grid Grid.Row="2" Margin="0 30 0 0">
-                <StackPanel VerticalAlignment="Center">
-                    <DockPanel>
-                        <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Left"
-                        Width="200" Height="100" Content="Lập phiếu nhập VTPT" Margin="50 0 0 0">
-                        </Button>
+            <WrapPanel HorizontalAlignment="Center" Grid.Row="3">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="200" Height="100" Content="Lập phiếu nhập VTPT" Margin="20">
+                </Button>
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Right"
+                        Width="200" Height="100" Content="Nhập mới VTPT" Margin="20">
+                </Button>
+            </WrapPanel>
 
-                        <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Right"
-                        Width="200" Height="100" Content="Nhập mới VTPT" Margin="0 0 50 0">
-                        </Button>
-                    </DockPanel>
-
-                    <DockPanel Height="120">
-                        <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Width="200" Height="50" Content="Làm mới" HorizontalAlignment="Left">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" 
-                        Width="200" Height="50" Content="Xóa lựa chọn" HorizontalAlignment="Center" Margin="40 0 0 0">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Width="200" Height="50" Content="In phiếu nhập"  HorizontalAlignment="Right">
-                        </Button>
-                    </DockPanel>
-                </StackPanel>
-                
-            </Grid>
+            <Button Grid.Row="4" Command="{Binding ShowInputRecordCommand}" Content="Xem danh sách các phiếu vật tư phụ tùng đã tạo" Margin="5" ></Button>
         </Grid>
 
         <Grid Grid.Column="1">
-            <materialDesign:Card VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:Card VerticalAlignment="Top" Grid.Row="0">
                 <TextBlock Text="Danh sách các vật tư đang được nhập vào kho" FontSize="30" FontWeight="Bold" TextAlignment="Center"></TextBlock>
             </materialDesign:Card>
-            
-            <DockPanel Margin="0 50 0 0" Height="40" VerticalAlignment="Top">
-                <Grid HorizontalAlignment="Left">
-                    <TextBox materialDesign:HintAssist.Hint="Ngày thành lập"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             Width="180"/>
-                </Grid>
-                <Grid HorizontalAlignment="Right">
-                    <TextBox materialDesign:HintAssist.Hint="Thành tiền"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             Width="180"/>
-                </Grid>
-                
-            </DockPanel>
-            
-            <DataGrid x:Name="dtgAddingAccessories"
-                      CanUserAddRows="False"
-                      AutoGenerateColumns="False"
-                      HeadersVisibility="All"
-                      IsReadOnly="True"
-                      Margin="0 120 0 0">
-                <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-                    <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                        <Setter Property="HorizontalAlignment" Value="Left" />
-                        <Setter Property="FontSize" Value="13"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                        <Setter Property="Height" Value="46"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Vật tư phụ tùng" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Số lượng" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Thành tiền" d:Binding="{Binding}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+
+            <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding VatTuList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" d:DisplayMemberBinding="{Binding MaVatTu}"></GridViewColumn>
+                                <GridViewColumn Header="Tên vật tư" d:DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá nhập" d:DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" d:DisplayMemberBinding="{Binding SoLuongTon}"></GridViewColumn>
+                                <GridViewColumn Header="Thành tiền" d:DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
         
         

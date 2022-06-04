@@ -36,7 +36,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}" Loaded="ControlBarUC_Loaded"></uc:ControlBarUC>
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
             </Grid>
             <Border Grid.Row="1" CornerRadius="0 0 10 10">
 
