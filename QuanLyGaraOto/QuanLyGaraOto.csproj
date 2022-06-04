@@ -189,6 +189,7 @@
     <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\ShowAccessoriesViewModel.cs" />
     <Compile Include="ViewModel\ShowWageAndMaterialViewModel.cs" />
+    <Compile Include="ViewModel\ShowWagesListViewModel.cs" />
     <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAccessoriesReport.cs" />
     <Compile Include="ViewUserControl\SwitchViewClass\SwitchViewAddAccessories.cs" />
