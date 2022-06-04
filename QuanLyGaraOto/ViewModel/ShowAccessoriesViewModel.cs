@@ -42,17 +42,9 @@ namespace QuanLyGaraOto.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    if (AccessoriesName == SelectedItem.TenVatTu && Price == SelectedItem.DonGiaHienTai.ToString() && Amount == SelectedItem.SoLuongTon.ToString())
-                    {
-                        SelectedItem = null;
-                        AccessoriesName = Price = Amount = null;
-                    }    
-                    else
-                    {
-                        AccessoriesName = SelectedItem.TenVatTu;
-                        Price = Convert.ToInt32(SelectedItem.DonGiaHienTai).ToString();
-                        Amount = SelectedItem.SoLuongTon.ToString();
-                    }    
+                    AccessoriesName = SelectedItem.TenVatTu;
+                    Price = Convert.ToInt32(SelectedItem.DonGiaHienTai).ToString();
+                    Amount = SelectedItem.SoLuongTon.ToString();
                 }    
             }
         }
@@ -65,7 +57,6 @@ namespace QuanLyGaraOto.ViewModel
         }
         public ICommand DeSelectedItemCommand { get; set; }
         public ICommand AddCommand { get; set; }
-
         public ICommand EditCommand { get; set; }
         public ShowAccessoriesViewModel()
         {

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace QuanLyGaraOto.ViewModel
 {
-    internal class ShowWagesListViewModel : BaseViewModel
+    public class ShowWagesListViewModel : BaseViewModel
     {
 
         private string wageName;
@@ -38,16 +38,8 @@ namespace QuanLyGaraOto.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    if (WageName == SelectedItem.TenTienCong && Price == SelectedItem.GiaTienCong.ToString())
-                    {
-                        SelectedItem = null;
-                        WageName = Price = null;
-                    }
-                    else
-                    {
-                        WageName = SelectedItem.TenTienCong;
-                        Price = Convert.ToInt32(SelectedItem.GiaTienCong).ToString();
-                    }
+                    WageName = SelectedItem.TenTienCong;
+                    Price = Convert.ToInt32(SelectedItem.GiaTienCong).ToString();
                 }
             }
         }
@@ -60,7 +52,6 @@ namespace QuanLyGaraOto.ViewModel
         }
         public ICommand DeSelectedItemCommand { get; set; }
         public ICommand AddCommand { get; set; }
-
         public ICommand EditCommand { get; set; }
         public ShowWagesListViewModel()
         {
@@ -104,12 +95,12 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var vattu = DataProvider.Instance.DB.TIENCONGs.SingleOrDefault(x => x.MaTienCong == SelectedItem.MaTienCong);
-                if (vattu == null)
+                var tiencong = DataProvider.Instance.DB.TIENCONGs.SingleOrDefault(x => x.MaTienCong == SelectedItem.MaTienCong);
+                if (tiencong == null)
                     return;
 
-                vattu.TenTienCong = WageName;
-                vattu.GiaTienCong = Convert.ToDecimal(Price);
+                tiencong.TenTienCong = WageName;
+                tiencong.GiaTienCong = Convert.ToDecimal(Price);
 
                 DataProvider.Instance.DB.SaveChanges();
 
