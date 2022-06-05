@@ -18,7 +18,7 @@
              d:Background="White"
              d:DesignHeight="733" d:DesignWidth="1383"
              x:Name="ucShowWageMaterial">
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -65,6 +65,8 @@
             </Button>
         </StackPanel>
 
-        <UserControl Content="{Binding ShowListViewModel}" Grid.Column="1" Margin="10 0 0 0"></UserControl>
+        <UserControl 
+           
+            Content="{Binding ShowListViewModel}" Grid.Column="1" Margin="10 0 0 0"></UserControl>
     </Grid>
 </UserControl>

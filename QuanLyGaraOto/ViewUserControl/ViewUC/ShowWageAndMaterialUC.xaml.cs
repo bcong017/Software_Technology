@@ -26,5 +26,7 @@ namespace QuanLyGaraOto.ViewUserControl.ViewUC
             InitializeComponent();
             this.DataContext = new ShowWageAndMaterialViewModel();
         }
+
+   
     }
 }
