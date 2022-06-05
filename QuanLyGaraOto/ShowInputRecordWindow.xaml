@@ -46,7 +46,7 @@
                     <ComboBox materialDesign:HintAssist.Hint="Tháng" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5 5 15 5"
                               d:ItemsSource="{Binding}"/>
                     <TextBox Text="{Binding Year, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Năm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding TotalMoney, Mode=OneWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsEnabled="False"/>
+                    <TextBox Text="{Binding TotalMoney, Mode=OneWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
                     <Button Command="{Binding ShowCommand}" Content="Xuất" Margin="35 5 15 5" Width="130"></Button>
                 </WrapPanel>
             </materialDesign:Card>

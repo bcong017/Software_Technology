@@ -35,9 +35,8 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá hiện tại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng tồn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <DatePicker Width="100" materialDesign:HintAssist.Hint="Ngày nhập" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" SelectedDate="{Binding InputDate, StringFormat='dd/MM/yyyy'}"/>
+                    <TextBox Text="{Binding TotalMoney}" IsReadOnly="True" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -45,7 +44,7 @@
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Text="{Binding PriceInput, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding PriceOutputRecommended, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá bán đề nghị" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding PriceOutputRecommended, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá bán đề nghị" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
                     <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </materialDesign:Card>
@@ -58,14 +57,14 @@
 
             <WrapPanel HorizontalAlignment="Center" Grid.Row="3">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Width="200" Height="100" Content="Lập phiếu nhập VTPT" Margin="20">
+                        Width="200" Height="100" Content="Lập phiếu nhập VTPT" Margin="20" Command="{Binding AddAccessoriesList}">
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Right"
                         Width="200" Height="100" Content="Nhập mới VTPT" Margin="20">
                 </Button>
             </WrapPanel>
 
-            <Button Grid.Row="4" Command="{Binding ShowInputRecordCommand}" Content="Xem danh sách các phiếu vật tư phụ tùng đã tạo" Margin="5" ></Button>
+            <Button Grid.Row="5" Command="{Binding ShowInputRecordCommand}" Content="Xem danh sách các phiếu vật tư phụ tùng đã tạo" Margin="5" ></Button>
         </Grid>
 
         <Grid Grid.Column="1">
@@ -79,14 +78,15 @@
 
             <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView ItemsSource="{Binding VatTuList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <ListView ItemsSource="{Binding InputList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="STT" d:DisplayMemberBinding="{Binding MaVatTu}"></GridViewColumn>
-                                <GridViewColumn Header="Tên vật tư" d:DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn giá nhập" d:DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"></GridViewColumn>
-                                <GridViewColumn Header="Số lượng" d:DisplayMemberBinding="{Binding SoLuongTon}"></GridViewColumn>
-                                <GridViewColumn Header="Thành tiền" d:DisplayMemberBinding="{Binding DonGiaHienTai, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
+                                <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá nhập" DisplayMemberBinding="{Binding DonGiaNhap, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá bán đề nghị" DisplayMemberBinding="{Binding DonGiaBanDeNghi, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='0,0'}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -95,6 +95,7 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AccessoriesNumbericalOrder.cs" />
     <Compile Include="Model\BAOCAODOANHSO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
