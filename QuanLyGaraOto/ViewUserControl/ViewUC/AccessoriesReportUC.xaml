@@ -55,38 +55,20 @@
                         </Button>
                     </WrapPanel>
                 </materialDesign:Card>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="1">
+                    <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="Vật tư phụ tùng" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="Tồn đầu" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="Tồn cuối" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="Phát sinh" DisplayMemberBinding="{Binding}"/>
 
-                <Grid Grid.Row="1">
-                    <DataGrid x:Name="dtgSalesReport"
-                              CanUserAddRows="False"
-                              AutoGenerateColumns="False"
-                              HeadersVisibility="All" 
-                              IsReadOnly="True">
-                        <DataGrid.Resources>
-                            <Style x:Key="dtgHeader" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                <Setter Property="FontWeight" Value="SemiBold"/>
-                                <Setter Property="FontSize" Value="16"/>
-                            </Style>
-                            <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                <Setter Property="HorizontalAlignment" Value="Left" />
-                                <Setter Property="FontSize" Value="13"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                            <Style x:Key="dtgRow" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                <Setter Property="Height" Value="46"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGrid.Resources>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="STT" Binding="{Binding}"/>
-                            <DataGridTextColumn Header="Vật tư phụ tùng" Binding="{Binding}"/>
-                            <DataGridTextColumn Header="Tồn đầu" Binding="{Binding}"/>
-                            <DataGridTextColumn Header="Tồn cuối" Binding="{Binding}"/>
-                            <DataGridTextColumn Header="Phát sinh" Binding="{Binding}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
                 <WrapPanel Grid.Row="2">
                     <TextBlock x:Name="tbTotalMoney" Text="Tổng doanh thu: " FontWeight="Bold"></TextBlock>
                     <TextBlock x:Name="tbMoney" Text="{Binding TotalMoney}"></TextBlock>

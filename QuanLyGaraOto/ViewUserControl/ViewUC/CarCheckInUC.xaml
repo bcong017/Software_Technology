@@ -120,38 +120,21 @@
                     Style="{StaticResource MaterialDesignGroupBox}"
                     Margin="16"
                     UseLayoutRounding="True">
-
-                        <DataGrid x:Name="dtgBill"
-                                  CanUserAddRows="False"
-                                  AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True">
-                            <DataGrid.Resources>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                </Style>
-                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                    <Setter Property="Height" Value="46"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.Resources>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Tên chủ xe" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Biển số" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Hiệu xe" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Địa chỉ" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Ngày tiếp nhận" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Điện thoại" d:Binding="{Binding}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="0">
+                            <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                                <ListView.View>
+                                    <GridView>                                    
+                                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Hiệu xe" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Ngày tiếp nhận" DisplayMemberBinding="{Binding}"/>
+                                        <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
                     </GroupBox>
                 </Border>
             </Grid>

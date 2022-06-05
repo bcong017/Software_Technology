@@ -101,6 +101,7 @@
     <Compile Include="Model\BAOCAOTON.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CarNumbericalOrder.cs" />
     <Compile Include="Model\CT_BCDS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

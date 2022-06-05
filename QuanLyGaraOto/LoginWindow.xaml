@@ -94,6 +94,7 @@
                             BorderBrush="White"
                             HorizontalAlignment="Left"
                             Content="Đăng nhập" VerticalAlignment="Top"
+                            IsDefault="True"
                             />
 
                         <Button

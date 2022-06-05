@@ -30,16 +30,12 @@
 
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Tra cứu"    
-               Style="{StaticResource LblTitle}"
-               Grid.ColumnSpan="2" >
-        </Label>
-        <ComboBox x:Name="cbxOption"  materialDesign:HintAssist.Hint="Biển số"
+        <ComboBox x:Name="cbxOption"  
                   FontSize="40"
                   Grid.Row="1"
                   HorizontalContentAlignment="Center"
                   HorizontalAlignment="Stretch"
-                  
+                  SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding Option}"
                   />
         <TextBox x:Name="txtbInput" Grid.Column="1" 
@@ -47,45 +43,27 @@
                  FontSize="40"
                  Height="60"
                  Margin="2,4,0,0"
-                 VerticalContentAlignment="Bottom"  Grid.Row="1"/>
+                 VerticalContentAlignment="Bottom"  Grid.Row="1"
+                 Text="{Binding InputedItem}"/>
         <Button x:Name="btnSearch" Grid.Row="2"
                 Background="Aqua"
                 Content="Tìm kiếm"
                 FontSize="35" 
-                Height="55"/>
-        <Grid Grid.ColumnSpan="2"
-              Grid.Column="0"
-              Grid.Row="3">
-            <DataGrid x:Name="dgResult" 
-                  CanUserAddRows="False"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="All"
-                  IsReadOnly="True">
-                <DataGrid.Resources>
-                    <Style x:Key="dtgHeader" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="FontSize" Value="16"/>
-                    </Style>
-                    <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                        <Setter Property="HorizontalAlignment" Value="Left" />
-                        <Setter Property="FontSize" Value="13"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                    <Style x:Key="dtgRow" TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                        <Setter Property="Height" Value="46"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Biển số" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Tên chủ xe" d:Binding="{Binding}"/>
-                    <DataGridTextColumn Header="Tiền nợ" d:Binding="{Binding}"/>
-
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        
+                Height="55"
+                Command="{Binding SearchCommand}"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="3"
+                  Grid.ColumnSpan="2">
+            <ListView ItemsSource="{Binding XeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                        <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding Car.BienSo}"/>
+                        <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding ="{Binding Car.TenChuXe}"/>
+                        <GridViewColumn Header="Tiền nợ" DisplayMemberBinding="{Binding Car.TienNo, StringFormat='0,0'}"/>
+                        <GridViewColumn Header="Hiệu xe" DisplayMemberBinding="{Binding Car.HIEUXE.TenHieuXe}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView> 
+        </ScrollViewer>
     </Grid>
 </UserControl>

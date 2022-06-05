@@ -120,47 +120,19 @@
                 </Grid>
                 
             </Grid>
-            <Grid Grid.Row="1">
-                <Border
-                Background="{DynamicResource MaterialDesignBackground}">
-                    <GroupBox
-                    Header="Danh sách phiếu thu"
-                    Style="{StaticResource MaterialDesignGroupBox}"
-                    Margin="16"
-                    UseLayoutRounding="True">
-
-                        <DataGrid x:Name="dtgBill"
-                                  CanUserAddRows="False"
-                                  AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True">
-                            <DataGrid.Resources>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="FontSize" Value="16"/>
-                                </Style>
-                                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                    <Setter Property="HorizontalAlignment" Value="Left" />
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
-                                    <Setter Property="Height" Value="46"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.Resources>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Số lượng" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Đơn giá" d:Binding="{Binding}"/>
-                                <DataGridTextColumn Header="Thành tiền" d:Binding="{Binding}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </GroupBox>
-                </Border>
-            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="1">
+                <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
+                            <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding}"/>
+                            <GridViewColumn Header="Đơn giá" DisplayMemberBinding="{Binding}"/>
+                            <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+         
         </StackPanel>
     </Grid>
 </UserControl>
