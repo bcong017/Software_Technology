@@ -31,6 +31,8 @@
                         <ComboBox materialDesign:HintAssist.Hint="Tháng"
                               Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                               ItemsSource="{Binding Month}"
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding MonthList}"
                               Width="100"
                               Margin="5"/>
                         <TextBox materialDesign:HintAssist.Hint="Năm"
@@ -43,7 +45,7 @@
                                 Width="180"
                                 Margin="50 0 0 0"
                                 Content="Xuất báo cáo doanh số"
-                                Command="{Binding MakeReport}">
+                                Command="{Binding MakeReportCommand}">
                         </Button>
 
                         <Button x:Name="btnExcelOutput"
