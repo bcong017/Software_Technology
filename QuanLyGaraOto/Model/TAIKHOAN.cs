@@ -18,6 +18,7 @@ namespace QuanLyGaraOto.Model
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public Nullable<int> QuyenHan { get; set; }
+        public string Email { get; set; }
     
         public virtual VAITRO VAITRO { get; set; }
     }
