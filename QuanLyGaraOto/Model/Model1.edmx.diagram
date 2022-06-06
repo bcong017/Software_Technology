@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.TAIKHOAN" Width="1.5" PointX="14" PointY="0.875" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.THAMSO" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.TIENCONG" Width="1.5" PointX="5.25" PointY="12.125" />
-        <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.VAITRO" Width="1.5" PointX="11.75" PointY="1.25" />
+        <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.VAITRO" Width="1.5" PointX="11.75" PointY="1.125" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.VATTU" Width="1.5" PointX="7.5" PointY="4.875" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.XE" Width="1.5" PointX="3" PointY="7.125" />
         <AssociationConnector Association="GARAGE_MANAGEMENTModel.FK_MaBCDS" />

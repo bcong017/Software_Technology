@@ -85,7 +85,7 @@
     <Compile Include="AddingClasses\EmailSender.cs" />
     <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="AddingClasses\NotificationWindow.cs" />
-    <Compile Include="AddingClasses\PercentageConverter.cs" />
+    <Compile Include="AddingClasses\Converter.cs" />
     <Compile Include="AddingClasses\ValidateEmail.cs" />
     <Compile Include="AddNewVATPHAM.xaml.cs">
       <DependentUpon>AddNewVATPHAM.xaml</DependentUpon>

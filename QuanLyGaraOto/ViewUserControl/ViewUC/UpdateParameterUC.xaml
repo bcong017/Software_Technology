@@ -86,7 +86,6 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" d:Binding="{Binding}"/>
                     <DataGridTextColumn Header="Mã tham số" d:Binding="{Binding}"/>
                     <DataGridTextColumn Header="Giá trị" d:Binding="{Binding}"/>
 

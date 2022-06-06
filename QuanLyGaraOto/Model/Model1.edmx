@@ -110,7 +110,6 @@
           <Property Name="TenTaiKhoan" Type="nvarchar(max)" />
           <Property Name="MatKhau" Type="nvarchar(max)" />
           <Property Name="QuyenHan" Type="int" />
-          <Property Name="Email" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
@@ -580,7 +579,6 @@
           <Property Name="TenTaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="QuyenHan" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VAITRO" Relationship="GARAGE_MANAGEMENTModel.FK_QuyenHan" FromRole="TAIKHOAN" ToRole="VAITRO" />
         </EntityType>
         <EntityType Name="THAMSO">
@@ -906,7 +904,6 @@
           <EntitySetMapping Name="TAIKHOANs">
             <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.TAIKHOAN">
               <MappingFragment StoreEntitySet="TAIKHOAN">
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />

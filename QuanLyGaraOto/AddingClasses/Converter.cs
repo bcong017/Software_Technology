@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyGaraOto.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,6 +22,22 @@ namespace QuanLyGaraOto.AddingClasses
             //Trim any trailing percentage symbol that the user MAY have included
             var valueWithoutPercentage = value.ToString().TrimEnd(' ', '%');
             return decimal.Parse(valueWithoutPercentage) / 100;
+        }
+    }
+
+    public class YearConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Month selectedItem = value as Month;
+            if (selectedItem == null)
+                return null;
+            return selectedItem.Number;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
         }
     }
 }

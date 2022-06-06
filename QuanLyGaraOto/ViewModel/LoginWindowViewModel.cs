@@ -67,7 +67,7 @@ namespace QuanLyGaraOto.ViewModel
             // truy vấn dữ liệu sql ở đây, chưa có nên chưa làm lmao :v
             // chỗ này để tạm vô là login đc thôi nhá còn bao giờ truy vấn đc rồi thì cho điều kiện vào đây
             // sử dụng hàm "Notification.Notify" để thông báo nếu đăng nhập chưa ok
-            var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == UserName && x.MatKhau == passEncode).FirstOrDefault();
+            TAIKHOAN user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == UserName && x.MatKhau == passEncode).FirstOrDefault();
             if (user != null)
             {
                 MainViewModel.User = user;

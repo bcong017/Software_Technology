@@ -80,7 +80,7 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var tiencong = new TIENCONG() { TenTienCong = wageName.Trim(), GiaTienCong = Convert.ToDecimal(Price) };
+                var tiencong = new TIENCONG() { TenTienCong = WageName.Trim(), GiaTienCong = Convert.ToDecimal(Price) };
 
                 DataProvider.Instance.DB.TIENCONGs.Add(tiencong);
                 DataProvider.Instance.DB.SaveChanges();
