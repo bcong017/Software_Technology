@@ -60,7 +60,7 @@
                         Width="200" Height="100" Content="Lập phiếu nhập VTPT" Margin="20" Command="{Binding AddAccessoriesList}">
                 </Button>
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Right"
-                        Width="200" Height="100" Content="Nhập mới VTPT" Margin="20">
+                        Width="200" Height="100" Content="Làm mới phiếu nhập" Margin="20" Command="{Binding RefreshCommand}">
                 </Button>
             </WrapPanel>
 

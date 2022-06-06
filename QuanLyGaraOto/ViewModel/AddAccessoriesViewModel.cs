@@ -85,16 +85,16 @@ namespace QuanLyGaraOto.ViewModel
         public ICommand DeleteCommand { get; set; }
         public ICommand DeSelectedItemCommand { get; set; }
         public ICommand AddAccessoriesList { get; set; }
+        public ICommand RefreshCommand { get; set; }
         public AddAccessoriesViewModel()
         {
-            InputDate = DateTime.Now;
-            InputList = new ObservableCollection<AccessoriesNumbericalOrder>();
+            Refresh();
             ShowInputRecordCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ShowInputRecordWindow showInputRecordWindow = new ShowInputRecordWindow(); showInputRecordWindow.Show(); });
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(AccessoriesName) || string.IsNullOrEmpty(PriceInput) || string.IsNullOrEmpty(Amount))
                     return false;
-                if (Decimal.TryParse(PriceInput, out _) == false || Int32.TryParse(Amount, out _) == false)
+                if (CheckValidNumber() == false)
                     return false;
                 if (CheckInputName() == false)
                     return false;
@@ -104,7 +104,7 @@ namespace QuanLyGaraOto.ViewModel
             {
                 AccessoriesNumbericalOrder accessoriesNumbericalOrder = new AccessoriesNumbericalOrder();
                 accessoriesNumbericalOrder.Number = number;
-                accessoriesNumbericalOrder.TenVatTu = AccessoriesName;                
+                accessoriesNumbericalOrder.TenVatTu = AccessoriesName.Trim();                
                 accessoriesNumbericalOrder.DonGiaNhap = Convert.ToDecimal(PriceInput);
                 accessoriesNumbericalOrder.DonGiaBanDeNghi = accessoriesNumbericalOrder.DonGiaNhap * (decimal)1.2;
                 accessoriesNumbericalOrder.SoLuong = Convert.ToInt32(Amount);
@@ -119,7 +119,7 @@ namespace QuanLyGaraOto.ViewModel
             {
                 if (SelectedItem == null)
                     return false;
-                if (Decimal.TryParse(PriceInput, out _) == false || Int32.TryParse(Amount, out _) == false)
+                if (CheckValidNumber() == false)
                     return false;
                 return true;
             }, (p) =>
@@ -185,29 +185,61 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
+                List<CT_PHIEUNHAP> detailList = new List<CT_PHIEUNHAP>();
                 PHIEUNHAP phieunhap = new PHIEUNHAP() { NgayNhap = InputDate, ThanhTien = TotalMoney };
                 DataProvider.Instance.DB.PHIEUNHAPs.Add(phieunhap);
                 DataProvider.Instance.DB.SaveChanges();
 
-                int id = DataProvider.Instance.DB.PHIEUNHAPs.OrderByDescending(x => x.MaPhieuNhap).Select(m => m.MaPhieuNhap).First();
+                int id = phieunhap.MaPhieuNhap;
                 foreach (var item in InputList)
                 {
-                    int idVatTu;
-                    var vattu = DataProvider.Instance.DB.VATTUs.Where(x => x.TenVatTu == item.TenVatTu).FirstOrDefault();
-                    if (vattu != null)
+                    if (DataProvider.Instance.DB.VATTUs.Any(x => String.Compare(x.TenVatTu, item.TenVatTu) == 0))
                     {
-                        idVatTu = vattu.MaVatTu;
-                        vattu.SoLuongTon = vattu.SoLuongTon + 1;
+                        var vattu = DataProvider.Instance.DB.VATTUs.FirstOrDefault(x => String.Compare(x.TenVatTu, item.TenVatTu) == 0);
+                        vattu.SoLuongTon = vattu.SoLuongTon + item.SoLuong;
+                        DataProvider.Instance.DB.SaveChanges();
+                        CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP()
+                        {
+                            MaPhieuNhap = id,
+                            MaVatTu = vattu.MaVatTu,
+                            DonGiaNhap = item.DonGiaNhap,
+                            DonGiaBan = item.DonGiaBanDeNghi,
+                            SoLuong = item.SoLuong,
+                            ThanhTien = item.ThanhTien,
+                            PHIEUNHAP = phieunhap,
+                            VATTU = vattu
+                        };
+                        detailList.Add(ct_phieunhap);
                     }    
                     else
                     {
-                        VATTU newVatTu = new VATTU() { TenVatTu = item.TenVatTu, DonGiaHienTai = item.DonGiaBanDeNghi, SoLuongTon = 1 };
+                        VATTU newVatTu = new VATTU() { TenVatTu = item.TenVatTu, DonGiaHienTai = item.DonGiaBanDeNghi, SoLuongTon = item.SoLuong };
                         DataProvider.Instance.DB.VATTUs.Add(newVatTu);
                         DataProvider.Instance.DB.SaveChanges();
+                        CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP()
+                        {
+                            MaPhieuNhap = id,
+                            MaVatTu = newVatTu.MaVatTu,
+                            DonGiaNhap = item.DonGiaNhap,
+                            DonGiaBan = item.DonGiaBanDeNghi,
+                            SoLuong = item.SoLuong,
+                            ThanhTien = item.ThanhTien,
+                            PHIEUNHAP = phieunhap,
+                            VATTU = newVatTu
+                        };
+                        detailList.Add(ct_phieunhap);
                     }    
                     //CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP() { MaPhieuNhap = id, MaVatTu = idVatTu, SoLuong = item.SoLuong, }
                 }    
+                DataProvider.Instance.DB.CT_PHIEUNHAP.AddRange(detailList);
+                DataProvider.Instance.DB.SaveChanges();
+            });
 
+            RefreshCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                InputDate = DateTime.Now;
+                InputList = new ObservableCollection<AccessoriesNumbericalOrder>();
+                TotalMoney = 0;
             });
         }
 
@@ -220,12 +252,27 @@ namespace QuanLyGaraOto.ViewModel
             }
             return true;
         }
+
+        private bool CheckValidNumber()
+        {
+            if (Decimal.TryParse(PriceInput, out _) == false || Int32.TryParse(Amount, out _) == false)
+                return false;
+            if (Convert.ToDecimal(PriceInput) <= 0 || Convert.ToInt32(Amount) <= 0)
+                return false; 
+
+            return true;
+        }
         private void UpdateTotalMoney()
         {
             foreach(var item in InputList)
             {
                 TotalMoney += item.ThanhTien;
             }
+        }
+        private void Refresh()
+        {
+            InputDate = DateTime.Now;
+            InputList = new ObservableCollection<AccessoriesNumbericalOrder>();
         }
     }
 }
