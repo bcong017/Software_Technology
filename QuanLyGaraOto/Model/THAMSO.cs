@@ -14,7 +14,9 @@ namespace QuanLyGaraOto.Model
     
     public partial class THAMSO
     {
-        public string TenThamSo { get; set; }
-        public Nullable<int> GiaTri { get; set; }
+        public int MaThamSo { get; set; }
+        public Nullable<bool> SoTienThu { get; set; }
+        public Nullable<int> XeToiDa { get; set; }
+        public Nullable<double> PhanTram { get; set; }
     }
 }

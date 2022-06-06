@@ -110,13 +110,16 @@
           <Property Name="TenTaiKhoan" Type="nvarchar(max)" />
           <Property Name="MatKhau" Type="nvarchar(max)" />
           <Property Name="QuyenHan" Type="int" />
+          <Property Name="Email" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
-            <PropertyRef Name="TenThamSo" />
+            <PropertyRef Name="MaThamSo" />
           </Key>
-          <Property Name="TenThamSo" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="GiaTri" Type="int" />
+          <Property Name="MaThamSo" Type="int" Nullable="false" />
+          <Property Name="SoTienThu" Type="bit" />
+          <Property Name="XeToiDa" Type="int" />
+          <Property Name="PhanTram" Type="float" />
         </EntityType>
         <EntityType Name="TIENCONG">
           <Key>
@@ -577,14 +580,17 @@
           <Property Name="TenTaiKhoan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="QuyenHan" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VAITRO" Relationship="GARAGE_MANAGEMENTModel.FK_QuyenHan" FromRole="TAIKHOAN" ToRole="VAITRO" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
-            <PropertyRef Name="TenThamSo" />
+            <PropertyRef Name="MaThamSo" />
           </Key>
-          <Property Name="TenThamSo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="GiaTri" Type="Int32" />
+          <Property Name="MaThamSo" Type="Int32" Nullable="false" />
+          <Property Name="SoTienThu" Type="Boolean" />
+          <Property Name="XeToiDa" Type="Int32" />
+          <Property Name="PhanTram" Type="Double" />
         </EntityType>
         <EntityType Name="TIENCONG">
           <Key>
@@ -787,7 +793,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -900,6 +906,7 @@
           <EntitySetMapping Name="TAIKHOANs">
             <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.TAIKHOAN">
               <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="QuyenHan" ColumnName="QuyenHan" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
@@ -910,8 +917,10 @@
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
-                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
-                <ScalarProperty Name="TenThamSo" ColumnName="TenThamSo" />
+                <ScalarProperty Name="PhanTram" ColumnName="PhanTram" />
+                <ScalarProperty Name="XeToiDa" ColumnName="XeToiDa" />
+                <ScalarProperty Name="SoTienThu" ColumnName="SoTienThu" />
+                <ScalarProperty Name="MaThamSo" ColumnName="MaThamSo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

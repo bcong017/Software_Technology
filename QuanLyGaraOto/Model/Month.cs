@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyGaraOto.ViewModel
+namespace QuanLyGaraOto.Model
 {
-    internal class Class1
+    public class Month
     {
     }
 }
