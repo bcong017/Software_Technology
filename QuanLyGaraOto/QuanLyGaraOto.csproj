@@ -86,6 +86,9 @@
     <Compile Include="AddingClasses\Encryptor.cs" />
     <Compile Include="AddingClasses\NotificationWindow.cs" />
     <Compile Include="AddingClasses\ValidateEmail.cs" />
+    <Compile Include="AddNewVATPHAM.xaml.cs">
+      <DependentUpon>AddNewVATPHAM.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -176,6 +179,7 @@
     <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
     <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
+    <Compile Include="ViewModel\AddNewVATPHAMViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\CarCheckInViewModel.cs" />
@@ -243,6 +247,10 @@
       <DependentUpon>UpdateParameterUC.xaml</DependentUpon>
     </Compile>
     <Page Include="AccountInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewVATPHAM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
