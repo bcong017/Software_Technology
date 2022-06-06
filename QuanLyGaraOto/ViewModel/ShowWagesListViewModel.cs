@@ -80,7 +80,7 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var tiencong = new TIENCONG() { TenTienCong = wageName, GiaTienCong = Convert.ToDecimal(Price) };
+                var tiencong = new TIENCONG() { TenTienCong = wageName.Trim(), GiaTienCong = Convert.ToDecimal(Price) };
 
                 DataProvider.Instance.DB.TIENCONGs.Add(tiencong);
                 DataProvider.Instance.DB.SaveChanges();
@@ -99,7 +99,7 @@ namespace QuanLyGaraOto.ViewModel
                 if (tiencong == null)
                     return;
 
-                tiencong.TenTienCong = WageName;
+                tiencong.TenTienCong = WageName.Trim();
                 tiencong.GiaTienCong = Convert.ToDecimal(Price);
 
                 DataProvider.Instance.DB.SaveChanges();

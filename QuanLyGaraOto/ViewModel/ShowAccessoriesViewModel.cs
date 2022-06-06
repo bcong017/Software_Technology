@@ -85,7 +85,7 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var vattu = new VATTU() {TenVatTu = accessoriesName, DonGiaHienTai = Convert.ToDecimal(Price), SoLuongTon = Convert.ToInt32(Amount)};
+                var vattu = new VATTU() {TenVatTu = accessoriesName.Trim(), DonGiaHienTai = Convert.ToDecimal(Price), SoLuongTon = Convert.ToInt32(Amount)};
 
                 DataProvider.Instance.DB.VATTUs.Add(vattu);
                 DataProvider.Instance.DB.SaveChanges();
@@ -104,7 +104,7 @@ namespace QuanLyGaraOto.ViewModel
                 if (vattu == null)
                     return;
 
-                vattu.TenVatTu = AccessoriesName;
+                vattu.TenVatTu = AccessoriesName.Trim();
                 vattu.DonGiaHienTai = Convert.ToDecimal(Price);
                 vattu.SoLuongTon = Convert.ToInt32(Amount);
 

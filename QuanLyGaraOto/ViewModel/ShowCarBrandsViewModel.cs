@@ -66,7 +66,7 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var hieuxe = new HIEUXE() { TenHieuXe = CarBrandName };
+                var hieuxe = new HIEUXE() { TenHieuXe = CarBrandName.Trim() };
 
                 DataProvider.Instance.DB.HIEUXEs.Add(hieuxe);
                 DataProvider.Instance.DB.SaveChanges();
@@ -85,7 +85,7 @@ namespace QuanLyGaraOto.ViewModel
                 if (hieuxe == null)
                     return;
 
-                hieuxe.TenHieuXe = CarBrandName;
+                hieuxe.TenHieuXe = CarBrandName.Trim();
 
                 DataProvider.Instance.DB.SaveChanges();
 
