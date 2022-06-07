@@ -13,15 +13,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace QuanLyGaraOto
 {
     public partial class AddNewVATPHAM : Window
     {
-        public AddNewVATPHAM(RepairReceiptViewModel repairReceiptViewModel)
+        public AddNewVATPHAM(ShowRepairReceptListViewModel showRepairReceptListViewModel)
         {
             InitializeComponent();
-            this.DataContext = new AddNewVATPHAMViewModel(repairReceiptViewModel);
+            this.DataContext = new AddNewVATPHAMViewModel(showRepairReceptListViewModel);
         }
 
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -29,6 +30,12 @@ namespace QuanLyGaraOto
             ScrollViewer scv = (ScrollViewer)sender;
             scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
             e.Handled = true;
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

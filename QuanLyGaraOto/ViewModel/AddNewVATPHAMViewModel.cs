@@ -12,7 +12,8 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class AddNewVATPHAMViewModel : BaseViewModel
     {
-        RepairReceiptViewModel k;
+        ShowRepairReceptListViewModel k;
+        ObservableCollection<TIENCONG> TienCong;
 
         private string noiDung;
         public string NoiDung
@@ -28,33 +29,29 @@ namespace QuanLyGaraOto.ViewModel
             set { soLuong = value; OnPropertyChanged(nameof(SoLuong)); }
         }
 
-        private TIENCONG selectedTienCong;
-        public TIENCONG SelectedTienCong
-        {
-            get { return selectedTienCong; }
-            set
-            {
-                selectedTienCong = value;
-                OnPropertyChanged();
-                if (SelectedItem != null)
-                {
-                    //DoStuff
-                }
-            }
-        }
-
         private VATTU selectedVatTu;
-        public VATTU SelectedItem
+        public VATTU SelectedVatTu
         {
             get { return selectedVatTu; }
             set
             {
                 selectedVatTu = value;
                 OnPropertyChanged();
-                if (SelectedItem != null)
+                if (SelectedVatTu != null)
                 {
                     //DoStuff
                 }
+            }
+        }
+
+        private KeyValuePair<string, TIENCONG> selectedTienCong;
+        public KeyValuePair<string, TIENCONG> SelectedTienCong
+        {
+            get { return selectedTienCong; }
+            set
+            {
+                selectedTienCong = value;
+                OnPropertyChanged();
             }
         }
 
@@ -65,34 +62,68 @@ namespace QuanLyGaraOto.ViewModel
             set { vattuList = value; OnPropertyChanged(nameof(VatTuList)); }
         }
 
-        private ObservableCollection<TIENCONG> tiencongList;
-        public ObservableCollection<TIENCONG> TienCongList
+        private ObservableCollection<CT_SUDUNGVATTU> final;
+        public ObservableCollection<CT_SUDUNGVATTU> Final
         {
-            get { return tiencongList; }
-            set { tiencongList = value; OnPropertyChanged(nameof(TienCongList)); }
+            get { return final; }
+            set { final = value; OnPropertyChanged(nameof(Final)); }
+        }
+
+        private Dictionary<string, TIENCONG> tienCongList;
+        public Dictionary<string, TIENCONG> TienCongList
+        {
+            get { return tienCongList; }
+            set { tienCongList = value; OnPropertyChanged(nameof(TienCongList)); }
         }
 
         public ICommand AddCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand DoneCommand { get; set; }
 
-        public AddNewVATPHAMViewModel(RepairReceiptViewModel repairReceiptViewModel)
+        public AddNewVATPHAMViewModel(ShowRepairReceptListViewModel showRepairReceptListViewModel)
         {
-            k = repairReceiptViewModel;
-            TienCongList = new ObservableCollection<TIENCONG>(DataProvider.Instance.DB.TIENCONGs.ToList());
+            k = showRepairReceptListViewModel;
+
+            TienCongList = new Dictionary<string, TIENCONG>();
+            Final = new ObservableCollection<CT_SUDUNGVATTU>();
             VatTuList = new ObservableCollection<VATTU>(DataProvider.Instance.DB.VATTUs.ToList());
+            TienCong = new ObservableCollection<TIENCONG>(DataProvider.Instance.DB.TIENCONGs.ToList());
+
+            foreach (TIENCONG tc in TienCong)
+            {
+                TienCongList.Add(tc.TenTienCong + ": " + tc.GiaTienCong.ToString(), tc);
+            }
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if ((noiDung == null) || (soLuong == null) /*|| (selectedTienCong == null) || (selectedVatTu == null)*/)
+                int sl = Convert.ToInt32(SoLuong);
+                if ((sl == 0) || (SelectedVatTu == null))
                     return false;
                 return true;
             }, (p) =>
             {
-                k.Receive();
+                CT_SUDUNGVATTU ct = new CT_SUDUNGVATTU();
+                ct.VATTU = SelectedVatTu;
+                ct.MaVatTu = SelectedVatTu.MaVatTu;
+                ct.SoLuong = Convert.ToInt32(SoLuong);
+                ct.DonGia = SelectedVatTu.DonGiaHienTai;
+                ct.ThanhTien = ct.DonGia * ct.SoLuong;
+                Final.Add(ct);
+            });
+
+            DoneCommand = new RelayCommand<Window>((p) =>
+            {
+                if ((noiDung == null) || (SoLuong == null) || (!Final.Any()) || (SelectedTienCong.Key == null))
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                TIENCONG tc = SelectedTienCong.Value;
+                k.Receive(NoiDung, Final, tc);
                 Close();
             });
 
-            CancelCommand = new RelayCommand<object>((p) =>
+            CancelCommand = new RelayCommand<Window>((p) =>
             {
                 return true;
             }, (p) =>
