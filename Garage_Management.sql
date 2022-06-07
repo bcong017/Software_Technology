@@ -9,8 +9,8 @@ CREATE TABLE XE (
 	Email			NVARCHAR(MAX),
 	NgayTiepNhan	SMALLDATETIME,
 	MaHieuXe		INT,
-	TienNo			MONEY DEFAULT 0
-
+	TienNo			MONEY DEFAULT 0,
+	DaXoa			BIT DEFAULT 0,
 	CONSTRAINT XE_PK PRIMARY KEY (BienSo)
 )
 
@@ -226,3 +226,5 @@ alter table TAIKHOAN drop constraint FK_QuyenHan
 drop table VAITRO
 
 drop table TAIKHOAN
+SET DATEFORMAT DMY
+INSERT INTO XE (BienSo, TenChuXe, DienThoai, DiaChi, Email, NgayTiepNhan, MaHieuXe, TienNo) VALUES ('1234','NGUYEN VAN A', '0123456789', 'NAJSKFBASJK' ,'VANA@GMAIL.COM', '15/5/2022', 5, 0)

@@ -30,9 +30,9 @@
                     <WrapPanel>
                         <ComboBox materialDesign:HintAssist.Hint="Tháng"
                               Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              ItemsSource="{Binding Month}"
+                              ItemsSource="{Binding Months.Months}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding MonthList}"
+                              SelectedItem="{Binding SelectetedItem}"
                               Width="100"
                               Margin="5"/>
                         <TextBox materialDesign:HintAssist.Hint="Năm"
