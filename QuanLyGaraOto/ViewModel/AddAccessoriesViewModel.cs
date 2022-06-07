@@ -12,6 +12,7 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class AddAccessoriesViewModel : BaseViewModel
     {
+        private double? percentage = DataProvider.Instance.DB.THAMSOes.Single(x => x.MaThamSo == 0).PhanTram;
         private int number = 1;
         private string accessoriesName;
         public string AccessoriesName
@@ -90,7 +91,7 @@ namespace QuanLyGaraOto.ViewModel
         public AddAccessoriesViewModel()
         {
             Refresh();
-            ShowInputRecordCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ShowInputRecordWindow showInputRecordWindow = new ShowInputRecordWindow(); showInputRecordWindow.Show(); });
+            ShowInputRecordCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ShowInputRecordWindow showInputRecordWindow = new ShowInputRecordWindow(); showInputRecordWindow.ShowDialog(); });
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(AccessoriesName) || string.IsNullOrEmpty(PriceInput) || string.IsNullOrEmpty(Amount))
@@ -107,7 +108,7 @@ namespace QuanLyGaraOto.ViewModel
                 accessoriesNumbericalOrder.Number = number;
                 accessoriesNumbericalOrder.TenVatTu = AccessoriesName.Trim();                
                 accessoriesNumbericalOrder.DonGiaNhap = Convert.ToDecimal(PriceInput);
-                accessoriesNumbericalOrder.DonGiaBanDeNghi = accessoriesNumbericalOrder.DonGiaNhap * (decimal)1.2;
+                accessoriesNumbericalOrder.DonGiaBanDeNghi = accessoriesNumbericalOrder.DonGiaNhap * (decimal)(1 + percentage);
                 accessoriesNumbericalOrder.SoLuong = Convert.ToInt32(Amount);
                 accessoriesNumbericalOrder.ThanhTien = accessoriesNumbericalOrder.DonGiaNhap * accessoriesNumbericalOrder.SoLuong;
                 InputList.Add(accessoriesNumbericalOrder);
@@ -131,7 +132,7 @@ namespace QuanLyGaraOto.ViewModel
                     {
                         item.TenVatTu = AccessoriesName;
                         item.DonGiaNhap = Convert.ToDecimal(PriceInput);
-                        item.DonGiaBanDeNghi = item.DonGiaNhap * (decimal)1.2;
+                        item.DonGiaBanDeNghi = item.DonGiaNhap * (decimal)(1 + percentage);
                         item.SoLuong = Convert.ToInt32(Amount);
                         item.ThanhTien = item.DonGiaNhap * item.SoLuong;
                         SelectedItem = item;
@@ -198,6 +199,7 @@ namespace QuanLyGaraOto.ViewModel
                     {
                         var vattu = DataProvider.Instance.DB.VATTUs.FirstOrDefault(x => String.Compare(x.TenVatTu, item.TenVatTu) == 0);
                         vattu.SoLuongTon = vattu.SoLuongTon + item.SoLuong;
+                        vattu.DonGiaHienTai = item.DonGiaBanDeNghi;
                         DataProvider.Instance.DB.SaveChanges();
                         CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP()
                         {

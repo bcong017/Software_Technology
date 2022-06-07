@@ -106,7 +106,6 @@ CREATE TABLE BAOCAOTON (
 	CONSTRAINT BAOCAOTON_PK PRIMARY KEY (MaBCT)
 )
 
-
 CREATE TABLE BAOCAODOANHSO (
 	MaBCDS			INT IDENTITY (1, 1),
 	ThoiGian		SMALLDATETIME, -- ngay minh muon xem bao cao doanh so
@@ -202,6 +201,8 @@ INSERT INTO VATTU (TenVatTu, DonGiaHienTai, SoLuongTon) VALUES
 	(N'Đèn hậu', '3000000', '10'),
 	(N'Đèn sương mù', '6000000', '10'),
 	(N'Bơm nhiên liệu', '4000000', '10');
+
+
 
 INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 	(N'Rửa xe', '300000'),

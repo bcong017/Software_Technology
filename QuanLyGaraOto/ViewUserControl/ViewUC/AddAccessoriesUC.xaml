@@ -77,7 +77,7 @@
             </materialDesign:Card>
 
             <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                     <ListView ItemsSource="{Binding InputList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                         <ListView.View>
                             <GridView>
