@@ -136,11 +136,14 @@ CREATE TABLE TAIKHOAN (
 	MaTaiKhoan	INT IDENTITY (1, 1) PRIMARY KEY,
 	TenTaiKhoan	NVARCHAR(MAX),
 	MatKhau		NVARCHAR(MAX),
+	HoTen		NVARCHAR(MAX),
+	NgaySinh	SMALLDATETIME,
+	Email		NVARCHAR(MAX),
 	QuyenHan	INT
 )
 
 CREATE TABLE VAITRO (
-	MaVaiTro	INT,
+	MaVaiTro	INT PRIMARY KEY,
 	TenVaiTro	NVARCHAR(20),
 )
 
@@ -217,3 +220,9 @@ INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 	(N'Dán phim cách nhiệt', '2000000');
 
 INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram) VALUES (0, 1, 30, 0.2)
+
+alter table TAIKHOAN drop constraint FK_QuyenHan
+
+drop table VAITRO
+
+drop table TAIKHOAN
