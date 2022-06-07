@@ -103,8 +103,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     Content="Thêm"
-                    Command="{Binding AddCommand}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    Command="{Binding AddCommand}"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -112,8 +111,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                         Command="{Binding EditCommand}"
-                    Content="Sửa"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    Content="Sửa"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -121,8 +119,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     Content="Xóa"
-                         Command="{Binding DeleteCommand}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                         Command="{Binding DeleteCommand}"/>
                 </Grid>
                 <Grid Grid.Column="3">
                     <Button 

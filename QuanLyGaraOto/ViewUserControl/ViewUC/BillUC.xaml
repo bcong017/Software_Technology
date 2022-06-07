@@ -97,8 +97,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
-                    Content="Thêm"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    Content="Thêm"/>
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -106,8 +105,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
-                    Content="Sửa"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    Content="Sửa"/>
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -115,8 +113,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
-                    Content="Xóa"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    Content="Xóa"/>
                 </Grid>
                 
             </Grid>
