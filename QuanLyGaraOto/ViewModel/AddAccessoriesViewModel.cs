@@ -1,4 +1,5 @@
-﻿using QuanLyGaraOto.Model;
+﻿using QuanLyGaraOto.AddingClasses;
+using QuanLyGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -233,6 +234,8 @@ namespace QuanLyGaraOto.ViewModel
                 }    
                 DataProvider.Instance.DB.CT_PHIEUNHAP.AddRange(detailList);
                 DataProvider.Instance.DB.SaveChanges();
+
+                NotificationWindow.Notify("Thêm vật tư thành công!");
             });
 
             RefreshCommand = new RelayCommand<object>((p) => { return true; }, (p) =>

@@ -62,7 +62,7 @@
                                          VerticalAlignment="Center" 
                                          HorizontalAlignment="Left" 
                                          Width="300" FontSize="20" 
-                                         Text="Binding họ và tên từ viewmodel"
+                                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="Black" 
                                          TextAlignment="Left"
                                          IsEnabled="{Binding EnableState}"/>
@@ -87,7 +87,8 @@
                                         Width="200" 
                                         HorizontalAlignment="Left" 
                                         VerticalAlignment="Center"
-                                        d:SelectedDate="{Binding NgaySinhDatePicker,StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                                        SelectedDate="{Binding Birthday, UpdateSourceTrigger=PropertyChanged}"
+                                        
                                         FontSize="20" 
                                         Foreground="Black"
                                         IsEnabled="{Binding EnableState}">
@@ -107,12 +108,11 @@
                                        HorizontalAlignment="Right" 
                                        Margin="0,0,10,0">
                             </TextBlock>
-                            <TextBox x:Name="txbEmail" Text="Binding Email mà người này đang dùng"
+                            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                                      Grid.Column="1" 
                                      VerticalAlignment="Center" 
                                      HorizontalAlignment="Left" 
                                      Width="350" FontSize="20" 
-                                     materialDesign:HintAssist.Hint="Email" 
                                      Foreground="Black" TextAlignment="Left"
                                      IsEnabled="{Binding EnableState}"/>
                         </Grid>
@@ -134,7 +134,8 @@
                                     Background="SkyBlue"
                                     Content="Thay đổi mật khẩu tại đây"
                                     FontWeight="Bold"
-                                    Command="{Binding OpenChangePasswordWindowCommand}"/>
+                                    Command="{Binding OpenChangePasswordWindowCommand}"
+                                    IsEnabled="{Binding EnableState}"/>
 
                         </Grid>
                     </StackPanel>

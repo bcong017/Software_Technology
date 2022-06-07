@@ -28,16 +28,16 @@ namespace QuanLyGaraOto.Model
         public virtual DbSet<BAOCAODOANHSO> BAOCAODOANHSOes { get; set; }
         public virtual DbSet<BAOCAOTON> BAOCAOTONs { get; set; }
         public virtual DbSet<CT_BCDS> CT_BCDS { get; set; }
-        public virtual DbSet<CT_PSC> CT_PSC { get; set; }
         public virtual DbSet<CT_PHIEUNHAP> CT_PHIEUNHAP { get; set; }
+        public virtual DbSet<CT_PSC> CT_PSC { get; set; }
         public virtual DbSet<CT_SUDUNGVATTU> CT_SUDUNGVATTU { get; set; }
         public virtual DbSet<HIEUXE> HIEUXEs { get; set; }
         public virtual DbSet<PHIEUNHAP> PHIEUNHAPs { get; set; }
         public virtual DbSet<PHIEUSUACHUA> PHIEUSUACHUAs { get; set; }
         public virtual DbSet<PHIEUTHUTIEN> PHIEUTHUTIENs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
-        public virtual DbSet<TIENCONG> TIENCONGs { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
+        public virtual DbSet<TIENCONG> TIENCONGs { get; set; }
         public virtual DbSet<VAITRO> VAITROes { get; set; }
         public virtual DbSet<VATTU> VATTUs { get; set; }
         public virtual DbSet<XE> XEs { get; set; }

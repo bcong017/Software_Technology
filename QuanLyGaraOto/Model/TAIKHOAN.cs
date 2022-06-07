@@ -17,6 +17,9 @@ namespace QuanLyGaraOto.Model
         public int MaTaiKhoan { get; set; }
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
+        public string HoTen { get; set; }
+        public Nullable<System.DateTime> NgaySinh { get; set; }
+        public string Email { get; set; }
         public Nullable<int> QuyenHan { get; set; }
     
         public virtual VAITRO VAITRO { get; set; }
