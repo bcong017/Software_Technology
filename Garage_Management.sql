@@ -9,8 +9,8 @@ CREATE TABLE XE (
 	Email			NVARCHAR(MAX),
 	NgayTiepNhan	SMALLDATETIME,
 	MaHieuXe		INT,
-	TienNo			MONEY DEFAULT 0
-
+	TienNo			MONEY DEFAULT 0,
+	DaXoa			BIT DEFAULT 0,
 	CONSTRAINT XE_PK PRIMARY KEY (BienSo)
 )
 
@@ -140,7 +140,7 @@ CREATE TABLE TAIKHOAN (
 )
 
 CREATE TABLE VAITRO (
-	MaVaiTro	INT,
+	MaVaiTro	INT PRIMARY KEY,
 	TenVaiTro	NVARCHAR(20),
 )
 
@@ -217,3 +217,5 @@ INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 	(N'Dán phim cách nhiệt', '2000000');
 
 INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram) VALUES (0, 1, 30, 0.2)
+SET DATEFORMAT DMY
+INSERT INTO XE (BienSo, TenChuXe, DienThoai, DiaChi, Email, NgayTiepNhan, MaHieuXe, TienNo) VALUES ('1234','NGUYEN VAN A', '0123456789', 'NAJSKFBASJK' ,'VANA@GMAIL.COM', '15/5/2022', 5, 0)

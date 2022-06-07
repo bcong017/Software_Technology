@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03736489252545659caeb6d569f8400d" Name="Diagram1" ZoomLevel="88">
+      <Diagram DiagramId="03736489252545659caeb6d569f8400d" Name="Diagram1" ZoomLevel="66">
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.BAOCAODOANHSO" Width="1.5" PointX="0.75" PointY="1.625" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.BAOCAOTON" Width="1.5" PointX="9.75" PointY="5.125" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.CT_BCDS" Width="1.5" PointX="3" PointY="3.375" />
@@ -20,7 +20,7 @@
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.TIENCONG" Width="1.5" PointX="5.25" PointY="12.125" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.VAITRO" Width="1.5" PointX="11.75" PointY="1.125" />
         <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.VATTU" Width="1.5" PointX="7.5" PointY="4.875" />
-        <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.XE" Width="1.5" PointX="3" PointY="7.125" />
+        <EntityTypeShape EntityType="GARAGE_MANAGEMENTModel.XE" Width="1.5" PointX="3" PointY="7" />
         <AssociationConnector Association="GARAGE_MANAGEMENTModel.FK_MaBCDS" />
         <AssociationConnector Association="GARAGE_MANAGEMENTModel.FK_BCT_MaVatTu" />
         <AssociationConnector Association="GARAGE_MANAGEMENTModel.FK_CT_BCDS_MaHieuXe" />

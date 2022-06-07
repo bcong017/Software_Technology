@@ -149,6 +149,7 @@
     <Compile Include="Model\PHIEUTHUTIEN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ReceiveNumbericalOrder.cs" />
     <Compile Include="Model\SalesNumbericalOrder.cs" />
     <Compile Include="Model\TAIKHOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>

@@ -31,6 +31,7 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Column="0" Grid.Row="0">
                                 <TextBox Width="170" materialDesign:HintAssist.Hint="Họ tên chủ xe"
+                                         Text ="{Binding HoTen, UpdateSourceTrigger=PropertyChanged}"
                                          Foreground="Black"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          VerticalAlignment="Center" />
@@ -40,32 +41,44 @@
                                 Width="170"
                                 Foreground="Black"
                                 materialDesign:HintAssist.Hint="Biển số"
+                                    IsEnabled="{Binding EditTextboxEnable}"
+                                    Text ="{Binding BienSo, UpdateSourceTrigger=PropertyChanged}"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 VerticalAlignment="Center" />
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="1" Height="50">
-                                <TextBox Width="170" Foreground="Black"
+                                <ComboBox Width="170" Foreground="Black"
                                          materialDesign:HintAssist.Hint="Hiệu xe"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         SelectedItem ="{Binding HieuXe, UpdateSourceTrigger=PropertyChanged}"
+                                         ItemsSource="{Binding ListHieuXe}"
+                                         DisplayMemberPath="TenHieuXe"
                                          VerticalAlignment="Center" />
 
                             </Grid>
                             <Grid Grid.Column="1" Grid.Row="1">
                                 <TextBox Width="170" Foreground="Black"
                                          materialDesign:HintAssist.Hint="Địa chỉ"
+                                         Text ="{Binding DiaChi, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          VerticalAlignment="Center"/>
 
                             </Grid>
                             <Grid Grid.Column="0" Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="42*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
                                 <DatePicker Width="170" Name="LocaleDatePicker"
                                             VerticalAlignment="Stretch" Foreground="Black"
-                                            materialDesign:HintAssist.Hint="Ngày tiếp nhận" />
+                                            materialDesign:HintAssist.Hint="Ngày tiếp nhận"
+                                            SelectedDate ="{Binding NgayTiepNhan, UpdateSourceTrigger=PropertyChanged}" Margin="103,0,63,0"/>
                             </Grid>
                             <Grid Grid.Column="1"
                                   Grid.Row="2">
                                 <TextBox Width="170" Foreground="Black"
                                          materialDesign:HintAssist.Hint="Số điện thoại"
+                                         Text ="{Binding SoDienThoai, UpdateSourceTrigger=PropertyChanged}"
+                                         PreviewTextInput="NumberValidationTextBox"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          VerticalAlignment="Center" />
                             </Grid>
@@ -83,13 +96,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Thêm"
+                    Command="{Binding AddCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
                 </Grid>
 
@@ -97,7 +111,7 @@
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Command="{Binding EditCommand}"
                     Content="Sửa"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
                 </Grid>
@@ -106,9 +120,17 @@
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Xóa"
+                         Command="{Binding DeleteCommand}"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Button 
+                        Command="{Binding DeSelectedItemCommand}" 
+                        Content="Bỏ chọn" 
+                        Width="100"
+                        Style="{StaticResource MaterialDesignRaisedButton}">
+                    </Button>
                 </Grid>
 
             </Grid>
@@ -121,16 +143,16 @@
                     Margin="16"
                     UseLayoutRounding="True">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="0">
-                            <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                            <ListView ItemsSource="{Binding ListTiepNhanXeSua}" SelectedItem="{Binding SelectedItem}" >
                                 <ListView.View>
-                                    <GridView>                                    
-                                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Hiệu xe" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Ngày tiếp nhận" DisplayMemberBinding="{Binding}"/>
-                                        <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding}"/>
+                                    <GridView>
+                                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                                        <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding="{Binding Car.TenChuXe}"/>
+                                        <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding Car.BienSo}"/>
+                                        <GridViewColumn Header="Hiệu xe" DisplayMemberBinding="{Binding Car.HIEUXE.TenHieuXe}"/>
+                                        <GridViewColumn Header="Địa chỉ" DisplayMemberBinding="{Binding Car.DiaChi}"/>
+                                        <GridViewColumn Header="Ngày tiếp nhận" DisplayMemberBinding="{Binding Car.NgayTiepNhan, StringFormat='dd/MM/yyyy'}"/>
+                                        <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding Car.DienThoai}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
