@@ -13,7 +13,10 @@ namespace QuanLyGaraOto.AddingClasses
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var fraction = decimal.Parse(value.ToString());
+            decimal fraction;
+            if (string.IsNullOrEmpty(value.ToString()))
+                fraction = 0;
+            fraction = decimal.Parse(value.ToString());
             return fraction.ToString("P2");
         }
 

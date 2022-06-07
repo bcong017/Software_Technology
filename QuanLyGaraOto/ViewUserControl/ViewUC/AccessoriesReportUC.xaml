@@ -50,21 +50,14 @@
                                 Content="Xuất báo cáo tồn"
                                 Command="{Binding MakeReportCommand}">
                         </Button>
-
-                        <Button x:Name="btnExcelOutput"
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}" 
-                                Width="180"
-                                Margin="50 0 0 0"
-                                Content="Xuất excel"
-                                Command="{Binding ExcelOutput}">
-                        </Button>
+                        
                     </WrapPanel>
                 </materialDesign:Card>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="1">
-                    <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                    <ListView ItemsSource="{Binding ReportList}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding }"/>
                                 <GridViewColumn Header="Vật tư phụ tùng" DisplayMemberBinding="{Binding}"/>
                                 <GridViewColumn Header="Tồn đầu" DisplayMemberBinding="{Binding}"/>
                                 <GridViewColumn Header="Tồn cuối" DisplayMemberBinding="{Binding}"/>
