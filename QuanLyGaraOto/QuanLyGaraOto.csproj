@@ -181,6 +181,9 @@
     <Compile Include="ShowInputRecordWindow.xaml.cs">
       <DependentUpon>ShowInputRecordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowRepairReceptListWindow.xaml.cs">
+      <DependentUpon>ShowRepairReceptListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AccessoriesReportViewModel.cs" />
     <Compile Include="ViewModel\AccountInformationViewModel.cs" />
     <Compile Include="ViewModel\AddAccessoriesViewModel.cs" />
@@ -201,6 +204,7 @@
     <Compile Include="ViewModel\ShowAccessoriesViewModel.cs" />
     <Compile Include="ViewModel\ShowCarBrandsViewModel.cs" />
     <Compile Include="ViewModel\ShowInputRecordViewModel.cs" />
+    <Compile Include="ViewModel\ShowRepairReceptListViewModel.cs" />
     <Compile Include="ViewModel\ShowWageAndMaterialViewModel.cs" />
     <Compile Include="ViewModel\ShowWagesListViewModel.cs" />
     <Compile Include="ViewModel\UpdateParameterViewModel.cs" />
@@ -305,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShowInputRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowRepairReceptListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
