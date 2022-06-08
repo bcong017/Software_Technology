@@ -17,6 +17,7 @@ namespace QuanLyGaraOto.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand RemoveCommand { get; set; }
         public ICommand DoneCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         private CT_PSC selectedItem;
         public CT_PSC SelectedItem
@@ -86,12 +87,13 @@ namespace QuanLyGaraOto.ViewModel
 
         public ShowRepairReceptListViewModel(RepairReceiptViewModel rrv,PHIEUSUACHUA psc)
         {
-            //ObservableCollection<XE> cl = new ObservableCollection<XE>(DataProvider.Instance.DB.XEs.ToList());
+            CarList = new Dictionary<string, XE>();
+            ObservableCollection<XE> cl = new ObservableCollection<XE>(DataProvider.Instance.DB.XEs.ToList());
 
-            /*foreach (XE xe in cl)
+            foreach (XE xe in cl)
             {
                 CarList.Add(xe.BienSo, xe);
-            }*/
+            }
 
             if (psc != null)
             {
@@ -99,11 +101,12 @@ namespace QuanLyGaraOto.ViewModel
                 SelectedDate = psc.NgaySuaChua;
                 TotalMoney = psc.TongTien;
                 DetailList = new ObservableCollection<CT_PSC>(psc.CT_PSC.ToList());
-                //SelectedCar = CarList.Where(x => x.Value == psc.XE).FirstOrDefault();
+                SelectedCar = CarList.Where(x => x.Value == psc.XE).FirstOrDefault();
             }
             else
             {
                 phieuSuaChua = new PHIEUSUACHUA();
+                DataProvider.Instance.DB.PHIEUSUACHUAs.Add(phieuSuaChua);
                 DetailList = new ObservableCollection<CT_PSC>();
             }
 
@@ -132,7 +135,7 @@ namespace QuanLyGaraOto.ViewModel
 
             DoneCommand = new RelayCommand<object>((p) =>
             {
-                if ((TotalMoney == null) || (SelectedDate == null) /*|| (SelectedCar.Key == null)*/)
+                if ((TotalMoney == null) || (SelectedDate == null) || (SelectedCar.Key == null))
                     return false;
                 return true;
             }, (p) =>
@@ -140,21 +143,29 @@ namespace QuanLyGaraOto.ViewModel
                 if (psc != null)
                 {
                     psc.NgaySuaChua = SelectedDate;
-                    //psc.XE = SelectedCar.Value;
-                    //psc.BienSo = phieuSuaChua.XE.BienSo;
+                    psc.XE = SelectedCar.Value;
+                    psc.BienSo = phieuSuaChua.XE.BienSo;
                     psc.TongTien = TongSoTien();
                     psc.CT_PSC = DetailList;
                     DataProvider.Instance.DB.SaveChanges();
                 } else
                 {
-                    //phieuSuaChua.XE = SelectedCar.Value;
-                    //phieuSuaChua.BienSo = SelectedCar.Value.BienSo;
+                    phieuSuaChua.XE = SelectedCar.Value;
+                    phieuSuaChua.BienSo = SelectedCar.Value.BienSo;
                     phieuSuaChua.NgaySuaChua = SelectedDate;
                     phieuSuaChua.TongTien = TongSoTien();
                     phieuSuaChua.CT_PSC = DetailList;
-                    rrv.Receive(phieuSuaChua);
+                    DataProvider.Instance.DB.SaveChanges();
                 }
 
+                Close();
+            });
+
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
                 Close();
             });
         }

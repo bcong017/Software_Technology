@@ -54,6 +54,8 @@ namespace QuanLyGaraOto.ViewModel
                 Application.Current.MainWindow = k;
                 Application.Current.MainWindow.ShowDialog();
                 Application.Current.MainWindow = w;
+
+                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
             });
 
             ModifyCommand = new RelayCommand<object>((p) =>
@@ -70,9 +72,7 @@ namespace QuanLyGaraOto.ViewModel
                 Application.Current.MainWindow = k;
                 Application.Current.MainWindow.ShowDialog();
                 Application.Current.MainWindow = w;
-                int index = ReceptList.IndexOf(SelectedItem);
-                ReceptList.Remove(SelectedItem);
-                ReceptList.Insert(index, psc);
+                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
 
             });
 
@@ -83,13 +83,10 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                ReceptList.Remove(SelectedItem);
+                DataProvider.Instance.DB.PHIEUSUACHUAs.Remove(SelectedItem);
+                DataProvider.Instance.DB.SaveChanges();
+                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
             });
-        }
-
-        public void Receive(PHIEUSUACHUA psc)
-        {
-            ReceptList.Add(psc);
         }
     }
 }

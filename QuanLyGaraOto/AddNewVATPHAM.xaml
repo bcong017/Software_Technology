@@ -19,7 +19,7 @@
         Background="Transparent"
         AllowsTransparency="true"
         
-        Title="Đăng nhập" 
+        Title="Thêm VP mới" 
         d:DesignHeight="450" d:DesignWidth="800"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
@@ -45,11 +45,10 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
                 <ColumnDefinition Width="50*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
                 <uc:ControlBarUC Tag="Thêm vật phẩm mới"></uc:ControlBarUC>
             </Grid>
 
@@ -62,12 +61,12 @@
                 <Button Command="{Binding DoneCommand}" Content="Hoàn thành" Margin="5" Width="120"></Button>
             </Grid>
 
-            <Grid Grid.Row="3" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="1">
                 <Button Command="{Binding CancelCommand}" Content="Hủy" Margin="5" Width="100"></Button>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="1">
-                <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" ></Button>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="0">
@@ -95,7 +94,7 @@
                 </DockPanel>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="2">
+            <Grid Grid.Row="2" Grid.Column="1">
                 <DockPanel LastChildFill="True" Margin="5">
                     <TextBox DockPanel.Dock="Bottom" Text="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" PreviewTextInput="NumberValidationTextBox" MinHeight="50"/>
                     <materialDesign:Card DockPanel.Dock="Top">
