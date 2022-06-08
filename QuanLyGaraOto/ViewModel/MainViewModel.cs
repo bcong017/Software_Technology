@@ -39,13 +39,14 @@ namespace QuanLyGaraOto.ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand OpenAccountInfoCommand { get; set; }
         public ICommand LogoutCommand { get; set; }
+        public ICommand CreateAccountCommand { get; set; }
 
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => { 
                 if (User.QuyenHan == 0)
                 {
-                    UpdateParamVisibility = Visibility.Hidden;
+                    UpdateParamVisibility = Visibility.Collapsed;
                 }    
                 else
                 {
@@ -64,13 +65,21 @@ namespace QuanLyGaraOto.ViewModel
             (
                 (p) => { return true; }, 
                 (p) => 
-                { 
+                {
+                    MainViewModel.User = null;
                     LoginWindow loginWindow = new LoginWindow();
                     Application.Current.MainWindow = loginWindow;
                     Application.Current.MainWindow.Show();
                     p.Close();
                 }
             );
+
+            CreateAccountCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                CreateAccountWindow createAccountWindow = new CreateAccountWindow();
+                createAccountWindow.ShowDialog();
+
+            });
         }
 
         void SelectView(ListViewItem listViewItem)

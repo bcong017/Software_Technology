@@ -73,10 +73,10 @@
                                     </StackPanel>
                                 </Button>
 
-                                <Button d:Command="{Binding ShowAboutCommand}" Cursor="Hand">
+                                <Button Command="{Binding CreateAccountCommand}" Cursor="Hand" Visibility="{Binding UpdateParamVisibility}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="Information" Width="25" Height="auto"></materialDesign:PackIcon>
-                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Về chương trình</TextBlock>
+                                        <TextBlock Margin="5 0 5 -4" VerticalAlignment="Center">Tạo tài khoản</TextBlock>
                                     </StackPanel>
                                 </Button>
 
