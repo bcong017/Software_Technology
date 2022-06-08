@@ -25,65 +25,25 @@
                 <Border
                 Background="{DynamicResource MaterialDesignBackground}">
                     <GroupBox Header="Phiếu thu tiền" Style="{StaticResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Column="0" Grid.Row="0">
-                                <TextBox Width="170" materialDesign:HintAssist.Hint="Họ tên chủ xe"
-                                         Foreground="Black"
-                                         Text="{Binding HoTen, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         VerticalAlignment="Center" />   
-                            </Grid>
-                            <Grid Grid.Column="1" Grid.Row="0">
-                                <TextBox
-                                Width="170"
-                                Foreground="Black"
-                                materialDesign:HintAssist.Hint="Biển số"
-                                    Text="{Binding BienSo, UpdateSourceTrigger=PropertyChanged}"
-                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                VerticalAlignment="Center" />
-                            </Grid>
-                            <Grid Grid.Column="0" Grid.Row="1" Height="50">
-                                <TextBox Width="170" Foreground="Black"
-                                         materialDesign:HintAssist.Hint="Điện thoại"
-                                         Text="{Binding SoDienThoai, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         VerticalAlignment="Center" />
-
-                            </Grid>
-                            <Grid Grid.Column="1" Grid.Row="1">
-                                <TextBox Width="170" Foreground="Black"
-                                         materialDesign:HintAssist.Hint="Địa chỉ"
-                                         Text="{Binding DiaChi, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         VerticalAlignment="Center"/>
-
-                            </Grid>
-                            <Grid Grid.Column="0" Grid.Row="2">
-                                <DatePicker Width="170" Name="LocaleDatePicker"
-                                            VerticalAlignment="Stretch" Foreground="Black"
-                                            materialDesign:HintAssist.Hint="Ngày thu tiền"
-                                            SelectedDate ="{Binding NgayThuTien, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Grid>
-                            <Grid Grid.Column="1"
-                                  Grid.Row="2">
-                                <TextBox Width="170" Foreground="Black"
-                                         materialDesign:HintAssist.Hint="Số tiền thu"
-                                         Text="{Binding SoTienThu, UpdateSourceTrigger=PropertyChanged}"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         VerticalAlignment="Center" />
-                            </Grid>
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox Width="170" materialDesign:HintAssist.Hint="Họ tên chủ xe"
+                                     Foreground="Black"
+                                     Text="{Binding HoTen, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center"/>
+                            <Grid Width="70"></Grid>
+                            <DatePicker Width="170" Name="LocaleDatePicker"
+                                        Foreground="Black"
+                                        materialDesign:HintAssist.Hint="Ngày thu tiền"
+                                        VerticalAlignment="Bottom"
+                                        SelectedDate ="{Binding NgayThuTien, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Grid Width="70"></Grid>
+                            <TextBox Width="170" Foreground="Black"
+                                     materialDesign:HintAssist.Hint="Số tiền thu"
+                                     Text="{Binding SoTienThu, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     VerticalAlignment="Center" />
+                        </StackPanel>
                     </GroupBox>
                 </Border>
             </Grid>
@@ -94,7 +54,6 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -116,16 +75,8 @@
                         Command="{Binding EditCommand}"
                     Content="Sửa"/>
                 </Grid>
-
+                
                 <Grid Grid.Column="2">
-                    <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
-                    Content="Xóa"
-                        Command="{Binding DeleteCommand}"/>
-                </Grid>
-                <Grid Grid.Column="3">
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"

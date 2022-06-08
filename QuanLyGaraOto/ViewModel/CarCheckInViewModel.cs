@@ -65,19 +65,8 @@ namespace QuanLyGaraOto.ViewModel
         public ObservableCollection<ReceiveNumbericalOrder> ListTiepNhanXeSua { get => _ListTiepNhanXeSua; set { _ListTiepNhanXeSua = value; OnPropertyChanged(); } } 
         public CarCheckInViewModel()
         {
-            NgayTiepNhan = DateTime.Now;
-            ListHieuXe = DataProvider.Instance.DB.HIEUXEs.ToList();
-            ListTiepNhanXeSua = new ObservableCollection<ReceiveNumbericalOrder>();
-            var Cars = DataProvider.Instance.DB.XEs.ToList();
-            for (int i = 0; i < Cars.Count; i++)
-            {
-                ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();
-                receiveNumbericalOrder.Car = Cars[i];
-                receiveNumbericalOrder.Number = i + 1;
-                if (receiveNumbericalOrder.Car.DaXoa == true)
-                    continue;
-                ListTiepNhanXeSua.Add(receiveNumbericalOrder);
-            }
+            LoadInputList();
+
             AddCommand = new RelayCommand<object>((p) =>
             {
                 if (string.IsNullOrEmpty(HoTen))
@@ -95,19 +84,8 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                var xe = new XE();
-                if (DataProvider.Instance.DB.XEs.Any(x=>x.BienSo == BienSo && x.DaXoa == true))
-                {
-                    xe = DataProvider.Instance.DB.XEs.First(x => x.BienSo == BienSo);
-                    xe.DaXoa = false;
-                    DataProvider.Instance.DB.SaveChanges();
-                }
-                else
-                {
-                    xe = new XE() { BienSo = BienSo, DiaChi = DiaChi, DienThoai = SoDienThoai, Email = null, TenChuXe = HoTen, NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
-                    DataProvider.Instance.DB.XEs.Add(xe);
-                    DataProvider.Instance.DB.SaveChanges();
-                }
+                var xe = new XE() { BienSo = BienSo, DiaChi = DiaChi, DienThoai = SoDienThoai, Email = null, TenChuXe = HoTen, NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
+                
                 ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();
                 receiveNumbericalOrder.Car = xe;
                 receiveNumbericalOrder.Number = ListTiepNhanXeSua.Count + 1;
@@ -140,35 +118,6 @@ namespace QuanLyGaraOto.ViewModel
                 EditTextboxEnable = true;
             });
 
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                if (SelectedItem == null)
-                    return false;
-                return true;
-            }, (p) =>
-            {
-                XE xe = DataProvider.Instance.DB.XEs.FirstOrDefault( x => x.BienSo == BienSo);
-                xe.DaXoa = true;
-                DataProvider.Instance.DB.SaveChanges();
-                for (int i = 0; i < ListTiepNhanXeSua.Count; i++)
-                {
-                    if (SelectedItem.Car.BienSo == ListTiepNhanXeSua[i].Car.BienSo)
-                    {
-                        ListTiepNhanXeSua[i].Car = xe;
-                        break;
-                    }
-                }
-                for (int i = 0; i < ListTiepNhanXeSua.Count; i++)
-                {
-                    if (SelectedItem.Car.DaXoa == true )
-                    {
-                        ListTiepNhanXeSua.RemoveAt(i);
-                        break;
-                    }
-                }
-                EditTextboxEnable = true;
-            });
-
             DeSelectedItemCommand = new RelayCommand<object>((p) =>
             {
                 if (SelectedItem == null)
@@ -184,6 +133,21 @@ namespace QuanLyGaraOto.ViewModel
                 BienSo = "";
                 SelectedItem = null;
             });
+        }
+
+        private void LoadInputList()
+        {
+            NgayTiepNhan = DateTime.Now;
+            ListHieuXe = DataProvider.Instance.DB.HIEUXEs.ToList();
+            ListTiepNhanXeSua = new ObservableCollection<ReceiveNumbericalOrder>();
+            var Cars = DataProvider.Instance.DB.XEs.ToList();
+            for (int i = 0; i < Cars.Count; i++)
+            {
+                ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();
+                receiveNumbericalOrder.Car = Cars[i];
+                receiveNumbericalOrder.Number = i + 1;
+                ListTiepNhanXeSua.Add(receiveNumbericalOrder);
+            }
         }
     }
 }

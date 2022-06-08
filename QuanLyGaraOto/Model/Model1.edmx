@@ -159,7 +159,6 @@
           <Property Name="NgayTiepNhan" Type="smalldatetime" />
           <Property Name="MaHieuXe" Type="int" />
           <Property Name="TienNo" Type="money" />
-          <Property Name="DaXoa" Type="bit" />
         </EntityType>
         <Association Name="FK_BCT_MaVatTu">
           <End Role="VATTU" Type="Self.VATTU" Multiplicity="0..1" />
@@ -638,7 +637,6 @@
           <Property Name="NgayTiepNhan" Type="DateTime" Precision="0" />
           <Property Name="MaHieuXe" Type="Int32" />
           <Property Name="TienNo" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="DaXoa" Type="Boolean" />
           <NavigationProperty Name="HIEUXE" Relationship="GARAGE_MANAGEMENTModel.FK_XE_MaHieuXe" FromRole="XE" ToRole="HIEUXE" />
           <NavigationProperty Name="PHIEUSUACHUAs" Relationship="GARAGE_MANAGEMENTModel.FK_PSC_BienSo" FromRole="XE" ToRole="PHIEUSUACHUA" />
           <NavigationProperty Name="PHIEUTHUTIENs" Relationship="GARAGE_MANAGEMENTModel.FK_PTT_BienSo" FromRole="XE" ToRole="PHIEUTHUTIEN" />
@@ -962,7 +960,6 @@
           <EntitySetMapping Name="XEs">
             <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.XE">
               <MappingFragment StoreEntitySet="XE">
-                <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
                 <ScalarProperty Name="TienNo" ColumnName="TienNo" />
                 <ScalarProperty Name="MaHieuXe" ColumnName="MaHieuXe" />
                 <ScalarProperty Name="NgayTiepNhan" ColumnName="NgayTiepNhan" />
