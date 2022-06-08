@@ -45,7 +45,7 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     CarNumber = SelectedItem.CarNumber.ToString();
                     Checker = SelectedItem.Checker;
-                    Percentage = (SelectedItem.Percentage * 100).ToString() + "%";
+                    Percentage = (SelectedItem.Percentage * 100).ToString();
                 }    
             }
         }
@@ -62,7 +62,7 @@ namespace QuanLyGaraOto.ViewModel
         public UpdateParameterViewModel()
         {
             LoadThamSo();
-            UpdateCheckerCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            UpdateCheckerCommand = new RelayCommand<object>((p) => { return SelectedItem != null; }, (p) =>
             {
                 THAMSO thamso = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
                 thamso.SoTienThu = Checker;
@@ -75,6 +75,8 @@ namespace QuanLyGaraOto.ViewModel
             {
                 if (Int32.TryParse(CarNumber, out _) == false || Convert.ToInt32(CarNumber) < 1)
                     return false;
+                if (SelectedItem == null)
+                    return false;   
                 return true;
             }, (p) =>
             {
@@ -87,17 +89,20 @@ namespace QuanLyGaraOto.ViewModel
 
             UpdatePercentageCommand = new RelayCommand<object>((p) =>
             {
-                if (Double.TryParse(Percentage, out _) == false || Convert.ToDouble(Percentage.Remove(Percentage.Length -1)) < 1)
+                if (Double.TryParse(Percentage, out _) == false)
+                    return false;
+                if (Convert.ToDouble(Percentage) < 1)
+                    return false;
+                if (SelectedItem == null)
                     return false;
                 return true;
             }, (p) =>
             {
-                string temp = Percentage.Remove(Percentage.Length - 1);
                 THAMSO thamso = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
-                thamso.PhanTram = Convert.ToDouble(temp) / 100;
+                thamso.PhanTram = Convert.ToDouble(Percentage) / 100;
                 DataProvider.Instance.DB.SaveChanges();
 
-                SelectedItem.Percentage = Convert.ToDouble(temp);
+                SelectedItem.Percentage = Convert.ToDouble(Percentage) / 100;
             });
         }
 

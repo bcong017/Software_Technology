@@ -96,7 +96,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Button
@@ -113,15 +112,7 @@
                         Command="{Binding EditCommand}"
                     Content="Sửa"/>
                 </Grid>
-
                 <Grid Grid.Column="2">
-                    <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Width="100"
-                    Content="Xóa"
-                         Command="{Binding DeleteCommand}"/>
-                </Grid>
-                <Grid Grid.Column="3">
                     <Button 
                         Command="{Binding DeSelectedItemCommand}" 
                         Content="Bỏ chọn" 
