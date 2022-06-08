@@ -24,18 +24,17 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <materialDesign:Card Grid.Row="0" Margin="5">
+        <materialDesign:Card Grid.Row="0" Margin="5" Visibility="{Binding BtnVisibility}">
             <WrapPanel Margin="0 0 0 10">
                 <TextBox Text="{Binding WageName, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên tiền công" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá tiền công" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
             </WrapPanel>
         </materialDesign:Card>
-        <materialDesign:Card Grid.Row="1" Margin="5">
+        <materialDesign:Card Grid.Row="1" Margin="5" Visibility="{Binding BtnVisibility}">
             <WrapPanel HorizontalAlignment="Center">
                 <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
                 <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
-                <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
                 <Button Command="{Binding DeSelectedItemCommand}" Content="Bỏ chọn" Margin="5" Width="100"></Button>
             </WrapPanel>
         </materialDesign:Card>

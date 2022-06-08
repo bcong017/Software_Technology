@@ -93,8 +93,5 @@
                 </ScrollViewer>
             </materialDesign:Card>
         </Grid>
-        
-        
-
     </Grid>
 </UserControl>

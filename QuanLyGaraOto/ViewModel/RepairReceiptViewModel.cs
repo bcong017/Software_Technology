@@ -13,80 +13,220 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class RepairReceiptViewModel : BaseViewModel
     {
-        private PHIEUSUACHUA selectedItem;
-        public PHIEUSUACHUA SelectedItem
+        private List<XE> carList;
+        public List<XE> CarList
         {
-            get { return selectedItem; }
-            set
-            {
-                selectedItem = value;
+            get { return carList; }
+            set { carList = value; OnPropertyChanged(); }
+        }    
+        
+        private List<TIENCONG> wagesList;
+        public List<TIENCONG> WagesList
+        {
+            get { return wagesList; }
+            set { wagesList = value; OnPropertyChanged(); }
+        }
+
+        private List<VATTU> itemList;
+        public List<VATTU> ItemList
+        {
+            get { return itemList; }
+            set { itemList = value; OnPropertyChanged(); }
+        }
+
+        private Decimal totalMoney;
+        public Decimal TotalMoney
+        {
+            get { return totalMoney; }
+            set { totalMoney = value; OnPropertyChanged(); }
+        }
+
+        private DateTime? selectedDate;
+        public DateTime? SelectedDate
+        { 
+            get { return selectedDate; }
+            set { selectedDate = value; OnPropertyChanged(); }
+        }
+
+        private string content;
+        public string Content
+        {
+            get { return content; }
+            set { content = value; OnPropertyChanged(); }
+        }
+
+        private string times;
+        public string Times
+        {
+            get { return times; }
+            set { times = value; OnPropertyChanged(); }
+        }
+
+        private TIENCONG selectedWage;
+        public TIENCONG SelectedWage
+        {
+            get { return selectedWage; }
+            set { selectedWage = value; OnPropertyChanged(); }
+        }
+
+        private VATTU accessoriesName;
+        public VATTU AccessoriesName
+        {
+            get { return accessoriesName; }
+            set { accessoriesName = value; OnPropertyChanged(); }
+        }
+        private string amount;
+        public string Amount
+        { 
+            get { return amount; }
+            set { amount = value; OnPropertyChanged(); }
+        }
+
+        private ContentNumbericalOrder selectedContent;
+        public ContentNumbericalOrder SelectedContent
+        {
+            get { return selectedContent; }
+            set 
+            { 
+                selectedContent = value; 
                 OnPropertyChanged();
-                if (SelectedItem != null)
+                if (SelectedContent != null)
                 {
-                    //Dostuff
-                }
+                    Content = SelectedContent.NoiDung;
+                    Times = SelectedContent.SoLan.ToString();
+                    SelectedWage = DataProvider.Instance.DB.TIENCONGs.Single(x => x.MaTienCong == SelectedContent.MaTienCong);
+                }    
+                    
             }
         }
 
-        private ObservableCollection<PHIEUSUACHUA> receptList;
-        public ObservableCollection<PHIEUSUACHUA> ReceptList
+        
+
+        private ObservableCollection<ContentNumbericalOrder> contentList;
+        public ObservableCollection<ContentNumbericalOrder> ContentList
         {
-            get { return receptList; }
-            set { receptList = value; OnPropertyChanged(nameof(ReceptList)); }
+            get { return contentList; }
+            set { contentList = value; OnPropertyChanged(); }
         }
 
-        public ICommand AddCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
-        public ICommand ModifyCommand { get; set; }
-
+        public ICommand AddContentCommand { get; set; }
+        public ICommand EditContentCommand { get; set; }
+        public ICommand DeleteContentCommand { get; set; }
+        public ICommand DeSelectedContentCommand { get; set; }
+        public ICommand AddAccessoriesCommand { get; set; }
+        public ICommand DeleteAccessoriesCommand { get; set; }
+        public ICommand MakeReceipt { get; set; }
+        public ICommand Refresh { get; set; }
+        public ICommand ShowReceiptCommand { get; set; }
 
         public RepairReceiptViewModel()
         {
-            ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
+            Load();
 
-            AddCommand = new RelayCommand<object>((p) =>
+            AddContentCommand = new RelayCommand<object>((p) =>
             {
-                return true;
-            }, (p) =>
-            {
-                Window w = Application.Current.MainWindow;
-                ShowRepairReceptListWindow k = new ShowRepairReceptListWindow(this, null);
-                Application.Current.MainWindow = k;
-                Application.Current.MainWindow.ShowDialog();
-                Application.Current.MainWindow = w;
-
-                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
-            });
-
-            ModifyCommand = new RelayCommand<object>((p) =>
-            {
-                if (SelectedItem == null)
+                if (string.IsNullOrEmpty(Content) || string.IsNullOrEmpty(Times) || SelectedWage == null)
                     return false;
                 return true;
             }, (p) =>
             {
-                Window w = Application.Current.MainWindow;
-                PHIEUSUACHUA psc = SelectedItem;
-                
-                ShowRepairReceptListWindow k = new ShowRepairReceptListWindow(this, psc);
-                Application.Current.MainWindow = k;
-                Application.Current.MainWindow.ShowDialog();
-                Application.Current.MainWindow = w;
-                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
-
+                int repeatTimes = Convert.ToInt32(Times);
+                ContentNumbericalOrder content = new ContentNumbericalOrder()
+                {
+                    Number = ContentNumbericalOrder.orderNumber,
+                    NoiDung = Content,
+                    SoLan = repeatTimes,
+                    TenTienCong = SelectedWage.TenTienCong,
+                    MaTienCong = SelectedWage.MaTienCong,
+                    ThanhTien = SelectedWage.GiaTienCong ?? 0
+                };
+                ContentList.Add(content);
+                Content = Times =  null; SelectedWage = null;
+                ContentNumbericalOrder.orderNumber++;
             });
 
-            DeleteCommand = new RelayCommand<object>((p) =>
+            EditContentCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedItem == null)
+                if (SelectedContent == null)
+                    return false;
+                if (string.IsNullOrEmpty(Content) || SelectedWage == null)
                     return false;
                 return true;
             }, (p) =>
             {
-                DataProvider.Instance.DB.PHIEUSUACHUAs.Remove(SelectedItem);
-                DataProvider.Instance.DB.SaveChanges();
-                ReceptList = new ObservableCollection<PHIEUSUACHUA>(DataProvider.Instance.DB.PHIEUSUACHUAs.ToList());
+                foreach (var content in ContentList)
+                {
+                    if (content == SelectedContent)
+                    {
+                        content.NoiDung = Content;
+                        content.SoLan = Convert.ToInt32(Times);
+                        content.TenTienCong = SelectedWage.TenTienCong;
+                        content.MaTienCong = SelectedWage.MaTienCong;
+                        content.ThanhTien = SelectedWage.GiaTienCong ?? 0;
+
+                        SelectedContent = content;
+                        break;
+                    }
+                }
+                Content = Times = null; SelectedWage = null; SelectedContent = null; 
+            });
+
+            DeleteContentCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedContent == null)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                int i = 1;
+                foreach (var content in ContentList)
+                {
+                    if (content == SelectedContent)
+                    {
+                        ContentList.Remove(content);
+                        break;
+                    }
+                }
+                ContentNumbericalOrder.orderNumber--;
+
+                foreach (var content in ContentList)
+                {
+                    content.Number = i;
+                    i++;
+                }
+                Content = Times = null; SelectedWage = null; SelectedContent = null;
+            });
+
+            DeSelectedContentCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedContent == null)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                Content = Times = null; SelectedWage = null; SelectedContent = null;
             });
         }
+
+
+
+
+
+
+
+
+
+
+
+        private void Load()
+        {
+            SelectedDate = DateTime.Now;
+            CarList = DataProvider.Instance.DB.XEs.ToList();
+            WagesList = DataProvider.Instance.DB.TIENCONGs.ToList();
+            ItemList = DataProvider.Instance.DB.VATTUs.ToList();
+            ContentList = new ObservableCollection<ContentNumbericalOrder>();
+        }
+
+        
     }
 }

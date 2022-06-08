@@ -5,13 +5,20 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyGaraOto.ViewModel
 {
     public class ShowWagesListViewModel : BaseViewModel
     {
-
+        private Visibility btnVisibility;
+        public Visibility BtnVisibility
+        {
+            get { return btnVisibility; }
+            set { btnVisibility = value; }
+        }
+        
         private string wageName;
         public string WageName
         {
@@ -56,6 +63,15 @@ namespace QuanLyGaraOto.ViewModel
         public ShowWagesListViewModel()
         {
             TienCongList = new ObservableCollection<TIENCONG>(DataProvider.Instance.DB.TIENCONGs.ToList());
+
+            if (MainViewModel.User.QuyenHan == 0)
+            {
+                BtnVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                BtnVisibility = Visibility.Visible;
+            }
 
             DeSelectedItemCommand = new RelayCommand<Object>((p) =>
             {
