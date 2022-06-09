@@ -336,7 +336,7 @@ namespace QuanLyGaraOto.ViewModel
                 DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
 
                 DataProvider.Instance.DB.SaveChanges();
-                MainViewModel.Enable = true;
+               
             }
             #endregion
         }

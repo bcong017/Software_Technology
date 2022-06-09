@@ -69,7 +69,7 @@
                 </Grid>
                 <WrapPanel Grid.Row="2">
                     <TextBlock x:Name="tbTotalMoney" Text="Tổng doanh thu: " FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="tbMoney" Text="{Binding TotalMoney}"></TextBlock>
+                    <Label x:Name="tbMoney" Content="{Binding TotalMoney}"></Label>
                 </WrapPanel>
             </Grid>
         </Grid>

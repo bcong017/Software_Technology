@@ -14,7 +14,6 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        public static bool Enable = true;
         public static TAIKHOAN User;
 
         private Visibility updateParamVisibility;
@@ -60,12 +59,6 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     UpdateParamVisibility = Visibility.Visible;
                 }
-
-                if (DataProvider.Instance.DB.VATTUs.Any() == false)
-                    Enable = false;
-                else
-                    Enable = true;
-
             });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
 
