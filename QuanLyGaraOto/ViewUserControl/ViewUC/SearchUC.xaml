@@ -59,7 +59,7 @@
                         <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
                         <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding Car.BienSo}"/>
                         <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding ="{Binding Car.TenChuXe}"/>
-                        <GridViewColumn Header="Tiền nợ" DisplayMemberBinding="{Binding Car.TienNo, StringFormat='0,0'}"/>
+                        <GridViewColumn Header="Tiền nợ" DisplayMemberBinding="{Binding Car.TienNo, StringFormat='#,0'}"/>
                         <GridViewColumn Header="Hiệu xe" DisplayMemberBinding="{Binding Car.HIEUXE.TenHieuXe}"/>
                     </GridView>
                 </ListView.View>

@@ -51,7 +51,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 </WrapPanel>
             </GroupBox>
 
-            <GroupBox Grid.Row="1" Header="Danh sách các vật tư được sử dụng cho 1 nội dung" Style="{StaticResource MaterialDesignCardGroupBox}" Margin="5" UseLayoutRounding="True">
+            <GroupBox Grid.Row="1" Header="Danh sách các vật tư của nội dung đang chọn" Style="{StaticResource MaterialDesignCardGroupBox}" Margin="5" UseLayoutRounding="True">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -65,7 +65,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                                         <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
                                         <GridViewColumn Header="Vật tư" DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
                                         <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong, StringFormat='#,0'}"></GridViewColumn>
-                                        <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='#,0'}"></GridViewColumn>
+                                        <GridViewColumn Header="Đơn giá vật tư" DisplayMemberBinding="{Binding ThanhTien, StringFormat='#,0'}"></GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>

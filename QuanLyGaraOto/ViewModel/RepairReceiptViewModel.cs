@@ -255,6 +255,8 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (CheckItemExist() == false)
                     return false;
+                if (SelectedContent != null)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -275,6 +277,8 @@ namespace QuanLyGaraOto.ViewModel
             DeleteAccessoriesCommand = new RelayCommand<object>((p) =>
             {
                 if (SelectedAccessories == null)
+                    return false;
+                if (SelectedContent != null)
                     return false;
                 return true;
             }, (p) =>

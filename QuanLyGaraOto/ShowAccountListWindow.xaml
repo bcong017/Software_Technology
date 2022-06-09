@@ -17,7 +17,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="Xem danh sách các phiếu nhập vật tư" 
+        Title="Tài khoản nhân viên" 
         Height="700" Width="750"
         Background="Transparent"
         AllowsTransparency="true"
@@ -32,7 +32,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <uc:ControlBarUC Tag="{Binding Title, ElementName=showInputRecordWindow}"></uc:ControlBarUC>
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=showAccountListWindow}"></uc:ControlBarUC>
             </Grid>
 
             <materialDesign:Card VerticalAlignment="Top" Grid.Row="1">

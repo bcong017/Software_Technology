@@ -86,8 +86,8 @@ namespace QuanLyGaraOto.ViewModel
             }, (p) =>
             {
                 TAIKHOAN taikhoan = DataProvider.Instance.DB.TAIKHOANs.SingleOrDefault(x => x.MaTaiKhoan == MainViewModel.User.MaTaiKhoan);
-                taikhoan.HoTen = Name;
-                taikhoan.Email = Email;
+                taikhoan.HoTen = Name.Trim();
+                taikhoan.Email = Email.Trim();
                 taikhoan.NgaySinh = Birthday;
 
                 DataProvider.Instance.DB.SaveChanges();

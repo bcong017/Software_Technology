@@ -31,9 +31,9 @@
           </Key>
           <Property Name="MaBCDS" Type="int" Nullable="false" />
           <Property Name="MaHieuXe" Type="int" Nullable="false" />
-          <Property Name="TiLe" Type="varchar(max)" />
           <Property Name="SoLuotSua" Type="int" />
           <Property Name="ThanhTien" Type="money" />
+          <Property Name="TiLe" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CT_PSC">
           <Key>
@@ -489,9 +489,9 @@
           </Key>
           <Property Name="MaBCDS" Type="Int32" Nullable="false" />
           <Property Name="MaHieuXe" Type="Int32" Nullable="false" />
-          <Property Name="TiLe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SoLuotSua" Type="Int32" />
           <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TiLe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BAOCAODOANHSO" Relationship="GARAGE_MANAGEMENTModel.FK_MaBCDS" FromRole="CT_BCDS" ToRole="BAOCAODOANHSO" />
           <NavigationProperty Name="HIEUXE" Relationship="GARAGE_MANAGEMENTModel.FK_CT_BCDS_MaHieuXe" FromRole="CT_BCDS" ToRole="HIEUXE" />
         </EntityType>
@@ -829,9 +829,9 @@
           <EntitySetMapping Name="CT_BCDS">
             <EntityTypeMapping TypeName="GARAGE_MANAGEMENTModel.CT_BCDS">
               <MappingFragment StoreEntitySet="CT_BCDS">
+                <ScalarProperty Name="TiLe" ColumnName="TiLe" />
                 <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
                 <ScalarProperty Name="SoLuotSua" ColumnName="SoLuotSua" />
-                <ScalarProperty Name="TiLe" ColumnName="TiLe" />
                 <ScalarProperty Name="MaHieuXe" ColumnName="MaHieuXe" />
                 <ScalarProperty Name="MaBCDS" ColumnName="MaBCDS" />
               </MappingFragment>

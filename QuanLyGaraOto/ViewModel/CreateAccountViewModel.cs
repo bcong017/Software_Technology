@@ -32,7 +32,7 @@ namespace QuanLyGaraOto.ViewModel
             get { return email; }
             set { email = value; OnPropertyChanged(); }
         }
-
+        
         public ICommand CloseCommand { get; set; }
         public ICommand CreateAccountCommand { get; set; }
         public ICommand ShowAccountListCommand { get; set; }
@@ -45,13 +45,13 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (ValidateEmail.EmailIsValid(Email) == false)
                     return false;
-                if (DataProvider.Instance.DB.TAIKHOANs.Any(x => x.TenTaiKhoan == UserName) == false)
+                if (DataProvider.Instance.DB.TAIKHOANs.Any(x => x.TenTaiKhoan == UserName) == true)
                     return false;
                 return true;
             }, (p) =>
             {
                 VAITRO vaitro = DataProvider.Instance.DB.VAITROes.FirstOrDefault(x => x.MaVaiTro == 0);
-                TAIKHOAN taikhoan = new TAIKHOAN() { TenTaiKhoan = UserName, MatKhau = Password, Email = Email, QuyenHan = vaitro.MaVaiTro, VAITRO = vaitro };
+                TAIKHOAN taikhoan = new TAIKHOAN() { TenTaiKhoan = UserName.Trim(), MatKhau = Password.Trim(), Email = Email.Trim(), QuyenHan = vaitro.MaVaiTro, VAITRO = vaitro };
                 DataProvider.Instance.DB.TAIKHOANs.Add(taikhoan);
                 DataProvider.Instance.DB.SaveChanges();
                 NotificationWindow.Notify("Tạo tài khoản thành công!");

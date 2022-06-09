@@ -3,6 +3,7 @@ using QuanLyGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,11 +83,13 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (string.IsNullOrEmpty(SoDienThoai))
                     return false;
+                if (DataProvider.Instance.DB.XEs.Any(x => x.BienSo == BienSo) == true)
+                    return false;
                 return true;
             }, (p) =>
             {
-                var thamso = DataProvider.Instance.DB.THAMSOes.Single();
-                var cars = DataProvider.Instance.DB.XEs.Where(x => x.NgayTiepNhan.Value.Date == DateTime.Now.Date && x.NgayTiepNhan.Value.Month == DateTime.Now.Month && x.NgayTiepNhan.Value.Year == DateTime.Now.Year).ToList();
+                var thamso = DataProvider.Instance.DB.THAMSOes.Single();                
+                var cars = DataProvider.Instance.DB.XEs.Where(x => DbFunctions.TruncateTime(x.NgayTiepNhan) == DateTime.Today).ToList();
                 if (cars.Count > thamso.XeToiDa)
                 {
                     NotificationWindow.Notify("Số xe tiếp nhận đã vượt quá tối đa cho phép!");
@@ -98,6 +101,9 @@ namespace QuanLyGaraOto.ViewModel
                 receiveNumbericalOrder.Car = xe;
                 receiveNumbericalOrder.Number = ListTiepNhanXeSua.Count + 1;
                 ListTiepNhanXeSua.Add(receiveNumbericalOrder);
+                DataProvider.Instance.DB.XEs.Add(xe);
+                DataProvider.Instance.DB.SaveChanges();
+
             });
 
             EditCommand = new RelayCommand<object>((p) =>

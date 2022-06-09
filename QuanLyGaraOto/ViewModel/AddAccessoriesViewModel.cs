@@ -244,54 +244,11 @@ namespace QuanLyGaraOto.ViewModel
                         };
                         detailList.Add(ct_phieunhap);
                     }    
-                    //CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP() { MaPhieuNhap = id, MaVatTu = idVatTu, SoLuong = item.SoLuong, }
                 }    
                 DataProvider.Instance.DB.CT_PHIEUNHAP.AddRange(detailList);
                 DataProvider.Instance.DB.SaveChanges();
                 NotificationWindow.Notify("Thêm vật tư thành công!");
-
-                #region lần đầu lập báo cáo tồn và báo cáo doanh số
-                var thamso = DataProvider.Instance.DB.THAMSOes.First();
-                if (thamso.ThangBaoCao == null)
-                {
-                    thamso.ThangBaoCao = DateTime.Now.Month;
-                    List<BAOCAOTON> baocaotonList = new List<BAOCAOTON>();
-                    var VatTuList = DataProvider.Instance.DB.VATTUs.ToList();
-                    foreach (var vattu in VatTuList)
-                    {
-                        BAOCAOTON baocaoton = new BAOCAOTON()
-                        {
-                            MaVatTu = vattu.MaVatTu,
-                            ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
-                            TonDau = vattu.SoLuongTon,
-                            PhatSinh = 0,
-                            VATTU = vattu
-                        };
-                        baocaoton.TonCuoi = baocaoton.TonDau - baocaoton.PhatSinh;
-                        baocaotonList.Add(baocaoton);
-                    }
-
-                    DataProvider.Instance.DB.BAOCAOTONs.AddRange(baocaotonList);
-                    BAOCAODOANHSO baocaodoanhso = new BAOCAODOANHSO()
-                    {
-                        ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)
-                    };
-                    var hieuxeList = DataProvider.Instance.DB.HIEUXEs.ToArray();
-                    foreach (var hieuxe in hieuxeList)
-                    {
-                        CT_BCDS baocao = new CT_BCDS()
-                        {
-                            MaHieuXe = hieuxe.MaHieuXe,
-                            HIEUXE = hieuxe,
-                            BAOCAODOANHSO = baocaodoanhso
-                        };
-                        DataProvider.Instance.DB.CT_BCDS.Add(baocao);
-                    }
-                    DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
-
-                    DataProvider.Instance.DB.SaveChanges();
-                }
-                #endregion
+                CreateFirstReports();
             });
 
             RefreshCommand = new RelayCommand<object>((p) => { return true; }, (p) =>

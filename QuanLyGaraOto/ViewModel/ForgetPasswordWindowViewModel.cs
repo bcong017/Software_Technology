@@ -83,9 +83,7 @@ namespace QuanLyGaraOto.ViewModel
         {
             // hàm check tài khoản nè và lấy cái password đó ra luôn
             if (DataProvider.Instance.DB.TAIKHOANs.Any(x => x.TenTaiKhoan == UserName))
-            {
-                return true;
-            }    
+                return true; 
             else
                 return false;
         }
