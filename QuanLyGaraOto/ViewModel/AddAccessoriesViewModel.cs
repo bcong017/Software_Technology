@@ -198,8 +198,14 @@ namespace QuanLyGaraOto.ViewModel
                     if (DataProvider.Instance.DB.VATTUs.Any(x => String.Compare(x.TenVatTu, item.TenVatTu) == 0))
                     {
                         var vattu = DataProvider.Instance.DB.VATTUs.FirstOrDefault(x => String.Compare(x.TenVatTu, item.TenVatTu) == 0);
+
                         vattu.SoLuongTon = vattu.SoLuongTon + item.SoLuong;
                         vattu.DonGiaHienTai = item.DonGiaBanDeNghi;
+
+                        BAOCAOTON baocao = DataProvider.Instance.DB.BAOCAOTONs.Single(x => x.ThoiGian.Value.Year == phieunhap.NgayNhap.Value.Year && x.ThoiGian.Value.Month == phieunhap.NgayNhap.Value.Month && x.MaVatTu == vattu.MaVatTu);
+                        baocao.TonDau = baocao.TonDau + item.SoLuong;
+                        baocao.TonCuoi = baocao.TonDau - baocao.PhatSinh;
+
                         DataProvider.Instance.DB.SaveChanges();
                         CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP()
                         {
@@ -217,8 +223,14 @@ namespace QuanLyGaraOto.ViewModel
                     else
                     {
                         VATTU newVatTu = new VATTU() { TenVatTu = item.TenVatTu, DonGiaHienTai = item.DonGiaBanDeNghi, SoLuongTon = item.SoLuong };
+
+                        BAOCAOTON baocao = new BAOCAOTON() { TonDau = item.SoLuong, PhatSinh = 0, TonCuoi = item.SoLuong, ThoiGian = DateTime.Now, MaVatTu = newVatTu.MaVatTu, VATTU = newVatTu };
+
                         DataProvider.Instance.DB.VATTUs.Add(newVatTu);
+                        DataProvider.Instance.DB.BAOCAOTONs.Add(baocao);
                         DataProvider.Instance.DB.SaveChanges();
+
+
                         CT_PHIEUNHAP ct_phieunhap = new CT_PHIEUNHAP()
                         {
                             MaPhieuNhap = id,
@@ -236,8 +248,50 @@ namespace QuanLyGaraOto.ViewModel
                 }    
                 DataProvider.Instance.DB.CT_PHIEUNHAP.AddRange(detailList);
                 DataProvider.Instance.DB.SaveChanges();
-
                 NotificationWindow.Notify("Thêm vật tư thành công!");
+
+                #region lần đầu lập báo cáo tồn và báo cáo doanh số
+                var thamso = DataProvider.Instance.DB.THAMSOes.First();
+                if (thamso.ThangBaoCao == null)
+                {
+                    thamso.ThangBaoCao = DateTime.Now.Month;
+                    List<BAOCAOTON> baocaotonList = new List<BAOCAOTON>();
+                    var VatTuList = DataProvider.Instance.DB.VATTUs.ToList();
+                    foreach (var vattu in VatTuList)
+                    {
+                        BAOCAOTON baocaoton = new BAOCAOTON()
+                        {
+                            MaVatTu = vattu.MaVatTu,
+                            ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
+                            TonDau = vattu.SoLuongTon,
+                            PhatSinh = 0,
+                            VATTU = vattu
+                        };
+                        baocaoton.TonCuoi = baocaoton.TonDau - baocaoton.PhatSinh;
+                        baocaotonList.Add(baocaoton);
+                    }
+
+                    DataProvider.Instance.DB.BAOCAOTONs.AddRange(baocaotonList);
+                    BAOCAODOANHSO baocaodoanhso = new BAOCAODOANHSO()
+                    {
+                        ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)
+                    };
+                    var hieuxeList = DataProvider.Instance.DB.HIEUXEs.ToArray();
+                    foreach (var hieuxe in hieuxeList)
+                    {
+                        CT_BCDS baocao = new CT_BCDS()
+                        {
+                            MaHieuXe = hieuxe.MaHieuXe,
+                            HIEUXE = hieuxe,
+                            BAOCAODOANHSO = baocaodoanhso
+                        };
+                        DataProvider.Instance.DB.CT_BCDS.Add(baocao);
+                    }
+                    DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
+
+                    DataProvider.Instance.DB.SaveChanges();
+                }
+                #endregion
             });
 
             RefreshCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
@@ -278,6 +332,52 @@ namespace QuanLyGaraOto.ViewModel
         {
             InputDate = DateTime.Now;
             InputList = new ObservableCollection<AccessoriesNumbericalOrder>();
+        }
+
+        private void CreateFirstReports()
+        {
+            #region lần đầu lập báo cáo tồn và báo cáo doanh số
+            var thamso = DataProvider.Instance.DB.THAMSOes.First();
+            if (thamso.ThangBaoCao == null)
+            {
+                thamso.ThangBaoCao = DateTime.Now.Month;
+                List<BAOCAOTON> baocaotonList = new List<BAOCAOTON>();
+                var VatTuList = DataProvider.Instance.DB.VATTUs.ToList();
+                foreach (var vattu in VatTuList)
+                {
+                    BAOCAOTON baocaoton = new BAOCAOTON()
+                    {
+                        MaVatTu = vattu.MaVatTu,
+                        ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
+                        TonDau = vattu.SoLuongTon,
+                        PhatSinh = 0,
+                        TonCuoi = vattu.SoLuongTon,
+                        VATTU = vattu
+                    };
+                    baocaotonList.Add(baocaoton);
+                }
+
+                DataProvider.Instance.DB.BAOCAOTONs.AddRange(baocaotonList);
+                BAOCAODOANHSO baocaodoanhso = new BAOCAODOANHSO()
+                {
+                    ThoiGian = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)
+                };
+                var hieuxeList = DataProvider.Instance.DB.HIEUXEs.ToArray();
+                foreach (var hieuxe in hieuxeList)
+                {
+                    CT_BCDS baocao = new CT_BCDS()
+                    {
+                        MaHieuXe = hieuxe.MaHieuXe,
+                        HIEUXE = hieuxe,
+                        BAOCAODOANHSO = baocaodoanhso
+                    };
+                    DataProvider.Instance.DB.CT_BCDS.Add(baocao);
+                }
+                DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
+
+                DataProvider.Instance.DB.SaveChanges();
+            }
+            #endregion
         }
     }
 }

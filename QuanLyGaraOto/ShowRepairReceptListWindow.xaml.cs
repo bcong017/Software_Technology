@@ -22,10 +22,16 @@ namespace QuanLyGaraOto
     /// </summary>
     public partial class ShowRepairReceptListWindow : Window
     {
-        public ShowRepairReceptListWindow(RepairReceiptViewModel rrv, PHIEUSUACHUA psc)
+        public ShowRepairReceptListWindow()
         {
             InitializeComponent();
-            this.DataContext = new ShowRepairReceptListViewModel(rrv, psc);
+            this.DataContext = new ShowRepairReceptListViewModel();
+        }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }

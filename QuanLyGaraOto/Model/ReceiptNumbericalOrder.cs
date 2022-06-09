@@ -27,7 +27,35 @@ namespace QuanLyGaraOto.Model
         public Decimal ThanhTien { get { return thanhTien; } set { thanhTien = value; OnPropertyChanged(); } }
 
         public int MaTienCong { get; set; }
+        public int itemNumber { get; set; }
 
+        public List<ItemNumbericalOrder> itemList = new List<ItemNumbericalOrder>();
+        public List<ItemNumbericalOrder> ItemList { get { return itemList; } set { itemList = value; OnPropertyChanged(); } }
+    }
 
+    public class ItemNumbericalOrder : BaseViewModel
+    {
+        private int order { get; set; }
+        public int Order { get { return order; } set { order = value; OnPropertyChanged(); } }
+
+        private int number;
+        public int Number { get { return number; } set { number = value; OnPropertyChanged(); } }
+
+        private string tenVatTu;
+        public string TenVatTu { get { return tenVatTu; } set { tenVatTu = value; OnPropertyChanged(); } }
+
+        private int soLuong;
+        public int SoLuong { get { return soLuong; } set { soLuong = value; OnPropertyChanged(); } }
+
+        private Decimal thanhTien;
+        public Decimal ThanhTien { get { return thanhTien;} set { thanhTien = value; OnPropertyChanged(); } }
+
+        public int MaVatTu { get; set; }
+    }
+
+    public class ReceiptNumbericalOrder : BaseViewModel
+    {
+        public int Number { get; set; }
+        public PHIEUSUACHUA Phieu { get; set; }
     }
 }

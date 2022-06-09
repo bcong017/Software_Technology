@@ -18,5 +18,6 @@ namespace QuanLyGaraOto.Model
         public Nullable<bool> SoTienThu { get; set; }
         public Nullable<int> XeToiDa { get; set; }
         public Nullable<double> PhanTram { get; set; }
+        public Nullable<int> ThangBaoCao { get; set; }
     }
 }

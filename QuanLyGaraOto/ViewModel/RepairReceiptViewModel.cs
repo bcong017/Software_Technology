@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using QuanLyGaraOto;
+using QuanLyGaraOto.AddingClasses;
 
 namespace QuanLyGaraOto.ViewModel
 {
     public class RepairReceiptViewModel : BaseViewModel
     {
+        private int itemId = 1;
         private List<XE> carList;
         public List<XE> CarList
         {
@@ -32,6 +34,13 @@ namespace QuanLyGaraOto.ViewModel
         {
             get { return itemList; }
             set { itemList = value; OnPropertyChanged(); }
+        }
+
+        private XE selectedCar;
+        public XE SelectedCar
+        {
+            get { return selectedCar; }
+            set { selectedCar = value; OnPropertyChanged(); }
         }
 
         private Decimal totalMoney;
@@ -69,11 +78,11 @@ namespace QuanLyGaraOto.ViewModel
             set { selectedWage = value; OnPropertyChanged(); }
         }
 
-        private VATTU accessoriesName;
-        public VATTU AccessoriesName
+        private VATTU selectedItem;
+        public VATTU SelectedItem
         {
-            get { return accessoriesName; }
-            set { accessoriesName = value; OnPropertyChanged(); }
+            get { return selectedItem; }
+            set { selectedItem = value; OnPropertyChanged(); }
         }
         private string amount;
         public string Amount
@@ -95,12 +104,22 @@ namespace QuanLyGaraOto.ViewModel
                     Content = SelectedContent.NoiDung;
                     Times = SelectedContent.SoLan.ToString();
                     SelectedWage = DataProvider.Instance.DB.TIENCONGs.Single(x => x.MaTienCong == SelectedContent.MaTienCong);
+                    AccessoriesList = new ObservableCollection<ItemNumbericalOrder>(SelectedContent.ItemList);
                 }    
                     
             }
         }
 
-        
+        private ItemNumbericalOrder selectedAccessories;
+        public ItemNumbericalOrder SelectedAccessories
+        {
+            get { return selectedAccessories; }
+            set 
+            { 
+                selectedAccessories = value; 
+                OnPropertyChanged();
+            }
+        }
 
         private ObservableCollection<ContentNumbericalOrder> contentList;
         public ObservableCollection<ContentNumbericalOrder> ContentList
@@ -109,15 +128,24 @@ namespace QuanLyGaraOto.ViewModel
             set { contentList = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<ItemNumbericalOrder> accessoriesList;
+        public ObservableCollection<ItemNumbericalOrder> AccessoriesList
+        {
+            get { return accessoriesList; }
+            set { accessoriesList = value; OnPropertyChanged(); }
+        }
+
+        private List<List<ItemNumbericalOrder>> list = new List<List<ItemNumbericalOrder>>();
+
         public ICommand AddContentCommand { get; set; }
         public ICommand EditContentCommand { get; set; }
         public ICommand DeleteContentCommand { get; set; }
         public ICommand DeSelectedContentCommand { get; set; }
         public ICommand AddAccessoriesCommand { get; set; }
         public ICommand DeleteAccessoriesCommand { get; set; }
-        public ICommand MakeReceipt { get; set; }
-        public ICommand Refresh { get; set; }
-        public ICommand ShowReceiptCommand { get; set; }
+        public ICommand MakeReceiptCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
+        public ICommand ShowReceiptRecordCommand { get; set; }
 
         public RepairReceiptViewModel()
         {
@@ -125,7 +153,11 @@ namespace QuanLyGaraOto.ViewModel
 
             AddContentCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(Content) || string.IsNullOrEmpty(Times) || SelectedWage == null)
+                if (string.IsNullOrEmpty(Content) || string.IsNullOrEmpty(Times) || SelectedWage == null || SelectedContent != null)
+                    return false;
+                if (AccessoriesList.Count == 0)
+                    return false;
+                if (CheckContentExist() == false)
                     return false;
                 return true;
             }, (p) =>
@@ -134,15 +166,20 @@ namespace QuanLyGaraOto.ViewModel
                 ContentNumbericalOrder content = new ContentNumbericalOrder()
                 {
                     Number = ContentNumbericalOrder.orderNumber,
-                    NoiDung = Content,
+                    NoiDung = Content.Trim(),
                     SoLan = repeatTimes,
                     TenTienCong = SelectedWage.TenTienCong,
                     MaTienCong = SelectedWage.MaTienCong,
-                    ThanhTien = SelectedWage.GiaTienCong ?? 0
+                    ItemList = new List<ItemNumbericalOrder>(AccessoriesList)
                 };
+                content.ThanhTien = CalculateContentMoney(content, SelectedWage);
                 ContentList.Add(content);
-                Content = Times =  null; SelectedWage = null;
+                Content = Times = ""; SelectedWage = null;
+                AccessoriesList.Clear();
                 ContentNumbericalOrder.orderNumber++;
+                itemId = 1;
+
+                UpdateTotalMoney();
             });
 
             EditContentCommand = new RelayCommand<object>((p) =>
@@ -151,6 +188,8 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (string.IsNullOrEmpty(Content) || SelectedWage == null)
                     return false;
+                if (CheckContentExist() == false)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -158,17 +197,18 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     if (content == SelectedContent)
                     {
-                        content.NoiDung = Content;
+                        content.NoiDung = Content.Trim();
                         content.SoLan = Convert.ToInt32(Times);
                         content.TenTienCong = SelectedWage.TenTienCong;
                         content.MaTienCong = SelectedWage.MaTienCong;
-                        content.ThanhTien = SelectedWage.GiaTienCong ?? 0;
-
+                        content.ThanhTien = CalculateContentMoney(content, SelectedWage);
                         SelectedContent = content;
                         break;
                     }
                 }
-                Content = Times = null; SelectedWage = null; SelectedContent = null; 
+                Content = Times = ""; SelectedWage = null; SelectedContent = null;
+
+                UpdateTotalMoney();
             });
 
             DeleteContentCommand = new RelayCommand<object>((p) =>
@@ -194,7 +234,9 @@ namespace QuanLyGaraOto.ViewModel
                     content.Number = i;
                     i++;
                 }
-                Content = Times = null; SelectedWage = null; SelectedContent = null;
+                Content = Times = ""; SelectedWage = null; SelectedContent = null; AccessoriesList.Clear();
+
+                UpdateTotalMoney();
             });
 
             DeSelectedContentCommand = new RelayCommand<object>((p) =>
@@ -204,19 +246,87 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
-                Content = Times = null; SelectedWage = null; SelectedContent = null;
+                Content = Times = ""; SelectedWage = null; SelectedContent = null; AccessoriesList.Clear();
             });
+
+            AddAccessoriesCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedItem == null || string.IsNullOrEmpty(Amount))
+                    return false;
+                if (CheckItemExist() == false)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                int quantity = Convert.ToInt32(Amount);
+                ItemNumbericalOrder item = new ItemNumbericalOrder()
+                {
+                    Number = itemId,
+                    TenVatTu = SelectedItem.TenVatTu,
+                    MaVatTu = SelectedItem.MaVatTu,
+                    SoLuong = quantity,
+                    ThanhTien = (SelectedItem.DonGiaHienTai * quantity) ?? 0
+                };
+                itemId++;
+                AccessoriesList.Add(item);
+                SelectedItem = null; Amount = "";
+
+            });
+            DeleteAccessoriesCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedAccessories == null)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                AccessoriesList.Remove(SelectedAccessories);
+                itemId--;
+                int i = 1;
+                foreach (var item in AccessoriesList)
+                {
+                    item.Number = i;
+                    i++;
+                }    
+                SelectedAccessories = null; Amount = "";
+                UpdateTotalMoney();
+            });
+
+            MakeReceiptCommand = new RelayCommand<object>((p) =>
+            {
+                if (SelectedCar == null || SelectedDate == null || TotalMoney == 0)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                PHIEUSUACHUA phieusuachua = new PHIEUSUACHUA() { BienSo = SelectedCar.BienSo, NgaySuaChua = SelectedDate, TongTien = TotalMoney, XE = SelectedCar };
+                SelectedCar.TienNo = SelectedCar.TienNo + phieusuachua.TongTien;
+                DataProvider.Instance.DB.PHIEUSUACHUAs.Add(phieusuachua);
+                DataProvider.Instance.DB.SaveChanges();
+
+                List<CT_PSC> ctpscList = MakeCTPSC(phieusuachua);
+                DataProvider.Instance.DB.CT_PSC.AddRange(ctpscList);
+                DataProvider.Instance.DB.SaveChanges();
+
+                CT_BCDS ctbcds = DataProvider.Instance.DB.CT_BCDS.First(x => x.HIEUXE == phieusuachua.XE.HIEUXE && x.BAOCAODOANHSO.ThoiGian.Value.Year == phieusuachua.NgaySuaChua.Value.Year && x.BAOCAODOANHSO.ThoiGian.Value.Month == phieusuachua.NgaySuaChua.Value.Month);
+                ctbcds.SoLuotSua = ctbcds.SoLuotSua + 1;
+                ctbcds.ThanhTien = ctbcds.ThanhTien + phieusuachua.TongTien;
+                NotificationWindow.Notify("Lập phiếu sửa chữa thành công!");
+            });
+
+            RefreshCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                SelectedDate = DateTime.Now;
+                AccessoriesList = new ObservableCollection<ItemNumbericalOrder>();
+                ContentList = new ObservableCollection<ContentNumbericalOrder>();
+                TotalMoney = 0;
+                SelectedCar = null;
+                SelectedContent = null;
+                SelectedItem = null;
+                Amount = Times = "";
+            });
+
+            ShowReceiptRecordCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ShowRepairReceptListWindow showInputRecordWindow = new ShowRepairReceptListWindow(); showInputRecordWindow.ShowDialog(); });
         }
-
-
-
-
-
-
-
-
-
-
 
         private void Load()
         {
@@ -225,8 +335,104 @@ namespace QuanLyGaraOto.ViewModel
             WagesList = DataProvider.Instance.DB.TIENCONGs.ToList();
             ItemList = DataProvider.Instance.DB.VATTUs.ToList();
             ContentList = new ObservableCollection<ContentNumbericalOrder>();
+            AccessoriesList = new ObservableCollection<ItemNumbericalOrder>();
         }
 
+        private bool CheckContentExist()
+        {
+            foreach (var content in ContentList)
+            {
+                if (content != SelectedContent)
+                {
+                    if (string.Compare(content.NoiDung, Content) == 0)
+                    {
+                        return false;
+                    }
+                }    
+            }
+            return true;
+        }
+        private bool CheckItemExist()
+        {
+            foreach (var item in AccessoriesList)
+            {
+                if (string.Compare(item.TenVatTu, SelectedItem.TenVatTu) == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void UpdateTotalMoney()
+        {
+            if (ContentList.Count == 0)
+            {
+                TotalMoney = 0;
+                return;
+            }    
+            foreach (var content in ContentList)
+            {
+                TotalMoney += content.ThanhTien;
+            }    
+        }
+
+        private Decimal CalculateContentMoney(ContentNumbericalOrder content, TIENCONG SelectedWage)
+        {
+            Decimal itemMoney = 0;
+            foreach(var item in content.ItemList)
+            {
+                itemMoney += item.ThanhTien * item.SoLuong;
+            }    
+
+
+            return ((itemMoney + SelectedWage.GiaTienCong) * content.SoLan) ?? 0;
+        }
         
+        private List<CT_PSC> MakeCTPSC(PHIEUSUACHUA p)
+        {
+            List<CT_PSC> result = new List<CT_PSC>();
+            foreach (var content in ContentList)
+            {
+                TIENCONG tiencong = DataProvider.Instance.DB.TIENCONGs.Single(x => x.MaTienCong == content.MaTienCong);
+                CT_PSC ctpsc = new CT_PSC()
+                {
+                    MaPhieuSC = p.MaPhieuSC,
+                    NoiDung = content.NoiDung,
+                    SoLan = content.SoLan,
+                    MaTienCong = content.MaTienCong,
+                    ThanhTien = content.ThanhTien,
+                    TIENCONG = tiencong,
+                    PHIEUSUACHUA = p,
+                    CT_SUDUNGVATTU = MakeCTSDVT(content.ItemList, p.NgaySuaChua)
+                };
+                list.Add(content.ItemList);
+                result.Add(ctpsc);
+            } 
+            return result;
+        }
+
+        private List<CT_SUDUNGVATTU> MakeCTSDVT(List<ItemNumbericalOrder> itemList, DateTime? time)
+        {
+            List<CT_SUDUNGVATTU> result = new List<CT_SUDUNGVATTU>();
+            foreach (var item in itemList)
+            {
+                VATTU vattu = DataProvider.Instance.DB.VATTUs.Single(x => x.MaVatTu == item.MaVatTu);
+                BAOCAOTON baocaoton = DataProvider.Instance.DB.BAOCAOTONs.First(x => x.MaVatTu == item.MaVatTu && x.ThoiGian.Value.Year == time.Value.Year && x.ThoiGian.Value.Month == time.Value.Month);
+                CT_SUDUNGVATTU ctsdvt = new CT_SUDUNGVATTU()
+                {
+                    MaVatTu = vattu.MaVatTu,
+                    DonGia = vattu.DonGiaHienTai,
+                    SoLuong = item.SoLuong,
+                    ThanhTien = item.ThanhTien,
+                    VATTU = vattu,
+                };
+                vattu.SoLuongTon -= ctsdvt.SoLuong;
+                baocaoton.PhatSinh = baocaoton.PhatSinh + ctsdvt.SoLuong;
+                baocaoton.TonCuoi = baocaoton.TonDau - baocaoton.PhatSinh;
+                result.Add(ctsdvt);
+            }    
+            return result;
+        }
+
     }
 }

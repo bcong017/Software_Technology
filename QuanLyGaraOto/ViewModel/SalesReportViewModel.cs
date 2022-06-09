@@ -72,8 +72,10 @@ namespace QuanLyGaraOto.ViewModel
                 return true; 
             }, (p) => 
             {
+                ReportList = new ObservableCollection<SalesNumbericalOrder>();
+                int reportedYear = Convert.ToInt32(Year);
                 TotalMoney = "";
-                var saleReport = DataProvider.Instance.DB.BAOCAODOANHSOes.Where(x => x.ThoiGian.Value.Year == Convert.ToInt32(Year) && x.ThoiGian.Value.Month == number).FirstOrDefault();
+                var saleReport = DataProvider.Instance.DB.BAOCAODOANHSOes.Where(x => x.ThoiGian.Value.Year == reportedYear && x.ThoiGian.Value.Month == number).FirstOrDefault();
                 if (saleReport == null)
                 {
                     NotificationWindow.Notify("Không có báo cáo doanh số của tháng tương ứng!");

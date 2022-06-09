@@ -39,7 +39,7 @@
                               SelectedItem="{Binding SelectedItem}"
                               Width="100"
                               Margin="5"/>
-                        <TextBox materialDesign:HintAssist.Hint="Năm"
+                        <TextBox materialDesign:HintAssist.Hint="Năm" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Text="{Binding Year, Mode=OneWayToSource}"
                                  Width="80"
@@ -59,11 +59,11 @@
                     <ListView ItemsSource="{Binding ReportList}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding }"/>
-                                <GridViewColumn Header="Vật tư phụ tùng" DisplayMemberBinding="{Binding}"/>
-                                <GridViewColumn Header="Tồn đầu" DisplayMemberBinding="{Binding}"/>
-                                <GridViewColumn Header="Tồn cuối" DisplayMemberBinding="{Binding}"/>
-                                <GridViewColumn Header="Phát sinh" DisplayMemberBinding="{Binding}"/>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                                <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding BaoCaoTon.VATTU.TenVatTu}"/>
+                                <GridViewColumn Header="Tồn đầu" DisplayMemberBinding="{Binding BaoCaoTon.TonDau}"/>
+                                <GridViewColumn Header="Phát sinh" DisplayMemberBinding="{Binding BaoCaoTon.TonCuoi}"/>
+                                <GridViewColumn Header="Tồn cuối" DisplayMemberBinding="{Binding BaoCaoTon.TonCuoi}"/>
 
                             </GridView>
                         </ListView.View>

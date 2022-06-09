@@ -32,13 +32,15 @@
                               Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                               ItemsSource="{Binding Months.Months}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding SelectetedItem}"
+                              SelectedItem="{Binding SelectedItem}"
                               Width="100"
                               Margin="5"/>
-                        <TextBox materialDesign:HintAssist.Hint="Năm"
+                        <TextBox materialDesign:HintAssist.Hint="Năm" VerticalAlignment="Center"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="80"
-                                 Margin="20 0 0 0"/>
+                                 Margin="20 0 0 0"
+                                 Text="{Binding Year, Mode=OneWayToSource}"
+                                 PreviewTextInput="NumberValidationTextBox"/>
 
                         <Button x:Name="btnMakeReport"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}" 
@@ -46,14 +48,6 @@
                                 Margin="50 0 0 0"
                                 Content="Xuất báo cáo doanh số"
                                 Command="{Binding MakeReportCommand}">
-                        </Button>
-
-                        <Button x:Name="btnExcelOutput"
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}" 
-                                Width="180"
-                                Margin="50 0 0 0"
-                                Content="Xuất excel"
-                                Command="{Binding ExcelOutput}">
                         </Button>
                     </WrapPanel>
                 </materialDesign:Card>

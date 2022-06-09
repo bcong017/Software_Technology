@@ -14,93 +14,58 @@
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto"
 
-             mc:Ignorable="d"  
+             mc:Ignorable="d"
              WindowStyle="None"
-             d:DesignHeight="733" d:DesignWidth="1383"
-             d:Background="white"
-             x:Name="ucAddAccessories">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30*"></RowDefinition>
-            <RowDefinition Height="150*"></RowDefinition>
-            <RowDefinition Height="300*"></RowDefinition>
-            <RowDefinition Height="30*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <uc:ControlBarUC Tag="Thêm vật phẩm mới"></uc:ControlBarUC>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0">
-                <DatePicker SelectedDate="{Binding SelectedDate}" materialDesign:HintAssist.Hint="Ngày sửa chữa:" MinWidth="300" Margin="10,10,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
-
-                <ComboBox ItemsSource="{Binding CarList, Mode=OneTime}"
-                          Margin="10,10,10,10"
-                          VerticalAlignment="Stretch" HorizontalAlignment="Left"
-                          materialDesign:HintAssist.Hint="Biển số xe:"
-                          SelectedItem="{Binding SelectedCar}"
-                          DisplayMemberPath="Key"
-                          MinWidth="300"
-                          SelectedValuePath="Value"/>
-
-                <StackPanel Margin="10,10,0,10" Orientation="Horizontal" MinWidth="300" VerticalAlignment="Stretch" HorizontalAlignment="Left">
-                    <TextBlock Text="Tổng số tiền:" MinWidth="100" FontSize="20" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock materialDesign:HintAssist.Hint="Tổng số tiền:" Text="{Binding TotalMoney}" MinWidth="200" FontSize="20" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Center"
-                        Command="{Binding DoneCommand}"
-                        Width="100" Height="50" Content="Hoàn tất" Margin="5,5,5,5"/>
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Center"
-                        Command="{Binding PrintCommand}"
-                        Width="100" Height="50" Content="In Phiếu" Margin="50,5,5,5"/>
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Center"
-                        Command="{Binding DeleteCommand}"
-                        Width="200" Height="50" Content="Hủy" Margin="50,5,5,5"/>
-            </StackPanel>
-        </Grid>
-
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding AddCommand}"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                Content="Thêm vật phẩm"
-                                d:Command="{Binding}"/>
+             WindowStartupLocation="CenterScreen"
+             ResizeMode="CanMinimize"
+             Title="Xem danh sách các phiếu sửa chữa" 
+             Height="700" Width="650"
+             Background="Transparent"
+             AllowsTransparency="true"
+             x:Name="showInputRecordWindow">
+    <Border CornerRadius="10" BorderThickness="2" BorderBrush="#4dabf7" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=showInputRecordWindow}"></uc:ControlBarUC>
             </Grid>
-            <Grid Grid.Column="1">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding RemoveCommand}"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                Content="Xóa vật phẩm"
-                                d:Command="{Binding}"/>
-            </Grid>
+
+            <materialDesign:Card VerticalAlignment="Top" Grid.Row="1">
+                <TextBlock Text="Danh sách các phiếu sửa chữa đã tạo" FontSize="30" FontWeight="Bold" TextAlignment="Center"></TextBlock>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="2" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <ComboBox materialDesign:HintAssist.Hint="Biển số"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="5 5 15 5"
+                              ItemsSource="{Binding CarList}" 
+                              SelectedItem="{Binding SelectedItem}" 
+                              DisplayMemberPath="BienSo"/>
+                    
+                    <Button Command="{Binding ShowCommand}" Content="Xuất" Margin="35 5 15 5" Width="130"></Button>
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="3" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <ListView ItemsSource="{Binding List}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaPhieuSC}"/>
+                                <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding BienSo}"/>
+                                <GridViewColumn Header="Ngày sửa chữa" DisplayMemberBinding="{Binding NgaySuaChua}"/>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding TongTien}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,2,0,0">
-            <ListView ItemsSource="{Binding DetailList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" Grid.ColumnSpan="3" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaCTPSC}"/>
-                        <GridViewColumn Header="Nội dung" DisplayMemberBinding="{Binding NoiDung}"/>
-                        <GridViewColumn Header="Số lần" DisplayMemberBinding="{Binding SoLan}"/>
-                        <GridViewColumn Header="Tiền công" DisplayMemberBinding="{Binding MaTienCong}"/>
-                        <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-    </Grid>
+    </Border>
 </Window>

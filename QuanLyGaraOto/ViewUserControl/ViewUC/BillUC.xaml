@@ -75,7 +75,7 @@
                 
             </Grid>
             <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="1">
-                <ListView ItemsSource="{Binding PhieuThuTienList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                <ListView ItemsSource="{Binding PhieuThuTienList}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>

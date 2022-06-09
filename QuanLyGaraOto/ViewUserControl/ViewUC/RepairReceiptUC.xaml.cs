@@ -26,6 +26,7 @@ namespace QuanLyGaraOto.ViewUserControl.ViewUC
         {
             InitializeComponent();
             this.DataContext = new RepairReceiptViewModel();
+        
         }
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {

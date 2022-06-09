@@ -25,7 +25,7 @@ namespace QuanLyGaraOto.ViewModel
                 OnPropertyChanged();
             }
         }
-        private BaseViewModel _selectedViewModel = new SwitchViewSalesReport();
+        private BaseViewModel _selectedViewModel = new SwitchViewCarCheckIn();
         public BaseViewModel SelectedViewModel 
         { 
             get { return _selectedViewModel; } 
@@ -150,10 +150,55 @@ namespace QuanLyGaraOto.ViewModel
 
         private void CreateReports()
         {
-            //var thamso = DataProvider.Instance.DB.THAMSOes.Where(x.ThangLapPhieu == 0).FirstOrDefault();
-                
+            var thamso = DataProvider.Instance.DB.THAMSOes.FirstOrDefault();
+            if (thamso == null)
+                return;
 
-
+            if (thamso.ThangBaoCao != DateTime.Now.Month && thamso.ThangBaoCao != null)
+            {
+                thamso.ThangBaoCao = DateTime.Now.Month;
+                CreateBaoCao(DateTime.Now.Month);
+            }     
         }
+
+        private void CreateBaoCao(int thangBaoCao)
+        {
+            List<BAOCAOTON> baocaotonList = new List<BAOCAOTON>();
+            var VatTuList = DataProvider.Instance.DB.VATTUs.ToList();
+            foreach (var vattu in VatTuList)
+            {
+                BAOCAOTON baocaoton = new BAOCAOTON()
+                {
+                    MaVatTu = vattu.MaVatTu,
+                    ThoiGian = new DateTime(DateTime.Now.Year, thangBaoCao, 1),
+                    TonDau = vattu.SoLuongTon,
+                    PhatSinh = 0,
+                    VATTU = vattu
+                };
+                baocaoton.TonCuoi = baocaoton.TonDau - baocaoton.PhatSinh;
+                baocaotonList.Add(baocaoton);
+            }  
+            
+            DataProvider.Instance.DB.BAOCAOTONs.AddRange(baocaotonList);
+            BAOCAODOANHSO baocaodoanhso = new BAOCAODOANHSO()
+            {
+                ThoiGian = new DateTime(DateTime.Now.Year, thangBaoCao, 1)
+            };
+            var hieuxeList = DataProvider.Instance.DB.HIEUXEs.ToArray();
+            foreach (var hieuxe in hieuxeList)
+            {
+                CT_BCDS baocao = new CT_BCDS()
+                {
+                    MaHieuXe = hieuxe.MaHieuXe,
+                    HIEUXE = hieuxe,
+                    BAOCAODOANHSO = baocaodoanhso
+                };
+                DataProvider.Instance.DB.CT_BCDS.Add(baocao);
+            }    
+            DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
+
+            DataProvider.Instance.DB.SaveChanges();
+        }
+        
     }
 }

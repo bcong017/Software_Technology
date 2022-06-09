@@ -59,13 +59,14 @@ namespace QuanLyGaraOto.ViewModel
         {
             MakeReportCommand = new RelayCommand<object>((p) => 
             {
-                if (SelectedItem == null || string.IsNullOrEmpty(Year) || Int32.TryParse(Year, out _) == false)
+                if (SelectedItem == null || string.IsNullOrEmpty(Year))
                     return false;
                 return true;
             }, (p) => 
             {
                 ReportList = new ObservableCollection<InventoryNumbericalOrder>();
-                var list = DataProvider.Instance.DB.BAOCAOTONs.Where(x => x.ThoiGian.Value.Year == Convert.ToInt32(Year) && x.ThoiGian.Value.Month == number).ToList();
+                int reportedYear = Convert.ToInt32(Year);
+                var list = DataProvider.Instance.DB.BAOCAOTONs.Where(x => x.ThoiGian.Value.Year == reportedYear && x.ThoiGian.Value.Month == number).ToList();
                 if (list.Count == 0)
                 {
                     NotificationWindow.Notify("Không có báo cáo tồn của tháng!");

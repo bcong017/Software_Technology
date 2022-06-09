@@ -1,4 +1,5 @@
-﻿using QuanLyGaraOto.Model;
+﻿using QuanLyGaraOto.AddingClasses;
+using QuanLyGaraOto.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -84,6 +85,13 @@ namespace QuanLyGaraOto.ViewModel
                 return true;
             }, (p) =>
             {
+                var thamso = DataProvider.Instance.DB.THAMSOes.Single();
+                var cars = DataProvider.Instance.DB.XEs.Where(x => x.NgayTiepNhan.Value.Date == DateTime.Now.Date && x.NgayTiepNhan.Value.Month == DateTime.Now.Month && x.NgayTiepNhan.Value.Year == DateTime.Now.Year).ToList();
+                if (cars.Count > thamso.XeToiDa)
+                {
+                    NotificationWindow.Notify("Số xe tiếp nhận đã vượt quá tối đa cho phép!");
+                    return;
+                }    
                 var xe = new XE() { BienSo = BienSo, DiaChi = DiaChi, DienThoai = SoDienThoai, Email = null, TenChuXe = HoTen, NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
                 
                 ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();
