@@ -44,7 +44,6 @@
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Text="{Binding AccessoriesName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên vật tư" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Text="{Binding PriceInput, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding PriceOutputRecommended, UpdateSourceTrigger=PropertyChanged, StringFormat='0,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Đơn giá bán đề nghị" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
                     <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
             </materialDesign:Card>

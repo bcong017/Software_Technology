@@ -41,7 +41,7 @@
                               Margin="5"/>
                         <TextBox materialDesign:HintAssist.Hint="Năm" VerticalAlignment="Center" PreviewTextInput="NumberValidationTextBox"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Text="{Binding Year, Mode=OneWayToSource}"
+                                 Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}"
                                  Width="80"
                                  Margin="20 0 0 0"/>
 
@@ -62,7 +62,7 @@
                                 <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
                                 <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding BaoCaoTon.VATTU.TenVatTu}"/>
                                 <GridViewColumn Header="Tồn đầu" DisplayMemberBinding="{Binding BaoCaoTon.TonDau}"/>
-                                <GridViewColumn Header="Phát sinh" DisplayMemberBinding="{Binding BaoCaoTon.TonCuoi}"/>
+                                <GridViewColumn Header="Phát sinh" DisplayMemberBinding="{Binding BaoCaoTon.PhatSinh}"/>
                                 <GridViewColumn Header="Tồn cuối" DisplayMemberBinding="{Binding BaoCaoTon.TonCuoi}"/>
 
                             </GridView>

@@ -222,12 +222,15 @@ namespace QuanLyGaraOto.ViewModel
                     }    
                     else
                     {
+                        var thamso = DataProvider.Instance.DB.THAMSOes.First();
+                        
                         VATTU newVatTu = new VATTU() { TenVatTu = item.TenVatTu, DonGiaHienTai = item.DonGiaBanDeNghi, SoLuongTon = item.SoLuong };
-
-                        BAOCAOTON baocao = new BAOCAOTON() { TonDau = item.SoLuong, PhatSinh = 0, TonCuoi = item.SoLuong, ThoiGian = DateTime.Now, MaVatTu = newVatTu.MaVatTu, VATTU = newVatTu };
-
+                        if (thamso.ThangBaoCao != null)
+                        {
+                            BAOCAOTON baocao = new BAOCAOTON() { TonDau = item.SoLuong, PhatSinh = 0, TonCuoi = item.SoLuong, ThoiGian = DateTime.Now, MaVatTu = newVatTu.MaVatTu, VATTU = newVatTu };
+                            DataProvider.Instance.DB.BAOCAOTONs.Add(baocao);
+                        }
                         DataProvider.Instance.DB.VATTUs.Add(newVatTu);
-                        DataProvider.Instance.DB.BAOCAOTONs.Add(baocao);
                         DataProvider.Instance.DB.SaveChanges();
 
 
@@ -333,6 +336,7 @@ namespace QuanLyGaraOto.ViewModel
                 DataProvider.Instance.DB.BAOCAODOANHSOes.Add(baocaodoanhso);
 
                 DataProvider.Instance.DB.SaveChanges();
+                MainViewModel.Enable = true;
             }
             #endregion
         }

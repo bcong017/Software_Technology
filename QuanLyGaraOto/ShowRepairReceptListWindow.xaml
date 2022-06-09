@@ -56,10 +56,10 @@
                     <ListView ItemsSource="{Binding List}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaPhieuSC}"/>
-                                <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding BienSo}"/>
-                                <GridViewColumn Header="Ngày sửa chữa" DisplayMemberBinding="{Binding NgaySuaChua}"/>
-                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding TongTien}"/>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                                <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding Phieu.BienSo}"/>
+                                <GridViewColumn Header="Ngày sửa chữa" DisplayMemberBinding="{Binding Phieu.NgaySuaChua}"/>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding Phieu.TongTien, StringFormat='#,0'}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

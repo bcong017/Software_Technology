@@ -130,6 +130,10 @@ namespace QuanLyGaraOto.ViewModel
                     }
                 }
                 EditTextboxEnable = true;
+                HoTen = BienSo = DiaChi = SoDienThoai = "";
+                HieuXe = null;
+                NgayTiepNhan = DateTime.Today;
+                SelectedItem = null;
             });
 
             DeSelectedItemCommand = new RelayCommand<object>((p) =>
@@ -142,10 +146,11 @@ namespace QuanLyGaraOto.ViewModel
                 HoTen = "";
                 HieuXe = null;
                 DiaChi = "";
-                NgayTiepNhan = null;
+                NgayTiepNhan = DateTime.Today;
                 SoDienThoai = "";
                 BienSo = "";
                 SelectedItem = null;
+                EditTextboxEnable = true;
             });
         }
 

@@ -224,8 +224,6 @@ INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 
 INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram) VALUES (0, 1, 30, 0.2)
 
-
-
 INSERT INTO XE (BienSo, TenChuXe, DienThoai, DiaChi, Email, NgayTiepNhan, MaHieuXe, TienNo) VALUES ('1234','NGUYEN VAN A', '0123456789', 'NAJSKFBASJK' ,'VANA@GMAIL.COM', '15/5/2022', 5, 0)
 
 INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('thestargazer', '5dc3d9e4da636866145624eb271fb9ee', 0)

@@ -43,7 +43,7 @@ namespace QuanLyGaraOto.ViewModel
                 var list = DataProvider.Instance.DB.PHIEUSUACHUAs.Where(x => x.BienSo == SelectedItem.BienSo).ToList();
                 List = new ObservableCollection<ReceiptNumbericalOrder>();
 
-                if (list != null)
+                if (list == null)
                 {
                     NotificationWindow.Notify("Biển số chưa lập phiếu sữa chữa!");
                     return;

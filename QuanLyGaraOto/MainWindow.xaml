@@ -169,42 +169,42 @@
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
 
-                                        <ListViewItem Height="60" Tag="CarCheckIn" ToolTip="Lập phiếu tiếp nhận xe sửa"  Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="CarCheckIn" ToolTip="Lập phiếu tiếp nhận xe sửa"  Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Car" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu tiếp nhận xe sửa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="RepairReceipt" ToolTip="Lập phiếu sửa chữa"  Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="RepairReceipt" ToolTip="Lập phiếu sửa chữa"  Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Wrench" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu sửa chữa" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Search" ToolTip="Tra cứu" Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="Search" ToolTip="Tra cứu" Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Search" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Tra cứu" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Bill" ToolTip="Lập phiếu thu tiền" Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="Bill" ToolTip="Lập phiếu thu tiền" Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Receipt" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Lập phiếu thu tiền" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="SalesReport" ToolTip="Báo cáo doanh số" Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="SalesReport" ToolTip="Báo cáo doanh số" Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Cash" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tháng" VerticalAlignment="Center" Margin="20 10"/>
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="AccessoriesReport" Cursor="Hand" ToolTip="Báo cáo tồn" >
+                                        <ListViewItem Height="60" Tag="AccessoriesReport" Cursor="Hand" ToolTip="Báo cáo tồn" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Calculator" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Báo cáo tồn" VerticalAlignment="Center" Margin="20 10"/>
@@ -225,7 +225,7 @@
                                             </StackPanel>
                                         </ListViewItem>
 
-                                        <ListViewItem Height="60" Tag="Update" ToolTip="Cập nhật quy định" Visibility="{Binding UpdateParamVisibility}" Cursor="Hand">
+                                        <ListViewItem Height="60" Tag="Update" ToolTip="Cập nhật quy định" Visibility="{Binding UpdateParamVisibility}" Cursor="Hand" IsEnabled="{Binding Enable}">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <materialDesign:PackIcon Kind="Update" Height="25" Width="25" Margin="10"/>
                                                 <TextBlock Text="Cập nhật quy định" VerticalAlignment="Center" Margin="20 10"/>

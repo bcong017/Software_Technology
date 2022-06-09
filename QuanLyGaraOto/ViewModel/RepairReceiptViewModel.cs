@@ -257,10 +257,16 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (SelectedContent != null)
                     return false;
+
                 return true;
             }, (p) =>
             {
                 int quantity = Convert.ToInt32(Amount);
+                if (quantity > SelectedItem.SoLuongTon)
+                {
+                    NotificationWindow.Notify(String.Format("Số vật tư bạn đã chọn không còn đủ (Hiện có: {0})!", SelectedItem.SoLuongTon));
+                    return;
+                }    
                 ItemNumbericalOrder item = new ItemNumbericalOrder()
                 {
                     Number = itemId,
@@ -309,11 +315,12 @@ namespace QuanLyGaraOto.ViewModel
 
                 List<CT_PSC> ctpscList = MakeCTPSC(phieusuachua);
                 DataProvider.Instance.DB.CT_PSC.AddRange(ctpscList);
-                DataProvider.Instance.DB.SaveChanges();
 
-                CT_BCDS ctbcds = DataProvider.Instance.DB.CT_BCDS.First(x => x.HIEUXE == phieusuachua.XE.HIEUXE && x.BAOCAODOANHSO.ThoiGian.Value.Year == phieusuachua.NgaySuaChua.Value.Year && x.BAOCAODOANHSO.ThoiGian.Value.Month == phieusuachua.NgaySuaChua.Value.Month);
+                CT_BCDS ctbcds = DataProvider.Instance.DB.CT_BCDS.First(x => x.HIEUXE.MaHieuXe == phieusuachua.XE.HIEUXE.MaHieuXe && x.BAOCAODOANHSO.ThoiGian.Value.Year == phieusuachua.NgaySuaChua.Value.Year && x.BAOCAODOANHSO.ThoiGian.Value.Month == phieusuachua.NgaySuaChua.Value.Month);
                 ctbcds.SoLuotSua = ctbcds.SoLuotSua + 1;
                 ctbcds.ThanhTien = ctbcds.ThanhTien + phieusuachua.TongTien;
+                DataProvider.Instance.DB.SaveChanges();
+
                 NotificationWindow.Notify("Lập phiếu sửa chữa thành công!");
             });
 
