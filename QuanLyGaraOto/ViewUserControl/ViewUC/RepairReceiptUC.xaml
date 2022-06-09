@@ -19,54 +19,134 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              d:Background="white"
              x:Name="ucShowRepairRecepts">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="900*"></RowDefinition>
-            <RowDefinition Height="50*"></RowDefinition>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style x:Key="lvDuration" TargetType="materialDesign:Card">
+                <Setter Property="ToolTipService.ShowDuration" Value="3000"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"  Grid.ColumnSpan="3">
-            <ListView ItemsSource="{Binding ReceptList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding MaPhieuSC}"/>
-                        <GridViewColumn Header="Biển số xe" DisplayMemberBinding="{Binding BienSo}"/>
-                        <GridViewColumn Header="Ngày sửa chữa" DisplayMemberBinding="{Binding NgaySuaChua}"/>
-                        <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding TongTien}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <materialDesign:Card Grid.Row="0" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <ComboBox ItemsSource="{Binding CarList}"
+                              VerticalAlignment="Bottom"
+                              materialDesign:HintAssist.Hint="Biển số xe:"
+                              IsEditable="True"
+                              SelectedItem="{Binding SelectedCar}"
+                              DisplayMemberPath="BienSo"
+                              Width="120"   
+                              Margin="5 5 15 5"/>
+                    <DatePicker Width="100" materialDesign:HintAssist.Hint="Ngày lập" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" SelectedDate="{Binding InputDate, StringFormat='dd/MM/yyyy'}"/>
+                    <TextBox Text="{Binding TotalMoney}" IsReadOnly="True" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </WrapPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Grid.Row="1" Margin="5">
+                <WrapPanel Margin="0 0 0 10">
+                    <TextBox Text="{Binding Content, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Nội dung" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Times, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lần" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             PreviewTextInput="NumberValidationTextBox"/>
+                    <ComboBox ItemsSource="{Binding WagesList}"
+                              VerticalAlignment="Bottom"
+                              materialDesign:HintAssist.Hint="Tiền công"
+                              IsEditable="True"
+                              SelectedItem="{Binding SelectedWage}"
+                              DisplayMemberPath="TenTienCong"
+                              Width="150"
+                              Margin="5 5 15 5"/>
+                </WrapPanel>
+            </materialDesign:Card>
+            <WrapPanel HorizontalAlignment="Center" Grid.Row="2">
+                <Button Command="{Binding AddContentCommand}" Content="Thêm lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding EditContentCommand}" Content="Sửa lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding DeleteContentCommand}" Content="Xóa lựa chọn" Margin="5" Width="130"></Button>
+                <Button Command="{Binding DeSelectedItemCommand}" Content="Bỏ chọn" Margin="5" Width="130"></Button>
+            </WrapPanel>
+
+            <WrapPanel HorizontalAlignment="Center" Grid.Row="3">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="200" Height="60" Content="Lập phiếu nhập VTPT" Margin="20" Command="{Binding AddAccessoriesList}">
+                </Button>
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" HorizontalAlignment="Right"
+                        Width="200" Height="60" Content="Làm mới phiếu nhập" Margin="20" Command="{Binding RefreshCommand}">
+                </Button>
+            </WrapPanel>
+
+            <materialDesign:Card Grid.Row="4" VerticalAlignment="Stretch" Width="auto" Margin="5" ToolTip="Danh sách các vật tư tương ứng với nội dung đang chọn" Style="{StaticResource lvDuration}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedAccessories, Mode=TwoWay}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
+                                <GridViewColumn Header="Vật tư" DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding AccessoriesAmount, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='0,0'}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+
+            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Center" Grid.Row="5">
+                <ComboBox ItemsSource="{Binding ItemList}"
+                          VerticalAlignment="Bottom"
+                          materialDesign:HintAssist.Hint="Vật tư"
+                          IsEditable="True"
+                          SelectedItem="{Binding SelectedItem}"
+                          DisplayMemberPath="TenVatTu"
+                          Width="150"
+                          Margin="5 5 15 5"/>
+                <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         PreviewTextInput="NumberValidationTextBox"/>
+                <Button Command="{Binding AddAccessoriesCommand}" Content="Thêm vật tư" Margin="5" Width="130"></Button>
+                <Button Command="{Binding DeleteAccessoriesCommand}" Content="Xoá vật tư" Margin="5" Width="130"></Button>
+            </StackPanel>
+
+            <Button Grid.Row="6" Command="{Binding ShowRepairRecordCommand}" Content="Xem danh sách các phiếu vật tư phụ tùng đã tạo" Margin="5" ></Button>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding AddCommand}"
-                                Content="Thêm phiếu mới"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                d:Command="{Binding}"/>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding ModifyCommand}"
-                                Content="Sửa phiếu đã chọn"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                d:Command="{Binding}"/>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1">
-            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding DeleteCommand}"
-                                Content="Xóa phiếu đã chọn"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                d:Command="{Binding}"/>
-        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:Card VerticalAlignment="Top" Grid.Row="0">
+                <TextBlock Text="Danh sách các nội dung của phiếu sửa chữa" FontSize="30" FontWeight="Bold" TextAlignment="Center"></TextBlock>
+            </materialDesign:Card>
 
+            <materialDesign:Card Grid.Row="1" Margin="5" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                    <ListView ItemsSource="{Binding ContentList}" SelectedItem="{Binding SelectedContent, Mode=TwoWay}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
+                                <GridViewColumn Header="Nội dung" DisplayMemberBinding="{Binding NoiDung}"></GridViewColumn>
+                                <GridViewColumn Header="Số lần" DisplayMemberBinding="{Binding SoLan, StringFormat='#,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Tên tiền công" DisplayMemberBinding="{Binding TenTienCong}"></GridViewColumn>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='#,0'}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </materialDesign:Card>
+        </Grid>
     </Grid>
 </UserControl>
 

@@ -26,9 +26,9 @@
                 Background="{DynamicResource MaterialDesignBackground}">
                     <GroupBox Header="Phiếu thu tiền" Style="{StaticResource MaterialDesignGroupBox}" Margin="16" UseLayoutRounding="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBox Width="170" materialDesign:HintAssist.Hint="Họ tên chủ xe"
+                            <TextBox Width="170" materialDesign:HintAssist.Hint="Biển số xe"
                                      Foreground="Black"
-                                     Text="{Binding HoTen, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding BienSo, UpdateSourceTrigger=PropertyChanged}"
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      VerticalAlignment="Center"/>
                             <Grid Width="70"></Grid>
@@ -56,14 +56,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Command="{Binding AddCommand}"
+                    Command="{Binding AddCommand}"
                     Content="Thêm"/>
                 </Grid>
 
@@ -71,31 +69,21 @@
                     <Button
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
-                    Command="{Binding EditCommand}"
-                    Content="Sửa"/>
-                </Grid>
-                
-                <Grid Grid.Column="2">
-                    <Button
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Command="{Binding DeSelectedItemCommand}"
-                    Content="Bỏ chọn"/>
+                    Command="{Binding SearchCommand}"
+                    Content="Tìm kiếm "/>
                 </Grid>
                 
             </Grid>
             <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Grid.Row="1">
-                <ListView ItemsSource="{Binding HieuXeList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                <ListView ItemsSource="{Binding PhieuThuTienList}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Ngày thu tiền" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Số tiền thu" DisplayMemberBinding="{Binding}"/>
+                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"/>
+                            <GridViewColumn Header="Tên chủ xe" DisplayMemberBinding="{Binding PhieuThuTien.XE.TenChuXe}"/>
+                            <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding PhieuThuTien.BienSo}"/>
+                            <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding PhieuThuTien.XE.DienThoai}"/>
+                            <GridViewColumn Header="Ngày thu tiền" DisplayMemberBinding="{Binding PhieuThuTien.NgayThuTien, StringFormat='dd/MM/yyyy'}"/>
+                            <GridViewColumn Header="Số tiền thu" DisplayMemberBinding="{Binding PhieuThuTien.SoTienThu}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
