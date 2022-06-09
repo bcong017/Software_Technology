@@ -51,7 +51,7 @@ namespace QuanLyGaraOto.ViewModel
 
             SendMailCommand = new RelayCommand<Window>((p) => 
             {
-                if (string.IsNullOrEmpty(UserName) == false && string.IsNullOrEmpty(Gmail) == false)
+                if (string.IsNullOrEmpty(Gmail) == false)
                     return true;
                 else
                     return false;
@@ -64,7 +64,6 @@ namespace QuanLyGaraOto.ViewModel
                 string fromEmail = ConfigurationManager.AppSettings.Get("EmailAddress");
                 string fromPassword = ConfigurationManager.AppSettings.Get("GeneratedPassword");
                 EmailSender.Instance.Gmail = Gmail;
-                EmailSender.Instance.UserName = UserName;
                 EmailSender.Instance.SendEmail(fromEmail, fromPassword);
                 NotificationWindow.Notify("Gửi mã xác thực thành công!");
                 RecoverPasswordWindow recoverPasswordWindow = new RecoverPasswordWindow();
@@ -74,7 +73,7 @@ namespace QuanLyGaraOto.ViewModel
             }
             else
             {
-                MessageBox.Show("Gửi mật khẩu thất bại!");
+                NotificationWindow.Notify("Gửi mã xác nhận thất bại");
             }    
 
         }
@@ -82,7 +81,7 @@ namespace QuanLyGaraOto.ViewModel
         bool CheckValidUsername()
         {
             // hàm check tài khoản nè và lấy cái password đó ra luôn
-            if (DataProvider.Instance.DB.TAIKHOANs.Any(x => x.TenTaiKhoan == UserName))
+            if (DataProvider.Instance.DB.TAIKHOANs.Any(x => x.Email == Gmail))
                 return true; 
             else
                 return false;

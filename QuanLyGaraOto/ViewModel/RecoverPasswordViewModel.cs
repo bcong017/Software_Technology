@@ -76,7 +76,7 @@ namespace QuanLyGaraOto.ViewModel
             {
                 if (verifiedNumber == EmailSender.Instance.VerifiedNumber)
                 {
-                    var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TenTaiKhoan == EmailSender.Instance.UserName).FirstOrDefault();
+                    var user = DataProvider.Instance.DB.TAIKHOANs.Where(x => x.Email == EmailSender.Instance.Gmail).FirstOrDefault();
                     if (user != null)
                     {
                         user.MatKhau = Encryptor.CreateMD5(Encryptor.Base64Encode(Password));

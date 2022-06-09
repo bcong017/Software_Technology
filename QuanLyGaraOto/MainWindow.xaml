@@ -18,7 +18,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="Màn hình chính" 
+        Title="Quản lý Gara ô tô" 
         Height="810" Width="1447"
         Background="Transparent"
         AllowsTransparency="true"

@@ -61,15 +61,15 @@
                                     <GridViewColumn Header="Tên hiệu xe" DisplayMemberBinding="{Binding SalesDetail.HIEUXE.TenHieuXe}"/>
                                     <GridViewColumn Header="Số lượt sửa" DisplayMemberBinding="{Binding SalesDetail.SoLuotSua, StringFormat='#,0'}"/>
                                     <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding SalesDetail.ThanhTien, StringFormat='#,0'}"/>
-                                    <GridViewColumn Header="Tỷ lệ" DisplayMemberBinding="{Binding SalesDetail.Tile}"/>
+                                    <GridViewColumn Header="Tỷ lệ" DisplayMemberBinding="{Binding SalesDetail.TiLe}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </ScrollViewer>
                 </Grid>
-                <WrapPanel Grid.Row="2">
-                    <TextBlock x:Name="tbTotalMoney" Text="Tổng doanh thu: " FontWeight="Bold"></TextBlock>
-                    <Label x:Name="tbMoney" Content="{Binding TotalMoney}"></Label>
+                <WrapPanel Grid.Row="2" VerticalAlignment="Bottom">
+                    <TextBlock Text="Tổng doanh thu: " FontWeight="Bold" VerticalAlignment="Bottom" FontSize="16"></TextBlock>
+                    <TextBlock Text="{Binding TotalMoney, StringFormat='#,0'}"></TextBlock>
                 </WrapPanel>
             </Grid>
         </Grid>

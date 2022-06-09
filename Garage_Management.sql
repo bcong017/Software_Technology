@@ -99,9 +99,9 @@ CREATE TABLE BAOCAOTON (
 	MaBCT		INT IDENTITY (1, 1),
 	MaVatTu		INT,
 	ThoiGian	SMALLDATETIME, -- ngay minh muon xem bao cao ton
-	TonDau		INT,
-	PhatSinh	INT,
-	TonCuoi		INT,
+	TonDau		INT DEFAULT 0,
+	PhatSinh	INT DEFAULT 0,
+	TonCuoi		INT DEFAULT 0,
 
 	CONSTRAINT BAOCAOTON_PK PRIMARY KEY (MaBCT)
 )
@@ -123,7 +123,6 @@ CREATE TABLE CT_BCDS (
 
 	CONSTRAINT CT_BCDS_PK PRIMARY KEY (MaBCDS, MaHieuXe)
 )
-
 
 CREATE TABLE THAMSO (
 	MaThamSo	INT PRIMARY KEY,
@@ -204,8 +203,6 @@ INSERT INTO VATTU (TenVatTu, DonGiaHienTai, SoLuongTon) VALUES
 	(N'Đèn sương mù', '6000000', '10'),
 	(N'Bơm nhiên liệu', '4000000', '10');
 
-
-
 INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 	(N'Rửa xe', '300000'),
 	(N'Phủ Ceramic', '3000000'),
@@ -224,7 +221,10 @@ INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 
 INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram) VALUES (0, 1, 30, 0.2)
 
+INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram, ThangBaoCao) VALUES (0, 1, 30, 0.2, 2)
+
 INSERT INTO XE (BienSo, TenChuXe, DienThoai, DiaChi, Email, NgayTiepNhan, MaHieuXe, TienNo) VALUES ('1234','NGUYEN VAN A', '0123456789', 'NAJSKFBASJK' ,'VANA@GMAIL.COM', '15/5/2022', 5, 0)
 
-INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('thestargazer', '5dc3d9e4da636866145624eb271fb9ee', 0)
+INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan, Email) VALUES ('thestargazer', '5dc3d9e4da636866145624eb271fb9ee', 0, 'thaiduong7v@gmail.com')
+
 SET DATEFORMAT DMY

@@ -83,7 +83,7 @@
                             <GridViewColumn Header="Biển số" DisplayMemberBinding="{Binding PhieuThuTien.BienSo}"/>
                             <GridViewColumn Header="Điện thoại" DisplayMemberBinding="{Binding PhieuThuTien.XE.DienThoai}"/>
                             <GridViewColumn Header="Ngày thu tiền" DisplayMemberBinding="{Binding PhieuThuTien.NgayThuTien, StringFormat='dd/MM/yyyy'}"/>
-                            <GridViewColumn Header="Số tiền thu" DisplayMemberBinding="{Binding PhieuThuTien.SoTienThu}"/>
+                            <GridViewColumn Header="Số tiền thu" DisplayMemberBinding="{Binding PhieuThuTien.SoTienThu ,StringFormat='#,0'}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

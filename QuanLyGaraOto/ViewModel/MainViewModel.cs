@@ -183,7 +183,8 @@ namespace QuanLyGaraOto.ViewModel
             DataProvider.Instance.DB.BAOCAOTONs.AddRange(baocaotonList);
             BAOCAODOANHSO baocaodoanhso = new BAOCAODOANHSO()
             {
-                ThoiGian = new DateTime(DateTime.Now.Year, thangBaoCao, 1)
+                ThoiGian = new DateTime(DateTime.Now.Year, thangBaoCao, 1),
+                TongDoanhThu = 0
             };
             var hieuxeList = DataProvider.Instance.DB.HIEUXEs.ToArray();
             foreach (var hieuxe in hieuxeList)
@@ -192,7 +193,9 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     MaHieuXe = hieuxe.MaHieuXe,
                     HIEUXE = hieuxe,
-                    BAOCAODOANHSO = baocaodoanhso
+                    BAOCAODOANHSO = baocaodoanhso,
+                    SoLuotSua = 0,
+                    ThanhTien = 0,
                 };
                 DataProvider.Instance.DB.CT_BCDS.Add(baocao);
             }    

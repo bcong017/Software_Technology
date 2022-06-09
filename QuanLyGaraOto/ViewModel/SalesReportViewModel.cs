@@ -47,8 +47,8 @@ namespace QuanLyGaraOto.ViewModel
             set { year = value; }
         }
 
-        private string totalMoney;
-        public string TotalMoney
+        private Decimal? totalMoney;
+        public Decimal? TotalMoney
         {
             get { return totalMoney; }
             set { totalMoney = value; OnPropertyChanged(); }
@@ -65,16 +65,17 @@ namespace QuanLyGaraOto.ViewModel
 
         public SalesReportViewModel()
         {
-            MakeReportCommand = new RelayCommand<object>((p) => 
+            TotalMoney = 0;
+            MakeReportCommand = new RelayCommand<object>((p) =>
             {
                 if (SelectedItem == null || string.IsNullOrEmpty(Year) || Int32.TryParse(Year, out _) == false)
                     return false;
-                return true; 
-            }, (p) => 
+                return true;
+            }, (p) =>
             {
                 ReportList = new ObservableCollection<SalesNumbericalOrder>();
                 int reportedYear = Convert.ToInt32(Year);
-                TotalMoney = "";
+                
                 var saleReport = DataProvider.Instance.DB.BAOCAODOANHSOes.Where(x => x.ThoiGian.Value.Year == reportedYear && x.ThoiGian.Value.Month == number).FirstOrDefault();
                 if (saleReport == null)
                 {
@@ -88,9 +89,10 @@ namespace QuanLyGaraOto.ViewModel
                     SalesNumbericalOrder salesNumbericalOrder = new SalesNumbericalOrder();
                     salesNumbericalOrder.Number = i + 1;
                     salesNumbericalOrder.SalesDetail = list[i];
+                    salesNumbericalOrder.SalesDetail.TiLe = (saleReport.TongDoanhThu != 0 ? (Math.Round((double)salesNumbericalOrder.SalesDetail.ThanhTien / (double)saleReport.TongDoanhThu * 100)) : 0).ToString() + "%";
                     ReportList.Add(salesNumbericalOrder);
                 }
-                TotalMoney = list.Sum(x => x.ThanhTien).ToString();
+                TotalMoney = saleReport.TongDoanhThu ?? 0;
             });
         }
     }

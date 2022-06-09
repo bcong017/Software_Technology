@@ -49,7 +49,7 @@
                               SelectedItem="{Binding SelectedItem}" 
                               DisplayMemberPath="Name"/>
                     <TextBox Text="{Binding Year, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Năm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding TotalMoney, Mode=OneWay, StringFormat='#,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+                    <TextBox Text="{Binding TotalMoney, StringFormat='#,0'}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tổng thành tiền" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
                     <Button Command="{Binding ShowCommand}" Content="Xuất" Margin="35 5 15 5" Width="130"></Button>
                 </WrapPanel>
             </materialDesign:Card>
@@ -61,10 +61,10 @@
                             <GridView>
                                 <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Number}"></GridViewColumn>
                                 <GridViewColumn Header="Tên vật tư" DisplayMemberBinding="{Binding TenVatTu}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn giá nhập" DisplayMemberBinding="{Binding DonGiaNhap, StringFormat='0,0'}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn giá bán" DisplayMemberBinding="{Binding DonGiaBanDeNghi, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá nhập" DisplayMemberBinding="{Binding DonGiaNhap, StringFormat='#,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá bán" DisplayMemberBinding="{Binding DonGiaBanDeNghi, StringFormat='#,0'}"></GridViewColumn>
                                 <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuong}"></GridViewColumn>
-                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='0,0'}"></GridViewColumn>
+                                <GridViewColumn Header="Thành tiền" DisplayMemberBinding="{Binding ThanhTien, StringFormat='#,0'}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

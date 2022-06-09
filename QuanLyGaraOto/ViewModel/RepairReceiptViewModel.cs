@@ -316,6 +316,9 @@ namespace QuanLyGaraOto.ViewModel
                 List<CT_PSC> ctpscList = MakeCTPSC(phieusuachua);
                 DataProvider.Instance.DB.CT_PSC.AddRange(ctpscList);
 
+                BAOCAODOANHSO bcds = DataProvider.Instance.DB.BAOCAODOANHSOes.FirstOrDefault(x => x.ThoiGian.Value.Month == phieusuachua.NgaySuaChua.Value.Month && x.ThoiGian.Value.Year == phieusuachua.NgaySuaChua.Value.Year);
+                bcds.TongDoanhThu += phieusuachua.TongTien;
+
                 CT_BCDS ctbcds = DataProvider.Instance.DB.CT_BCDS.First(x => x.HIEUXE.MaHieuXe == phieusuachua.XE.HIEUXE.MaHieuXe && x.BAOCAODOANHSO.ThoiGian.Value.Year == phieusuachua.NgaySuaChua.Value.Year && x.BAOCAODOANHSO.ThoiGian.Value.Month == phieusuachua.NgaySuaChua.Value.Month);
                 ctbcds.SoLuotSua = ctbcds.SoLuotSua + 1;
                 ctbcds.ThanhTien = ctbcds.ThanhTien + phieusuachua.TongTien;

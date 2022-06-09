@@ -95,7 +95,7 @@ namespace QuanLyGaraOto.ViewModel
                     NotificationWindow.Notify("Số xe tiếp nhận đã vượt quá tối đa cho phép!");
                     return;
                 }    
-                var xe = new XE() { BienSo = BienSo, DiaChi = DiaChi, DienThoai = SoDienThoai, Email = null, TenChuXe = HoTen, NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
+                var xe = new XE() { BienSo = BienSo.Trim(), DiaChi = DiaChi.Trim(), DienThoai = SoDienThoai.Trim(), Email = null, TenChuXe = HoTen.Trim(), NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
                 
                 ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();
                 receiveNumbericalOrder.Car = xe;
@@ -104,6 +104,9 @@ namespace QuanLyGaraOto.ViewModel
                 DataProvider.Instance.DB.XEs.Add(xe);
                 DataProvider.Instance.DB.SaveChanges();
 
+                HoTen = DiaChi = SoDienThoai = BienSo = "";
+                HieuXe = null; SelectedItem = null;
+                NgayTiepNhan = DateTime.Today; 
             });
 
             EditCommand = new RelayCommand<object>((p) =>
