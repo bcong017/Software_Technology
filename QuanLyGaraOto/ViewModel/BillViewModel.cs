@@ -10,7 +10,7 @@ namespace QuanLyGaraOto.ViewModel
 {
     public class BillViewModel : BaseViewModel
     {
-        private Decimal? money;
+        private Decimal money;
         private string _BienSo;
         public string BienSo { get => _BienSo; set { _BienSo = value; OnPropertyChanged(); } }
 
@@ -33,10 +33,12 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (NgayThuTien == null)
                     return false;
+                if (Decimal.TryParse(SoTienThu, out _) == false)
+                    return false;
                 return true;
             }, (p) =>
             {
-                
+
             });
 
             EditCommand = new RelayCommand<object>((p) =>

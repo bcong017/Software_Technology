@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Configuration;
 
 namespace QuanLyGaraOto.ViewModel
 {
@@ -43,7 +44,10 @@ namespace QuanLyGaraOto.ViewModel
 
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => { 
+            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
+
+                CreateReports();
+
                 if (User.QuyenHan == 0)
                 {
                     UpdateParamVisibility = Visibility.Collapsed;
@@ -52,6 +56,8 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     UpdateParamVisibility = Visibility.Visible;
                 }    
+
+
             });
             SelectViewCommand = new RelayCommand<ListViewItem>((p) => { return true; }, (p) => { SelectView(p); });
 
@@ -81,7 +87,7 @@ namespace QuanLyGaraOto.ViewModel
 
             });
         }
-
+        
         void SelectView(ListViewItem listViewItem)
         {
             if (listViewItem != null && listViewItem.Tag != null)
@@ -141,25 +147,13 @@ namespace QuanLyGaraOto.ViewModel
                 
             }    
         }
-        
-        //void LoginAccount(Window p)
-        //{
-        //    if (p != null)
-        //    {
-        //        p.Hide();
-        //        LoginWindow loginWindow = new LoginWindow();
-        //        loginWindow.ShowDialog();
 
-        //        var loginVM = loginWindow.DataContext as LoginWindowViewModel;
+        private void CreateReports()
+        {
+            //var thamso = DataProvider.Instance.DB.THAMSOes.Where(x.ThangLapPhieu == 0).FirstOrDefault();
+                
 
-        //        if (loginVM == null)
-        //            return;
 
-        //        if (loginVM.isLoggedIn)
-        //        {
-        //            p.Show();
-        //        }
-        //    }
-        //}
+        }
     }
 }

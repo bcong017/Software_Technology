@@ -72,7 +72,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Width="100"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
-                        Command="{Binding EditCommand}"
+                    Command="{Binding EditCommand}"
                     Content="Sửa"/>
                 </Grid>
                 
