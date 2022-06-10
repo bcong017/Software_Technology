@@ -91,8 +91,13 @@ namespace QuanLyGaraOto.ViewModel
                     salesNumbericalOrder.SalesDetail = list[i];
                     salesNumbericalOrder.SalesDetail.TiLe = (saleReport.TongDoanhThu != 0 ? (Math.Round((double)salesNumbericalOrder.SalesDetail.ThanhTien / (double)saleReport.TongDoanhThu * 100)) : 0).ToString() + "%";
                     ReportList.Add(salesNumbericalOrder);
+                    if (saleReport.ThoiGian < new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1) )
+                    {
+                        list[i].TiLe = (saleReport.TongDoanhThu != 0 ? (Math.Round((double)salesNumbericalOrder.SalesDetail.ThanhTien / (double)saleReport.TongDoanhThu * 100)) : 0).ToString() + "%";
+                    }
                 }
                 TotalMoney = saleReport.TongDoanhThu ?? 0;
+                DataProvider.Instance.DB.SaveChanges();
             });
         }
     }

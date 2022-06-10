@@ -84,9 +84,16 @@ namespace QuanLyGaraOto.ViewModel
                 var hieuxe = new HIEUXE() { TenHieuXe = CarBrandName.Trim() };
 
                 DataProvider.Instance.DB.HIEUXEs.Add(hieuxe);
+                var bcds = DataProvider.Instance.DB.BAOCAODOANHSOes.Where(x=>x.ThoiGian.Value.Month == DateTime.Now.Month && x.ThoiGian.Value.Year == DateTime.Now.Year).FirstOrDefault();
+                if (bcds != null)
+                {
+                    var ct_bcds = new CT_BCDS() { MaHieuXe = hieuxe.MaHieuXe, SoLuotSua = 0, ThanhTien = 0, HIEUXE = hieuxe, BAOCAODOANHSO = bcds, MaBCDS = bcds.MaBCDS };
+                    DataProvider.Instance.DB.CT_BCDS.Add(ct_bcds);
+                }
                 DataProvider.Instance.DB.SaveChanges();
-
                 HieuXeList.Add(hieuxe);
+
+
             });
 
             EditCommand = new RelayCommand<object>((p) =>
