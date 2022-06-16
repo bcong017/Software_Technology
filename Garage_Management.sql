@@ -161,12 +161,15 @@ ALTER TABLE CT_BCDS ADD CONSTRAINT FK_MaBCDS FOREIGN KEY (MaBCDS) REFERENCES BAO
 ALTER TABLE CT_BCDS ADD CONSTRAINT FK_CT_BCDS_MaHieuXe FOREIGN KEY (MaHieuXe) REFERENCES HIEUXE(MaHieuXe)
 ALTER TABLE TAIKHOAN ADD CONSTRAINT FK_QuyenHan FOREIGN KEY (QuyenHan) REFERENCES VAITRO(MaVaiTro)
 
+SET DATEFORMAT DMY
+
 INSERT INTO VAITRO VALUES (0, 'staff')
 INSERT INTO VAITRO VALUES (1, 'admin')
 
 INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('staff', '978aae9bb6bee8fb75de3e4830a1be46', 0)
 INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan) VALUES ('admin', 'db69fc039dcbd2962cb4d28f5891aae1', 1)
 
+-- Co the them vao truoc
 INSERT INTO HIEUXE (TenHieuXe) VALUES ('Lamborghini')
 INSERT INTO HIEUXE (TenHieuXe) VALUES ('VinFast')
 INSERT INTO HIEUXE (TenHieuXe) VALUES ('Mazda')
@@ -183,6 +186,7 @@ INSERT INTO HIEUXE (TenHieuXe) VALUES ('Audi')
 INSERT INTO HIEUXE (TenHieuXe) VALUES ('Bugatti')
 INSERT INTO HIEUXE (TenHieuXe) VALUES ('Ferrari')
 
+-- Co the them vao truoc
 INSERT INTO VATTU (TenVatTu, DonGiaHienTai, SoLuongTon) VALUES 
 	(N'Dây curoa máy', '300000', '10'),
 	(N'Dây curoa cam', '3000000', '10'),
@@ -221,10 +225,3 @@ INSERT INTO TIENCONG (TenTienCong, GiaTienCong) VALUES
 
 INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram) VALUES (0, 1, 30, 0.2)
 
-INSERT INTO THAMSO (MaThamSo, SoTienThu, XeToiDa, PhanTram, ThangBaoCao) VALUES (0, 1, 30, 0.2, 2)
-
-INSERT INTO XE (BienSo, TenChuXe, DienThoai, DiaChi, Email, NgayTiepNhan, MaHieuXe, TienNo) VALUES ('1234','NGUYEN VAN A', '0123456789', 'NAJSKFBASJK' ,'VANA@GMAIL.COM', '15/5/2022', 5, 0)
-
-INSERT INTO TAIKHOAN (TenTaiKhoan, MatKhau, QuyenHan, Email) VALUES ('thestargazer', '5dc3d9e4da636866145624eb271fb9ee', 0, 'thaiduong7v@gmail.com')
-
-SET DATEFORMAT DMY
