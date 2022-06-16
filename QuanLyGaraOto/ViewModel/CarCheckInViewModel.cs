@@ -83,8 +83,6 @@ namespace QuanLyGaraOto.ViewModel
                     return false;
                 if (string.IsNullOrEmpty(SoDienThoai))
                     return false;
-                if (DataProvider.Instance.DB.XEs.Any(x => x.BienSo == BienSo) == true)
-                    return false;
                 return true;
             }, (p) =>
             {
@@ -94,7 +92,12 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     NotificationWindow.Notify("Số xe tiếp nhận đã vượt quá tối đa cho phép!");
                     return;
-                }    
+                }
+                if (DataProvider.Instance.DB.XEs.Any(x => x.BienSo == BienSo) == true)
+                {
+                    NotificationWindow.Notify("Đã có xe có biển số trùng với biển số bạn đã nhập!");
+                    return;
+                }
                 var xe = new XE() { BienSo = BienSo.Trim(), DiaChi = DiaChi.Trim(), DienThoai = SoDienThoai.Trim(), Email = null, TenChuXe = HoTen.Trim(), NgayTiepNhan = NgayTiepNhan, TienNo = 0, MaHieuXe = HieuXe.MaHieuXe, HIEUXE = HieuXe };
                 
                 ReceiveNumbericalOrder receiveNumbericalOrder = new ReceiveNumbericalOrder();

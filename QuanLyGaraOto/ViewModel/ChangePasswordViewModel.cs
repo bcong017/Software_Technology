@@ -75,7 +75,7 @@ namespace QuanLyGaraOto.ViewModel
                     NotificationWindow.Notify("Mật khẩu mới không khớp với mật khẩu nhập lại!");
                     return;
                 }    
-                if (passEncode != MainViewModel.User.MatKhau)
+                if (string.Compare(passEncode, MainViewModel.User.MatKhau) != 0)
                 {
                     NotificationWindow.Notify("Mật khẩu đang dùng không trùng khớp!");
                     return;

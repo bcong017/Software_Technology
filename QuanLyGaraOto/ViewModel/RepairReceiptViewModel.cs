@@ -20,8 +20,8 @@ namespace QuanLyGaraOto.ViewModel
         {
             get { return carList; }
             set { carList = value; OnPropertyChanged(); }
-        }    
-        
+        }
+
         private List<TIENCONG> wagesList;
         public List<TIENCONG> WagesList
         {
@@ -52,7 +52,7 @@ namespace QuanLyGaraOto.ViewModel
 
         private DateTime? selectedDate;
         public DateTime? SelectedDate
-        { 
+        {
             get { return selectedDate; }
             set { selectedDate = value; OnPropertyChanged(); }
         }
@@ -86,7 +86,7 @@ namespace QuanLyGaraOto.ViewModel
         }
         private string amount;
         public string Amount
-        { 
+        {
             get { return amount; }
             set { amount = value; OnPropertyChanged(); }
         }
@@ -95,9 +95,9 @@ namespace QuanLyGaraOto.ViewModel
         public ContentNumbericalOrder SelectedContent
         {
             get { return selectedContent; }
-            set 
-            { 
-                selectedContent = value; 
+            set
+            {
+                selectedContent = value;
                 OnPropertyChanged();
                 if (SelectedContent != null)
                 {
@@ -105,8 +105,8 @@ namespace QuanLyGaraOto.ViewModel
                     Times = SelectedContent.SoLan.ToString();
                     SelectedWage = DataProvider.Instance.DB.TIENCONGs.Single(x => x.MaTienCong == SelectedContent.MaTienCong);
                     AccessoriesList = new ObservableCollection<ItemNumbericalOrder>(SelectedContent.ItemList);
-                }    
-                    
+                }
+
             }
         }
 
@@ -114,9 +114,9 @@ namespace QuanLyGaraOto.ViewModel
         public ItemNumbericalOrder SelectedAccessories
         {
             get { return selectedAccessories; }
-            set 
-            { 
-                selectedAccessories = value; 
+            set
+            {
+                selectedAccessories = value;
                 OnPropertyChanged();
             }
         }
@@ -266,7 +266,7 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     NotificationWindow.Notify(String.Format("Số vật tư bạn đã chọn không còn đủ (Hiện có: {0})!", SelectedItem.SoLuongTon));
                     return;
-                }    
+                }
                 ItemNumbericalOrder item = new ItemNumbericalOrder()
                 {
                     Number = itemId,
@@ -296,7 +296,7 @@ namespace QuanLyGaraOto.ViewModel
                 {
                     item.Number = i;
                     i++;
-                }    
+                }
                 SelectedAccessories = null; Amount = "";
                 UpdateTotalMoney();
             });
@@ -362,7 +362,7 @@ namespace QuanLyGaraOto.ViewModel
                     {
                         return false;
                     }
-                }    
+                }
             }
             return true;
         }
@@ -379,29 +379,26 @@ namespace QuanLyGaraOto.ViewModel
         }
         private void UpdateTotalMoney()
         {
-            if (ContentList.Count == 0)
-            {
-                TotalMoney = 0;
-                return;
-            }    
+            TotalMoney = 0;
+
             foreach (var content in ContentList)
             {
                 TotalMoney += content.ThanhTien;
-            }    
+            }
         }
 
         private Decimal CalculateContentMoney(ContentNumbericalOrder content, TIENCONG SelectedWage)
         {
             Decimal itemMoney = 0;
-            foreach(var item in content.ItemList)
+            foreach (var item in content.ItemList)
             {
-                itemMoney += item.ThanhTien * item.SoLuong;
-            }    
+                itemMoney += (item.ThanhTien * item.SoLuong);
+            }
 
 
             return ((itemMoney + SelectedWage.GiaTienCong) * content.SoLan) ?? 0;
         }
-        
+
         private List<CT_PSC> MakeCTPSC(PHIEUSUACHUA p)
         {
             List<CT_PSC> result = new List<CT_PSC>();
@@ -421,7 +418,7 @@ namespace QuanLyGaraOto.ViewModel
                 };
                 list.Add(content.ItemList);
                 result.Add(ctpsc);
-            } 
+            }
             return result;
         }
 
@@ -444,7 +441,7 @@ namespace QuanLyGaraOto.ViewModel
                 baocaoton.PhatSinh = baocaoton.PhatSinh + ctsdvt.SoLuong;
                 baocaoton.TonCuoi = baocaoton.TonDau - baocaoton.PhatSinh;
                 result.Add(ctsdvt);
-            }    
+            }
             return result;
         }
 

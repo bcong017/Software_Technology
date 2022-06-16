@@ -102,6 +102,7 @@ namespace QuanLyGaraOto.ViewModel
                 DataProvider.Instance.DB.SaveChanges();
 
                 TienCongList.Add(tiencong);
+                WageName = Price = "";
             });
 
             EditCommand = new RelayCommand<object>((p) =>
