@@ -46,9 +46,9 @@ namespace QuanLyGaraOto.ViewModel
             this.Option = new List<string>() { "Biển số", "Hiệu xe", "Chủ xe", "Tiền nợ" };
             SearchCommand = new RelayCommand<object>((p) => 
             { 
-                if (Check() == true || String.IsNullOrEmpty(InputedItem)) 
-                    return true; 
-                else return false; 
+                if (Check() == false || String.IsNullOrEmpty(InputedItem) || String.IsNullOrEmpty(SelectedItem))
+                    return false; 
+                else return true; 
             }
             , (p) => 
             {
@@ -89,7 +89,8 @@ namespace QuanLyGaraOto.ViewModel
         private bool Check()
         {
             if (SelectedItem == "Tiền nợ")
-                    return Decimal.TryParse(InputedItem, out _);
+                return Decimal.TryParse(InputedItem, out _);
+            
             return true;
         }
         private List<XE> SearchByLicensePlate()
