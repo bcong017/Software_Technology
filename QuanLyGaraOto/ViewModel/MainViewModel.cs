@@ -155,7 +155,7 @@ namespace QuanLyGaraOto.ViewModel
             if (thamso == null)
                 return;
 
-            if (thamso.ThangBaoCao != DateTime.Now.Month && thamso.ThangBaoCao != null)
+            if (thamso.ThangBaoCao != DateTime.Now.Month || thamso.ThangBaoCao == null)
             {
                 thamso.ThangBaoCao = DateTime.Now.Month;
                 CreateBaoCao(DateTime.Now.Month);
