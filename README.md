@@ -1,7 +1,29 @@
+# Phần mềm quản lý gara oto
 
-Sửa file App.config ở dòng này:
-connectionString="metadata=res://*/Model.Model1.csdl|res://*/Model.Model1.ssdl|res://*/Model.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=THESTARGAZER\THESTARGAZER;initial catalog=GARAGE_MANAGEMENT;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
-Sửa data source=THESTARGAZER\THESTARGAZER thành Server name ở bảng Connect to Server khi mới mở SQL server lên
+Đồ án môn học Nhập môn công nghệ phần mềm.  
+Đề tài: Quản lý gara oto.  
+Mục tiêu: Cung cấp giao diện, các chức năng cơ bản nhất cho gara hiện có ngày nay.
 
-CẬP NHẬT DB LẠI 
-CẬP NHẬT DB MỚI NHẤT
+## Các chức năng
+
+- Tạo phiếu tiếp nhận xe.
+- Tạo phiếu sữa chữa.
+- Lập phiếu thu tiền.
+- Báo cáo hàng tồn, doanh thu.
+
+## Công nghệ sử dụng
+
+- C#
+- WPF
+- SQL Server
+
+
+## Các chức năng chính
+- Lập phiếu tiếp nhận xe sửa
+- Lập phiếu sữa chữa
+- Lập phiếu thu tiền
+- Nhập vật tư, tiền công
+- Quản lý báo cáo, báo biểu hàng tồn, doanh thu theo tháng.
+
+## Giấy phép
+[MIT](https://choosealicense.com/licenses/mit/)
